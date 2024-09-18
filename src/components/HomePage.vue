@@ -4,7 +4,7 @@ import { onMounted } from "vue";
 import { computed } from "vue";
 
 const images = ref([
-  "/src/assets/img/home-book-4.png",
+  "/src/assets/img/home-book-1.png",
   "/src/assets/img/home-book-2.png",
   "/src/assets/img/home-book-3.png",
 ]);
@@ -107,10 +107,10 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="relative">
+  <div class="relative pb-24">
     <div class="lg:pt-24 lg:px-24 p-4">
       <div
-        class="flex flex-col gap-7 lg:flex-row bg-[#4169E1] text-white p-10 rounded-2xl shadow-md overflow-hidden"
+        class="flex flex-col gap-7 lg:flex-row bg-[#00697F] text-white p-10 rounded-2xl shadow-md overflow-hidden"
       >
         <div
           class="lg:w-[40%] w-full flex flex-col lg:items-start justify-center space-y-4"
@@ -132,7 +132,7 @@ onMounted(() => {
             Liên hệ: <span class="text-white">079-965-8592</span>
           </p>
           <button
-            class="lg:px-8 lg:py-4 px-6 py-4 bg-white text-[#4169E1] text-base lg:text-xl font-semibold rounded-xl shadow-md"
+            class="lg:px-8 lg:py-4 px-6 py-4 bg-white text-[#00697F] text-base lg:text-xl font-semibold rounded-xl shadow-md"
           >
             Read More
           </button>
@@ -152,28 +152,28 @@ onMounted(() => {
     <div class="flex lg:flex-row flex-col justify-center space-y-4 lg:space-x-8 lg:pt-10 lg:px-24 p-4">
       <div class="w-[20%] hidden lg:block flex-col py-1 px-2">
         <h2 class="py-2 flex items-center gap-2 text-[#333f48]">
-          <i class="fa-solid fa-book-open text-[#4169E1]"></i>
+          <i class="fa-solid fa-book-open text-[#00697F]"></i>
           <strong>Phân loại sách</strong>
         </h2>
         <hr class="border border-[#333f48] rounded-full" />
         <ul>
           <li @click="selectTypeBook('All')"
-            class="py-[6px] px-3 text-[#333f48] border border-1 cursor-pointer hover:border-[#4169E1] hover:text-[#4169E1] transition-all duration-100 my-3"
+            class="py-[6px] px-3 text-[#333f48] border border-1 cursor-pointer hover:border-[#00697F] hover:text-[#00697F] transition-all duration-100 my-3"
           >
             Tất cả
           </li>
           <li @click="selectTypeBook('TieuThuyet')"
-            class="py-[6px] px-3 text-[#333f48] border border-1 cursor-pointer hover:border-[#4169E1] hover:text-[#4169E1] transition-all duration-100 my-3"
+            class="py-[6px] px-3 text-[#333f48] border border-1 cursor-pointer hover:border-[#00697F] hover:text-[#00697F] transition-all duration-100 my-3"
           >
             Tiểu thuyết
           </li>
           <li @click="selectTypeBook('TruyenTranh')"
-            class="py-[6px] px-3 text-[#333f48] border border-1 cursor-pointer hover:border-[#4169E1] hover:text-[#4169E1] transition-all duration-100 my-3"
+            class="py-[6px] px-3 text-[#333f48] border border-1 cursor-pointer hover:border-[#00697F] hover:text-[#00697F] transition-all duration-100 my-3"
           >
             Truyện tranh
           </li>
           <li @click="selectTypeBook('TuDien')"
-            class="py-[6px] px-3 text-[#333f48] border border-1 cursor-pointer hover:border-[#4169E1] hover:text-[#4169E1] transition-all duration-100 my-3"
+            class="py-[6px] px-3 text-[#333f48] border border-1 cursor-pointer hover:border-[#00697F] hover:text-[#00697F] transition-all duration-100 my-3"
           >
             Từ điển
           </li>
@@ -182,30 +182,30 @@ onMounted(() => {
       <div class="relative block lg:hidden w-full">
         <div @click="toggleDropDownOpen" class="relative border border-[#a3a3a3] rounded py-1 px-2 cursor-pointer clickdown">
             <div class="flex items-center justify-between">
-                <h2 class="py-2 flex items-center gap-2 text-[#333f48]"><i class="fa-solid fa-book-open text-[#4169E1]"></i><strong> Phân loại sách</strong></h2>
+                <h2 class="py-2 flex items-center gap-2 text-[#333f48]"><i class="fa-solid fa-book-open text-[#00697F]"></i><strong> Phân loại sách</strong></h2>
                 <i class="fa-solid fa-caret-down rotate-180 ease-out duration-500" :class="{'rotate-0' : isOpen}"></i>
             </div>
         </div>
         <ul v-show="isOpen" class="absolute top-[120%] left-0 z-40 w-full bg-[#fff] p-3 rounded-lg shadow border-2 border-[#a3a3a3]">
-            <li @click="selectTypeBook('All')" class="mt-1 text-[#333f48] py-2 px-3 cursor-pointer hover:text-[#4169E1] mb-1 font-semibold transition-all duration-200">Tất cả</li>
-            <hr class="bg-[#4169E1]">
-            <li @click="selectTypeBook('TieuThuyet')" class="mt-1 text-[#333f48] py-2 px-3 cursor-pointer hover:text-[#4169E1] mb-1 font-semibold transition-all duration-200">Tiểu Thuyết</li>
-            <hr class="bg-[#4169E1]">
-            <li @click="selectTypeBook('TruyenTranh')" class="py-2 text-[#333f48] px-3 cursor-pointer hover:text-[#4169E1] mb-1 font-semibold transition-all duration-200">Truyện Tranh</li>
-            <hr class="bg-[#4169E1]">
-            <li @click="selectTypeBook('TuDien')" class="py-2 text-[#333f48] px-3 cursor-pointer hover:text-[#4169E1] mb-1 font-semibold transition-all duration-200">Từ Điển</li>
+            <li @click="selectTypeBook('All')" class="mt-1 text-[#333f48] py-2 px-3 cursor-pointer hover:text-[#00697F] mb-1 font-semibold transition-all duration-200">Tất cả</li>
+            <hr class="bg-[#00697F]">
+            <li @click="selectTypeBook('TieuThuyet')" class="mt-1 text-[#333f48] py-2 px-3 cursor-pointer hover:text-[#00697F] mb-1 font-semibold transition-all duration-200">Tiểu Thuyết</li>
+            <hr class="bg-[#00697F]">
+            <li @click="selectTypeBook('TruyenTranh')" class="py-2 text-[#333f48] px-3 cursor-pointer hover:text-[#00697F] mb-1 font-semibold transition-all duration-200">Truyện Tranh</li>
+            <hr class="bg-[#00697F]">
+            <li @click="selectTypeBook('TuDien')" class="py-2 text-[#333f48] px-3 cursor-pointer hover:text-[#00697F] mb-1 font-semibold transition-all duration-200">Từ Điển</li>
         </ul>
       </div>
       <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-4 text-[#333f48]">
-        <div v-for="(item, index) in filteredBooks" :key="index" class="flex flex-col gap-3 justify-center items-center border-2 border-[#C0C0C0] rounded-xl shadow-md p-4">
-          <img :src="item.image" class="w-[300px]" alt="">
+        <div v-for="(item, index) in filteredBooks" :key="index" class="flex flex-col gap-3 justify-center items-center border-2 border-[#C0C0C0] rounded-xl cursor-pointer shadow-md p-4 group">
+          <img :src="item.image" class="w-[300px] group-hover:scale-105 transition-all duration-300" alt="">
           <div class="w-72 whitespace-nowrap text-ellipsis overflow-hidden text-center">
-            <a href="" class="text-lg font-semibold hover:text-[#4169E1] transition-all duration-300">{{ item.name }}</a>
+            <a href="" class="text-lg font-semibold hover:text-[#00697F] transition-all duration-300">{{ item.name }}</a>
           </div>
           <div class="w-72 whitespace-nowrap text-ellipsis overflow-hidden text-center">
             <a href="" class="text-lg font-medium">{{ item.author }}</a>
           </div>
-          <a href="" class="text-xl font-semibold underline hover:text-[#4169E1] transition-all duration-300">Thêm Giỏ Hàng <i class="fa-solid fa-circle-plus"></i></a>
+          <a href="" class="text-xl font-semibold underline hover:text-[#00697F] transition-all duration-300">Thêm Giỏ Hàng <i class="fa-solid fa-circle-plus"></i></a>
         </div>
       </div>
     </div>
