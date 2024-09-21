@@ -109,9 +109,9 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="relative font-sans overflow-hidden">
+  <div class="relative font-sans overflow-hidden min-h-screen">
     <Header />
-    <div class="relative pb-24">
+    <div class="relative pb-28">
       <div class="lg:pt-24 lg:px-24 p-4">
         <div
           class="flex flex-col gap-7 lg:flex-row bg-[#00697F] text-white p-10 rounded-2xl shadow-md overflow-hidden"

@@ -37,7 +37,7 @@ onMounted(() => {
           <h1
             class="font-bold lg:text-2xl text-[14px] uppercase text-[#00697F]"
           >
-            <i class="fa-solid fa-book"></i> - BookStore
+            <i class="fa-solid fa-book"></i> - JEIKEI LIBRARY
           </h1>
         </div>
         <div class="lg:flex hidden flex-1 gap-4 max-w-xl">
@@ -133,7 +133,7 @@ onMounted(() => {
           </ul>
         </div>
         <div
-          class="info absolute top-24 -right-[100%] flex flex-col gap-3 p-6 border-2 border-[#C0C0C0] rounded-2xl bg-[#fff] shadow-md z-10"
+          class="info absolute top-24 right-[-100%] flex flex-col gap-3 p-6 border-2 border-[#C0C0C0] rounded-2xl bg-[#fff] shadow-md z-10"
         >
           <div class="flex gap-3">
             <img
