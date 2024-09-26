@@ -2,7 +2,7 @@
   <footer class="w-full">
     <div class="w-full bg-[#00697F] p-4">
       <div
-        class="flex justify-center flex-col text-white lg:py-4 lg:px-20 lg:flex-row font-semibold md:justify-between items-center"
+        class="flex justify-center flex-col text-white lg:py-4 lg:px-10 lg:flex-row font-semibold md:justify-between items-center"
       >
         <div class="flex flex-col md:flex-row md:text-sm">
           <p class="mr-5 lg:text-xl">

@@ -4,6 +4,8 @@ import Details from '../components/home/details.vue';
 import Login from '../components/auth/login.vue';
 import Logout from '../components/auth/logout.vue';
 import BookHistory from '../components/home/Book_history.vue';
+import Cart from '../components/home/Cart.vue';
+import Profile from '../components/home/Profile.vue';
 
 const routes = [
     {
@@ -20,6 +22,16 @@ const routes = [
         path: '/book_history',
         name: 'book_history',
         component: BookHistory
+    },
+    {
+        path: '/cart',
+        name: 'cart',
+        component: Cart
+    },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: Profile
     },
     {
         path: '/login',
