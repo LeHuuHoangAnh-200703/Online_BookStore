@@ -7,8 +7,7 @@ import Footer from "../../layout/client/Footer.vue";
     <div class="relative font-sans overflow-hidden min-h-screen">
         <Header />
         <div class="w-[95%] h-[650px] md:h-[570px] mx-auto mt-3 mb-36">
-            <div class="relative w-full">
-                <!-- <img src="../../assets/img/z5300330066078_500c69306f95b52da4635cb3e9b37424.jpg" class="relative h-[350px] w-full rounded-xl" alt=""> -->
+            <div class="image_profile relative w-full h-[350px] bg-center bg-cover bg-no-repeat rounded-xl">
                 <div
                     class="w-[90%] bg-[#fdfdfd] absolute top-32 left-[50%] translate-x-[-50%] mx-auto shadow-lg rounded-md pt-[50px] px-2 sm:px-10 pb-10 sm:pb-0 h-fit">
                     <img src="../../assets/img/avatar-1.jpg"
@@ -55,4 +54,8 @@ import Footer from "../../layout/client/Footer.vue";
     </div>
 </template>
 
-<style></style>
+<style scoped>
+.image_profile {
+    background-image: url('../../assets/img/z5300330066078_500c69306f95b52da4635cb3e9b37424.jpg');
+}
+</style>

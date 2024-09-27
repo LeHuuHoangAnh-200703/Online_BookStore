@@ -6,6 +6,8 @@ import Logout from '../components/auth/logout.vue';
 import BookHistory from '../components/home/Book_history.vue';
 import Cart from '../components/home/Cart.vue';
 import Profile from '../components/home/Profile.vue';
+import EditProfile from '../components/home/Edit_profile.vue';
+import Order from '../components/home/Orders.vue';
 
 const routes = [
     {
@@ -32,6 +34,16 @@ const routes = [
         path: '/profile',
         name: 'profile',
         component: Profile
+    },
+    {
+        path: '/editprofile',
+        name: 'edit_profile',
+        component: EditProfile
+    },
+    {
+        path: '/order',
+        name: 'order',
+        component: Order
     },
     {
         path: '/login',
