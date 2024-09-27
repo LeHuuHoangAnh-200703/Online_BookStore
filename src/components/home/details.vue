@@ -8,17 +8,9 @@ import Footer from "../../layout/client/Footer.vue";
     <Header />
     <div class="lg:py-10 lg:px-10 p-4 bg-[#e8e8e8]">
       <div class="flex gap-8 lg:flex-row flex-col">
-        <div class="w-full lg:w-[40%] bg-white gap-6 p-8 rounded-2xl flex flex-col justify-start items-center">
+        <div class="w-full lg:w-[40%] bg-white gap-8 p-8 rounded-2xl flex flex-col justify-start items-center">
           <div class="flex flex-col gap-5">
             <img src="../../assets/img/TruyenTranh-4.jpg" class="w-[500px]" alt="" />
-            <div class="flex gap-4 items-center justify-center">
-              <img src="../../assets/img/TruyenTranh-4.jpg"
-                class="w-[100px] lg:w-[150px] p-2 border-2 hover:border-[#00697F] rounded-2xl transition-all duration-300 cursor-pointer"
-                alt="" />
-              <img src="../../assets/img/TruyenTranh-4.jpg"
-                class="w-[100px] lg:w-[150px] p-2 border-2 hover:border-[#00697F] rounded-2xl transition-all duration-300 cursor-pointer"
-                alt="" />
-            </div>
           </div>
           <div class="flex flex-col gap-5">
             <h2 class="text-[18px] lg:text-[22px] font-semibold">
@@ -65,20 +57,10 @@ import Footer from "../../layout/client/Footer.vue";
               Thông tin chi tiết
             </h2>
             <p class="text-[18px] lg:text-[20px]">
-              Nhà cung cấp:
-              <span class="text-[#00697F] font-semibold">Nhà Xuất Bản Kim Đồng</span>
-            </p>
-            <p class="text-[18px] lg:text-[20px]">
               Tác giả: <span>Hidenori Kusaka, Satoshi Yamamoto</span>
             </p>
             <p class="text-[18px] lg:text-[20px]">
               Nhà xuất bản: <span>Kim Đồng</span>
-            </p>
-            <p class="text-[18px] lg:text-[20px]">Số trang: <span>204</span></p>
-            <p class="text-[18px] lg:text-[20px]">
-              Thể loại:
-              <span class="text-[#00697F]">Action, Adventure, Comedy, Elemental Powers, Family Friendly,
-                Fantasy, Monsters, Shounen</span>
             </p>
             <a href=""
               class="w-full bg-[#51A7BF] flex flex-col gap-2 justify-center items-center p-4 text-[14px] lg:text-[20px] font-semibold text-white hover:bg-[#00697F] transition-all duration-200">MƯỢN

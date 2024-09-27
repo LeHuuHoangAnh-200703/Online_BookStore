@@ -86,6 +86,25 @@ const listBooks = ref([
   },
 ]);
 
+const chooseListBook = ref([
+  {
+    name: "Tất cả",
+    type: "All"
+  },
+  {
+    name: "Truyện tranh",
+    type: "TruyenTranh"
+  },
+  {
+    name: "Tiểu thuyết",
+    type: "TieuThuyet",
+  },
+  {
+    name: "Từ điểm",
+    type: "TuDien"
+  }
+])
+
 const isOpen = ref(false);
 const toggleDropDownOpen = () => {
   isOpen.value = !isOpen.value;
@@ -148,21 +167,9 @@ onMounted(() => {
           </h2>
           <hr class="border border-[#333f48] rounded-full" />
           <ul>
-            <li @click="selectTypeBook('All')"
+            <li v-for="(listChoice, index) in chooseListBook" :key="index" @click="selectTypeBook(listChoice.type)"
               class="py-[6px] px-3 text-[#333f48] border border-1 cursor-pointer hover:border-[#00697F] hover:text-[#00697F] transition-all duration-100 my-3">
-              Tất cả
-            </li>
-            <li @click="selectTypeBook('TieuThuyet')"
-              class="py-[6px] px-3 text-[#333f48] border border-1 cursor-pointer hover:border-[#00697F] hover:text-[#00697F] transition-all duration-100 my-3">
-              Tiểu thuyết
-            </li>
-            <li @click="selectTypeBook('TruyenTranh')"
-              class="py-[6px] px-3 text-[#333f48] border border-1 cursor-pointer hover:border-[#00697F] hover:text-[#00697F] transition-all duration-100 my-3">
-              Truyện tranh
-            </li>
-            <li @click="selectTypeBook('TuDien')"
-              class="py-[6px] px-3 text-[#333f48] border border-1 cursor-pointer hover:border-[#00697F] hover:text-[#00697F] transition-all duration-100 my-3">
-              Từ điển
+              {{ listChoice.name }}
             </li>
           </ul>
         </div>
@@ -178,24 +185,10 @@ onMounted(() => {
           </div>
           <ul v-show="isOpen"
             class="absolute top-[120%] left-0 z-40 w-full bg-[#fff] p-3 rounded-lg shadow border-2 border-[#a3a3a3]">
-            <li @click="selectTypeBook('All')"
+            <li v-for="(listChoice, index) in chooseListBook" :key="index" @click="selectTypeBook(listChoice.type)"
               class="mt-1 text-[#333f48] py-2 px-3 cursor-pointer hover:text-[#00697F] mb-1 font-semibold transition-all duration-200">
-              Tất cả
-            </li>
-            <hr class="bg-[#00697F]" />
-            <li @click="selectTypeBook('TieuThuyet')"
-              class="mt-1 text-[#333f48] py-2 px-3 cursor-pointer hover:text-[#00697F] mb-1 font-semibold transition-all duration-200">
-              Tiểu Thuyết
-            </li>
-            <hr class="bg-[#00697F]" />
-            <li @click="selectTypeBook('TruyenTranh')"
-              class="py-2 text-[#333f48] px-3 cursor-pointer hover:text-[#00697F] mb-1 font-semibold transition-all duration-200">
-              Truyện Tranh
-            </li>
-            <hr class="bg-[#00697F]" />
-            <li @click="selectTypeBook('TuDien')"
-              class="py-2 text-[#333f48] px-3 cursor-pointer hover:text-[#00697F] mb-1 font-semibold transition-all duration-200">
-              Từ Điển
+              {{ listChoice.name }}
+              <hr class="bg-[#00697F] my-2" />
             </li>
           </ul>
         </div>

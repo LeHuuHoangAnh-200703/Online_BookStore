@@ -8,6 +8,11 @@ import Cart from '../components/home/Cart.vue';
 import Profile from '../components/home/Profile.vue';
 import EditProfile from '../components/home/Edit_profile.vue';
 import Order from '../components/home/Orders.vue';
+import adminLogin from '../components/auth/adminLogin.vue';
+import addAdmin from '../components/auth/addAdmin.vue';
+import adminDashboard from '../components/admin/adminDashboard.vue';
+import customers from '../components/admin/customers.vue';
+import createProducts from '../components/admin/createProducts.vue';
 
 const routes = [
     {
@@ -54,7 +59,32 @@ const routes = [
         path: '/logout',
         name: 'logout',
         component: Logout
-    }
+    },
+    {
+        path: '/admin/login',
+        name: 'adminLogin',
+        component: adminLogin
+    },
+    {
+        path: '/admin/addAdmin',
+        name: 'addAdmin',
+        component: addAdmin
+    },
+    {
+        path: '/admin/adminDashboard',
+        name: 'adminDashboard',
+        component: adminDashboard
+    },
+    {
+        path: '/admin/customers',
+        name: 'customers',
+        component: customers
+    },
+    {
+        path: '/admin/createProducts',
+        name: 'createProducts',
+        component: createProducts
+    },
 ];
 
 const router = createRouter({
