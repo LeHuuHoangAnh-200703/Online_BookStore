@@ -131,19 +131,19 @@ onMounted(() => {
         </div>
         <hr class="bg-[#00697F]" />
         <div class="flex flex-col gap-3">
-          <div class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 group">
-            <i class="fa-solid fa-user text-[#00697F] group-hover:text-[#fff]"></i>
-            <a href="" class="text-[20px] font-semibold group-hover:text-[#fff]">Hồ Sơ</a>
+          <div class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 rounded-md group">
+            <i class="fa-solid fa-user text-[#00697F] group-hover:text-white"></i>
+            <a href="#" class="text-lg font-semibold text-gray-800 group-hover:text-white">Hồ Sơ</a>
           </div>
-          <div class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 group">
-            <i class="fa-solid fa-gear text-[#00697F] group-hover:text-[#fff]"></i>
-            <a href="" class="text-[20px] font-semibold group-hover:text-[#fff]">Chỉnh sửa hồ sơ</a>
+          <div class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 rounded-md group">
+            <i class="fa-solid fa-gear text-[#00697F] group-hover:text-white"></i>
+            <a href="#" class="text-lg font-semibold text-gray-800 group-hover:text-white">Chỉnh sửa hồ sơ</a>
           </div>
         </div>
         <hr class="bg-[#00697F]" />
-        <div class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 group">
-          <i class="fa-solid fa-right-to-bracket text-[#00697F] group-hover:text-[#fff]"></i>
-          <a href="" class="text-[20px] font-semibold group-hover:text-[#fff]">Đăng xuất</a>
+        <div class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 rounded-md group">
+          <i class="fa-solid fa-right-to-bracket text-[#00697F] group-hover:text-white"></i>
+          <a href="#" class="text-lg font-semibold text-gray-800 group-hover:text-white">Đăng xuất</a>
         </div>
       </div>
     </div>

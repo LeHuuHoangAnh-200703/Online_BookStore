@@ -1,20 +1,16 @@
 <template>
-  <footer class="w-full">
-    <div class="w-full bg-[#00697F] p-4">
-      <div
-        class="flex justify-center flex-col text-white lg:py-4 lg:px-10 lg:flex-row font-semibold md:justify-between items-center"
-      >
-        <div class="flex flex-col md:flex-row md:text-sm">
-          <p class="mr-5 lg:text-xl">
-            © 2024 JeiKei, Inc. All rights reserved.
-          </p>
-          <p class="md:border-l-2 lg:text-xl md:border-l-[#fff] px-4">
-            Designed and Managed by JeiKei
-          </p>
-        </div>
-        <div class="md:text-sm lg:text-xl">
-          <p>Products are distributed by JEIKEI STORE</p>
-        </div>
+  <footer class="w-full bg-gray-800 p-6">
+    <div class="container mx-auto flex flex-col lg:flex-row justify-between items-center text-white">
+      <div class="flex flex-col lg:flex-row items-center mb-4 lg:mb-0">
+        <p class="text-lg lg:text-xl font-bold mr-5">
+          © 2024 JeiKei, Inc. All rights reserved.
+        </p>
+        <p class="lg:border-l-2 border-white pl-4 text-sm lg:text-lg">
+          Designed and Managed by JeiKei
+        </p>
+      </div>
+      <div class="text-center lg:text-right">
+        <p class="text-sm lg:text-lg">Products are distributed by JEIKEI STORE</p>
       </div>
     </div>
   </footer>
