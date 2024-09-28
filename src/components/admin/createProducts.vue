@@ -8,7 +8,7 @@ import navbar from '../../layout/admin/navbar.vue';
         <sidebar />
         <div class="flex flex-col w-full">
             <navbar />
-            <div class="w-[95%] mx-auto h-[100%]">
+            <div class="w-[95%] mx-auto h-[100%] my-5">
                 <div class="text-center py-4">
                     <h2 class="text-[#333] font-bold text-[20px]">THÊM SẢN PHẨM</h2>
                 </div>
@@ -22,7 +22,7 @@ import navbar from '../../layout/admin/navbar.vue';
                                     class="font-bold mb-1 block text-sm text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Tên
                                     sản phẩm</label>
                                 <input name="name" autofocus type="text" id="name"
-                                    class="<?= isset($errors['name']) ? 'border-red-500' : '' ?> outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+                                    class="outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
                                     placeholder="Nhập tên sản phẩm ..." />
                                 <span class="text-red-500 mt-1 text-sm">
                                     <strong></strong>
@@ -35,8 +35,8 @@ import navbar from '../../layout/admin/navbar.vue';
                                     class="font-bold mb-1 block text-sm text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Giá
                                     mượn</label>
                                 <input min="1" name="price" autofocus type="number" id="price"
-                                    class="<?= isset($errors['price']) ? 'border-red-500' : '' ?> outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
-                                    placeholder="10VNĐ" />
+                                    class="outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+                                    placeholder="10.000 VNĐ" />
                                 <span class="text-red-500 mt-1 text-sm">
                                     <strong></strong>
                                 </span>
@@ -47,9 +47,9 @@ import navbar from '../../layout/admin/navbar.vue';
                                 <label for="price"
                                     class="font-bold mb-1 block text-sm text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Năm
                                     xuất bản</label>
-                                <input min="1" name="price" autofocus type="number" id="price"
-                                    class="<?= isset($errors['price']) ? 'border-red-500' : '' ?> outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
-                                    placeholder="10VNĐ" />
+                               <input name="name" autofocus type="text" id="name"
+                                    class="outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+                                    placeholder="20xx" />
                                 <span class="text-red-500 mt-1 text-sm">
                                     <strong></strong>
                                 </span>
@@ -60,9 +60,9 @@ import navbar from '../../layout/admin/navbar.vue';
                                 <label for="price"
                                     class="font-bold mb-1 block text-sm text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Tác
                                     giả</label>
-                                <input min="1" name="price" autofocus type="number" id="price"
-                                    class="<?= isset($errors['price']) ? 'border-red-500' : '' ?> outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
-                                    placeholder="10VNĐ" />
+                                <input name="name" autofocus type="text" id="name"
+                                    class="outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+                                    placeholder="Nhập tên tác giả ..." />
                                 <span class="text-red-500 mt-1 text-sm">
                                     <strong></strong>
                                 </span>
@@ -73,9 +73,9 @@ import navbar from '../../layout/admin/navbar.vue';
                                 <label for="price"
                                     class="font-bold mb-1 block text-sm text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Nhà
                                     xuất bản</label>
-                                <input min="1" name="price" autofocus type="number" id="price"
-                                    class="<?= isset($errors['price']) ? 'border-red-500' : '' ?> outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
-                                    placeholder="10VNĐ" />
+                                <input name="name" autofocus type="text" id="name"
+                                    class="outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+                                    placeholder="Nhập tên nhà xuất bản ..." />
                                 <span class="text-red-500 mt-1 text-sm">
                                     <strong></strong>
                                 </span>
@@ -98,7 +98,7 @@ import navbar from '../../layout/admin/navbar.vue';
                                     class="font-bold mb-1 block text-sm text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Số
                                     lượng</label>
                                 <input min="1" name="quantity" autofocus type="number" id="color"
-                                    class="<?= isset($errors['quantity']) ? 'border-red-500' : '' ?> outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+                                    class="outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
                                     placeholder="20" />
                                 <span class="text-red-500 mt-1 text-sm">
                                     <strong></strong>
@@ -125,7 +125,7 @@ import navbar from '../../layout/admin/navbar.vue';
                         </span>
                         <div class="text-center">
                             <button type="submit"
-                                class="inline-block rounded-lg bg-[#4169E1] px-5 py-2.5 text-sm font-bold text-[#fff] shadow-md transition-all duration-300 hover:bg-blue-500 focus:ring focus:ring-blue-300 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-50 disabled:text-gray-400">Thêm
+                                class="inline-block rounded-lg bg-[#00697F] px-5 py-2.5 text-sm font-bold text-[#fff] shadow-md transition-all duration-300 hover:bg-blue-500 focus:ring focus:ring-blue-300 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-50 disabled:text-gray-400">Thêm
                                 sản phẩm</button>
                         </div>
                     </div>

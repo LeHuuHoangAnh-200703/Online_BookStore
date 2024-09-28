@@ -85,13 +85,14 @@ onMounted(() => {
         </button>
       </div>
       <div class="sidebar fixed top-0 -left-[100%] bg-[#fff] p-4 w-full h-full z-40">
-        <h1 class="font-bold text-xl uppercase text-[#00697F]">
-          <i class="fa-solid fa-book"></i> - BookStore
-        </h1>
-        <button class="closed">
-          <i
-            class="fa-solid fa-x absolute top-3 right-4 text-2xl text-[#00697F] p-4 ease-out duration-[0.4s] hover:scale-[1.1]"></i>
-        </button>
+        <div class="flex justify-between items-center p-2">
+          <h1 class="font-bold text-xl uppercase text-[#00697F]">
+            <i class="fa-solid fa-book"></i> - JEIKEI LIBRARY
+          </h1>
+          <button class="closed">
+            <i class="fa-solid fa-x text-2xl text-[#00697F] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
+          </button>
+        </div>
         <ul class="flex flex-col my-10">
           <form action="" method="post" class="relative mb-4 flex space-x-4">
             <input type="text"

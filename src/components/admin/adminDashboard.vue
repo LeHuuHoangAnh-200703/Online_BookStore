@@ -12,15 +12,14 @@ const products = ref([
 <template>
     <div class="flex font-sans">
         <sidebar />
-        <div class="flex flex-col w-full">
+        <div class="flex flex-col w-full overflow-auto">
             <navbar />
             <div class="w-[95%] mx-auto h-full">
                 <div class="text-center py-4">
                     <h2 class="text-[#333] font-bold text-[20px]">DANH SÁCH SẢN PHẨM</h2>
                 </div>
-
-                <div id="all_products" class="overflow-y-auto">
-                    <table style="table-layout: fixed;"
+                <div id="all_products" class="overflow-auto">
+                    <table
                         class="w-full border-collapse bg-white whitespace-nowrap text-center text-sm text-gray-500">
                         <thead class="bg-gray-200">
                             <tr>
@@ -55,8 +54,9 @@ const products = ref([
                                     }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap overflow-hidden text-ellipsis">{{
                                     product.publisher }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap overflow-hidden text-ellipsis">{{
-                                    product.description }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-ellipsis overflow-hidden max-w-48">
+                                    <p class="overflow-hidden text-ellipsis whitespace-nowrap">{{ product.description }}</p>
+                                </td>
                                 <td class="flex justify-center items-center gap-2 px-7 py-7 flex-col">
                                     <a :href="`/edit/${product.id}`"
                                         class="inline-block bg-[#4169E1] px-4 py-2 text-[#fff] whitespace-nowrap">Sửa

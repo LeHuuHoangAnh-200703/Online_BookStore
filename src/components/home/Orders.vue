@@ -27,12 +27,15 @@ const toggleDropDownOpen = () => {
                                     class="grid gap-5 gap-y-5 text-sm grid-cols-1 md:grid-cols-5"
                                     enctype="multipart/form-data">
                                     <div class="md:col-span-5">
-                                        <h1 class="text-[20px] lg:text-[28px] font-semibold">Pokémon Đặc Biệt - Tập 59</h1>
+                                        <h1 class="text-[20px] lg:text-[28px] font-semibold">Pokémon Đặc Biệt - Tập 59
+                                        </h1>
                                     </div>
                                     <div class="md:col-span-5 flex lg:flex-row flex-col gap-4">
                                         <p class="font-semibold text-[16px] lg:text-[18px]">Giá mượn: <span
                                                 class="text-[#DC143C]">20.000 VNĐ</span></p>
-                                        <p class="font-semibold text-[16px] lg:text-[18px] lg:border-l-2 border-[#333f48] lg:pl-4">Tình
+                                        <p
+                                            class="font-semibold text-[16px] lg:text-[18px] lg:border-l-2 border-[#333f48] lg:pl-4">
+                                            Tình
                                             trạng: <span class="text-[#00697F]">còn 300 quyển</span></p>
                                     </div>
                                     <div class="md:col-span-5 flex gap-4 flex-col">
@@ -49,23 +52,12 @@ const toggleDropDownOpen = () => {
                                     </div>
                                     <div class="md:col-span-5 flex gap-4 flex-col">
                                         <p class="text-[16px] font-semibold">Thời gian mượn :</p>
-                                        <div class="relative mb-2">
-                                            <div @click="toggleDropDownOpen"
-                                                class="flex justify-between text-[16px] items-center p-[10px] border-2 border-[#333] rounded-[6px] cursor-pointer">
-                                                <p class="font-semibold">{{ selectedTime || 'Chọn thời gian mượn' }}
-                                                </p>
-                                                <i class="fa-solid fa-caret-down ease-out duration-500"
-                                                    :class="isOpen ? 'rotate-0' : 'rotate-180'"></i>
-                                            </div>
-                                            <div v-show="isOpen" class="bg-gray-50 w-full flex flex-col gap-2 p-2 border-2 rounded-[10px] absolute z-10 shadow-md">
-                                                <div @click="selectTime('3 ngày')"
-                                                    class="transition-all text-[16px] duration-300 hover:text-[#00697F] cursor-pointer py-1">
-                                                    3 ngày</div>
-                                                    <hr class="bg-[#00697F]">
-                                                <div @click="selectTime('1 tuần')"
-                                                    class="transition-all text-[16px] duration-300 hover:text-[#00697F] cursor-pointer py-1">
-                                                    1 tuần</div>
-                                            </div>
+                                        <div class="relative mb-2 w-full">
+                                            <select name="type"
+                                                class="outline-0 p-2 block w-[80%] rounded-md border shadow-md focus:border-green-600 focus:ring focus:ring-green-600 focus:ring-opacity-50 cursor-pointer">
+                                                <option checked value="3 ngày">3 ngày</option>
+                                                <option value="1 tuần">1 tuần</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="md:col-span-3">

@@ -60,7 +60,7 @@ import Footer from "../../layout/client/Footer.vue";
           </div>
           <hr class="bg-[#00697F] my-2" />
           <p class="text-[18px] font-semibold lg:py-2 py-4">Lưu ý: <span class="text-[#00697F]">Chỉ có thể hủy yêu cầu
-              mượn khi chưa được duyệt</span></p>
+              mượn khi chưa được duyệt và chờ liên lạc từ JEIKEI LIBRARY</span></p>
           <div class="flex gap-4 justify-center lg:justify-end">
             <button class="px-4 py-3 bg-[#DC143C] text-white font-semibold">Hủy yêu cầu</button>
             <button

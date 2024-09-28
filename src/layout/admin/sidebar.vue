@@ -13,7 +13,7 @@ const sidebarMenu = [
 </script>
 
 <template>
-    <div class="flex flex-col min-h-screen w-96 bg-[#00697F]">
+    <div class="lg:flex flex-col min-h-screen w-96 bg-[#00697F] hidden">
         <div class="px-8 py-8">
             <h1 class="font-semibold text-2xl uppercase text-white"><i class="fa-solid fa-book"></i> - JEIKEI LIBRARY
             </h1>
