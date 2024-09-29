@@ -194,18 +194,22 @@ onMounted(() => {
         </div>
         <div
           class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-4 text-[#333f48]">
-          <div v-for="(item, index) in filteredBooks" :key="index"
-            class="flex flex-col gap-3 justify-center items-center border-2 border-[#C0C0C0] rounded-xl cursor-pointer shadow-md p-4 group">
-            <img :src="item.image" class="w-[300px] group-hover:scale-105 transition-all duration-300" alt="" />
-            <div class="w-60 whitespace-nowrap text-ellipsis overflow-hidden text-center">
-              <a href="" class="text-lg font-semibold hover:text-[#00697F] transition-all duration-300">{{ item.name
-                }}</a>
+          <div v-for="(book, index) in listBooks" :key="index"
+            class="flex flex-col items-center border border-gray-300 rounded-lg cursor-pointer shadow-lg p-4 transition-transform duration-300 hover:shadow-xl hover:scale-105">
+            <img :src="book.image" class="w-48 h-72 object-cover rounded-md mb-2" alt="Book Cover" />
+            <div class="text-center">
+              <div class="w-60 whitespace-nowrap text-ellipsis overflow-hidden text-center">
+                <a href="" class="text-lg font-semibold hover:text-[#00697F] transition-all duration-300">{{ book.name
+                  }}</a>
+              </div>
+              <div class="w-60 whitespace-nowrap text-ellipsis overflow-hidden text-center my-2">
+                <a href="" class="text-lg font-medium">{{ book.author }}</a>
+              </div>
             </div>
-            <div class="w-60 whitespace-nowrap text-ellipsis overflow-hidden text-center">
-              <a href="" class="text-lg font-medium">{{ item.author }}</a>
-            </div>
-            <a href="" class="text-xl font-semibold underline hover:text-[#00697F] transition-all duration-300">Thêm Giỏ
-              Hàng <i class="fa-solid fa-circle-plus"></i></a>
+            <a href="#"
+              class="bg-[#00697F] text-white text-lg font-semibold py-2 px-4 rounded-md transition-all duration-300 hover:bg-[#055565]">
+              Thêm Giỏ Hàng <i class="fa-solid fa-cart-shopping"></i>
+            </a>
           </div>
         </div>
       </div>
