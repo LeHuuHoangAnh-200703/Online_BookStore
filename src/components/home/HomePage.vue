@@ -194,7 +194,7 @@ onMounted(() => {
         </div>
         <div
           class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-4 text-[#333f48]">
-          <div v-for="(book, index) in listBooks" :key="index"
+          <div v-for="(book, index) in filteredBooks" :key="index"
             class="flex flex-col items-center border border-gray-300 rounded-lg cursor-pointer shadow-lg p-4 transition-transform duration-300 hover:shadow-xl hover:scale-105">
             <img :src="book.image" class="w-48 h-72 object-cover rounded-md mb-2" alt="Book Cover" />
             <div class="text-center">
