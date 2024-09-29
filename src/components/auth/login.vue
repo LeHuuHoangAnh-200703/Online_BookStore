@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center min-h-screen bg-gradient-to-r from-[#00697F] to-[#51A7BF] p-4">
+  <div class="flex justify-center items-center min-h-screen bg-[#009B9F] p-4">
     <div class="w-full max-w-4xl">
       <div class="bg-white rounded-xl shadow-lg overflow-hidden">
         <div class="flex flex-col md:flex-row">

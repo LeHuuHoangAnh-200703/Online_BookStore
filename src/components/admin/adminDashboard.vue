@@ -1,6 +1,6 @@
 <script setup>
-import sidebar from '../../layout/admin/sidebar.vue';
-import navbar from '../../layout/admin/navbar.vue';
+import sidebar from '../../layout/admin/Sidebar.vue';
+import navbar from '../../layout/admin/Navbar.vue';
 import { ref } from 'vue';
 
 const products = ref([

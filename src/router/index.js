@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../components/home/HomePage.vue';
-import Details from '../components/home/details.vue';
-import Login from '../components/auth/login.vue';
-import Logout from '../components/auth/logout.vue';
+import Details from '../components/home/Details.vue';
+import Login from '../components/auth/Login.vue';
+import Register from '../components/auth/Register.vue';
 import BookHistory from '../components/home/Book_history.vue';
 import Cart from '../components/home/Cart.vue';
 import Profile from '../components/home/Profile.vue';
@@ -11,7 +11,7 @@ import Order from '../components/home/Orders.vue';
 import adminLogin from '../components/auth/adminLogin.vue';
 import addAdmin from '../components/auth/addAdmin.vue';
 import adminDashboard from '../components/admin/adminDashboard.vue';
-import customers from '../components/admin/customers.vue';
+import customers from '../components/admin/Customers.vue';
 import createProducts from '../components/admin/createProducts.vue';
 import ordersBook from '../components/admin/ordersBook.vue';
 
@@ -57,9 +57,9 @@ const routes = [
         component: Login
     },
     {
-        path: '/logout',
-        name: 'logout',
-        component: Logout
+        path: '/register',
+        name: 'Register',
+        component: Register
     },
     {
         path: '/admin/login',
