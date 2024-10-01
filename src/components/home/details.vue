@@ -62,6 +62,9 @@ import Footer from "../../layout/client/Footer.vue";
             <p class="text-[18px] lg:text-[20px]">
               Nhà xuất bản: <span>Kim Đồng</span>
             </p>
+            <p class="text-[18px] lg:text-[20px]">
+              Năm xuất bản: <span>2024</span>
+            </p>
             <a href=""
               class="w-full bg-[#51A7BF] flex flex-col gap-2 justify-center items-center p-4 text-[14px] lg:text-[20px] font-semibold text-white hover:bg-[#00697F] transition-all duration-200">MƯỢN
               SÁCH NGAY
