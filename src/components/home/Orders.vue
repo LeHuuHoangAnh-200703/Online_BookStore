@@ -51,14 +51,14 @@ const toggleDropDownOpen = () => {
                                         </div>
                                     </div>
                                     <div class="md:col-span-5 flex gap-4 flex-col">
-                                        <p class="text-[16px] font-semibold">Thời gian mượn :</p>
-                                        <div class="relative mb-2 w-full">
-                                            <select name="type"
-                                                class="outline-0 p-2 block w-[80%] rounded-md border shadow-md focus:border-green-600 focus:ring focus:ring-green-600 focus:ring-opacity-50 cursor-pointer">
-                                                <option checked value="3 ngày">3 ngày</option>
-                                                <option value="1 tuần">1 tuần</option>
-                                            </select>
-                                        </div>
+                                        <div class="md:col-span-5 flex gap-4 flex-col">
+                                        <p class="text-[16px] font-semibold">Ngày mượn:</p>
+                                        <input type="date" name="borrow_date" class="border rounded p-2 w-full" required />
+                                    </div>
+                                    <div class="md:col-span-5 flex gap-4 flex-col">
+                                        <p class="text-[16px] font-semibold">Ngày trả:</p>
+                                        <input type="date" name="return_date" class="border rounded p-2 w-full" required />
+                                    </div>
                                     </div>
                                     <div class="md:col-span-3">
                                         <label for="address" class="font-semibold text-[16px]">Địa chỉ</label>
