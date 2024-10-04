@@ -14,6 +14,7 @@ import adminDashboard from '../components/admin/adminDashboard.vue';
 import customers from '../components/admin/Customers.vue';
 import createProducts from '../components/admin/createProducts.vue';
 import ordersBook from '../components/admin/ordersBook.vue';
+import editProduct from '../components/admin/editProduct.vue';
 
 const routes = [
     {
@@ -90,6 +91,11 @@ const routes = [
         path: '/admin/ordersBook',
         name: 'ordersBook',
         component: ordersBook
+    },
+    {
+        path: '/admin/editProduct',
+        name: 'editProduct',
+        component: editProduct
     },
 ];
 

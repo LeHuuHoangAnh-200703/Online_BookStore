@@ -10,7 +10,7 @@ import navbar from '../../layout/admin/Navbar.vue';
             <navbar />
             <div class="w-[95%] mx-auto h-[100%] my-5">
                 <div class="text-center py-4">
-                    <h2 class="text-[#333] font-bold text-[20px]">THÊM SẢN PHẨM</h2>
+                    <h2 class="text-[#333] font-bold text-[20px]">CHỈNH SỬA SẢN PHẨM</h2>
                 </div>
                 <form action="/admin/addproduct" method="POST" enctype="multipart/form-data" id="all_products"
                     class="w-full overflow-y-scroll">
@@ -104,7 +104,7 @@ import navbar from '../../layout/admin/Navbar.vue';
                             class="font-bold">
                         <div class="text-center">
                             <button type="submit"
-                                class="inline-block rounded-lg bg-[#00697F] px-5 py-2.5 text-sm font-bold text-[#fff] shadow-md hover:scale-110 transition-all duration-200">Thêm
+                                class="inline-block rounded-lg bg-[#00697F] px-5 py-2.5 text-sm font-bold text-[#fff] shadow-md hover:scale-110 transition-all duration-200">Chỉnh sửa
                                 sản phẩm</button>
                         </div>
                     </div>
