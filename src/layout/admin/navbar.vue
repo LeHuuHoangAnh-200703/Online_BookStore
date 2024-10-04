@@ -3,7 +3,7 @@ import { onMounted } from 'vue';
 
 const sidebarMenu = [
     { name: "Tất cả sản phẩm", icon: "fa-solid fa-igloo", path: "adminDashboard"},
-    { name: "Người dùng", icon: "fa-solid fa-users", path: "customers"},
+    { name: "Danh sách người dùng", icon: "fa-solid fa-users", path: "customers"},
     { name: "Thêm sản phẩm", icon: "fa-solid fa-cart-plus", path: "createProducts"},
     { name: "Thêm admin", icon: "fa-solid fa-user-plus", path: "addAdmin"},
     { name: "Đơn mượn sách", icon: "fa-solid fa-bag-shopping", path: "ordersBook"},
