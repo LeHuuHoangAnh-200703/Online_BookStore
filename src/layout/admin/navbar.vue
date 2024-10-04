@@ -50,12 +50,12 @@ onMounted(() => {
                     </button>
                 </div>
                 <ul class="flex flex-col my-10">
-                    <li class="py-[15px] flex gap-3 text-[#333f48] group" v-for="(item, index) in sidebarMenu" :key="index">
+                    <li class="py-[15px] flex gap-3 text-[#333f48] group cursor-pointer" v-for="(item, index) in sidebarMenu" :key="index">
                         <i :class="item.icon" class="text-lg font-semibold group-hover:text-[#00697F]"></i>
                         <router-link :to="item.path"
-                            class="border-b-2 border-transparent hover:border-b-2 hover:border-[#00697F] font-semibold text-[20px] hover:text-[#00697F] transition-colors duration-300">{{ item.name }}</router-link>
+                            class="border-b-2 border-transparent hover:border-b-2 group-hover:border-[#00697F] font-semibold text-[20px] group-hover:text-[#00697F] transition-colors duration-300">{{ item.name }}</router-link>
                     </li>
-                    <a href="" class="text-[20px] text-[#333f48] mt-2 font-semibold hover:text-[#00697F]"><i class="fa-solid fa-right-from-bracket pr-1"></i> Đăng xuất</a>
+                    <a href="" class="text-[20px] text-[#333f48] mt-2 font-semibold group-hover:text-[#00697F]"><i class="fa-solid fa-right-from-bracket pr-1"></i> Đăng xuất</a>
                 </ul>
             </div>
         </div>
