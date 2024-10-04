@@ -59,11 +59,11 @@ const products = ref([
                                 </td>
                                 <td class="flex justify-center items-center gap-2 px-7 py-7 flex-col">
                                     <a :href="`/edit/${product.id}`"
-                                        class="inline-block bg-[#4169E1] px-4 py-2 text-[#fff] whitespace-nowrap">Sửa
+                                        class="inline-block bg-[#00697F] text-white font-medium py-2 px-4 rounded-md transition-all duration-300 hover:bg-[#055565] whitespace-nowrap">Sửa
                                         sản phẩm</a>
                                     <form @submit.prevent="deleteProduct(product.id)">
                                         <button type="submit"
-                                            class="inline-block bg-[#DC143C] px-4 py-2 text-[#fff] whitespace-nowrap">Xóa
+                                            class="inline-block text-white font-medium bg-[#DC143C] py-2 px-4 mb-4 rounded-md transition-all duration-300 hover:bg-[#B22222] whitespace-nowrap">Xóa
                                             sản phẩm</button>
                                     </form>
                                 </td>
