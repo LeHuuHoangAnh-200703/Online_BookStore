@@ -32,6 +32,23 @@ import Footer from "../../layout/client/Footer.vue";
                                             placeholder="email@domain.com" />
                                     </div>
 
+                                    <div class="md:col-span-5">
+                                        <label for="dob" class="font-semibold text-[16px]">Ngày sinh</label>
+                                        <input type="date" name="dob" id="dob"
+                                            class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                    </div>
+
+                                    <div class="md:col-span-5">
+                                        <label for="gender" class="font-semibold text-[16px]">Phái</label>
+                                        <select name="gender" id="gender"
+                                            class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
+                                            <option value="">Chọn phái</option>
+                                            <option value="male">Nam</option>
+                                            <option value="female">Nữ</option>
+                                            <option value="other">Khác</option>
+                                        </select>
+                                    </div>
+
                                     <div class="md:col-span-3">
                                         <label for="address" class="font-semibold text-[16px]">Địa chỉ / Đường</label>
                                         <input type="text" name="address" id="address"
