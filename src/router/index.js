@@ -17,6 +17,7 @@ import ordersBook from '../components/admin/ordersBook.vue';
 import editProduct from '../components/admin/editProduct.vue';
 import createNXB from '../components/admin/createNXB.vue';
 import NXBLists from '../components/admin/NXBLists.vue';
+import Errors from '../components/errors/404.vue';
 
 const routes = [
     {
@@ -108,6 +109,11 @@ const routes = [
         path: '/admin/NXBLists',
         name: 'NXBLists',
         component: NXBLists
+    },
+    {
+        path: '/notFound',
+        name: 'Errors',
+        component: Errors
     },
 ];
 
