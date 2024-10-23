@@ -8,19 +8,37 @@ import navbar from '../../layout/admin/Navbar.vue';
         <sidebar />
         <div class="flex flex-col w-full">
             <navbar />
-            <div class="w-[95%] mx-auto h-[100%] my-5">
+            <div class="w-[95%] mx-auto h-[100%] my-5 overflow-hidden">
                 <div class="text-center py-4">
                     <h2 class="text-[#333] font-bold text-[20px]">THÊM SẢN PHẨM</h2>
                 </div>
                 <form action="/admin/addproduct" method="POST" enctype="multipart/form-data" id="all_products"
-                    class="w-full overflow-y-scroll">
+                    class="w-full max-h-[calc(100vh-200px)] overflow-y-scroll">
                     <div
                         class="flex flex-col bg-white w-full md:w-[70%] mx-auto gap-5 border-2 rounded-xl shadow-md p-5 m-2">
                         <div class="">
                             <div>
+                                <label for="idBook"
+                                    class="font-bold mb-1 block text-base text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Mã sách</label>
+                                <input name="idBook" autofocus type="text" id="idBook"
+                                    class="outline-0 p-3 block w-full rounded-md border shadow-md focus:border-[#00697F] focus:ring focus:ring-[#00697F] focus:ring-opacity-50 disabled:cursor-not-allowed"
+                                    placeholder="Nhập mã sách ..." />
+                            </div>
+                        </div>
+                        <div class="">
+                            <div>
+                                <label for="idNXB"
+                                    class="font-bold mb-1 block text-base text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Mã nhà xuất bản</label>
+                                <input name="idNXB" autofocus type="text" id="idNXB"
+                                    class="outline-0 p-3 block w-full rounded-md border shadow-md focus:border-[#00697F] focus:ring focus:ring-[#00697F] focus:ring-opacity-50 disabled:cursor-not-allowed"
+                                    placeholder="Nhập mã nhà xuất bản ..." />
+                            </div>
+                        </div>
+                        <div class="">
+                            <div>
                                 <label for="name"
                                     class="font-bold mb-1 block text-base text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Tên
-                                    sản phẩm</label>
+                                    sách</label>
                                 <input name="name" autofocus type="text" id="name"
                                     class="outline-0 p-3 block w-full rounded-md border shadow-md focus:border-[#00697F] focus:ring focus:ring-[#00697F] focus:ring-opacity-50 disabled:cursor-not-allowed"
                                     placeholder="Nhập tên sản phẩm ..." />
@@ -29,8 +47,7 @@ import navbar from '../../layout/admin/Navbar.vue';
                         <div class="">
                             <div>
                                 <label for="price"
-                                    class="font-bold mb-1 block text-base text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Giá
-                                    mượn</label>
+                                    class="font-bold mb-1 block text-base text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Đơn giá</label>
                                 <input min="1" name="price" autofocus type="number" id="price"
                                     class="outline-0 p-3 block w-full rounded-md border shadow-md focus:border-[#00697F] focus:ring focus:ring-[#00697F] focus:ring-opacity-50 disabled:cursor-not-allowed"
                                     placeholder="10.000 VNĐ" />
@@ -38,7 +55,7 @@ import navbar from '../../layout/admin/Navbar.vue';
                         </div>
                         <div class="">
                             <div>
-                                <label for="price"
+                                <label for="year"
                                     class="font-bold mb-1 block text-base text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Năm
                                     xuất bản</label>
                                <input name="year" autofocus type="text" id="year"
@@ -81,7 +98,7 @@ import navbar from '../../layout/admin/Navbar.vue';
                             <div>
                                 <label for="quantity"
                                     class="font-bold mb-1 block text-base text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Số
-                                    lượng</label>
+                                    quyển</label>
                                 <input min="1" name="quantity" autofocus type="number" id="color"
                                     class="outline-0 p-3 block w-full rounded-md border shadow-md focus:border-[#00697F] focus:ring focus:ring-[#00697F] focus:ring-opacity-50 disabled:cursor-not-allowed"
                                     placeholder="20" />

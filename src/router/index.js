@@ -15,6 +15,8 @@ import customers from '../components/admin/Customers.vue';
 import createProducts from '../components/admin/createProducts.vue';
 import ordersBook from '../components/admin/ordersBook.vue';
 import editProduct from '../components/admin/editProduct.vue';
+import createNXB from '../components/admin/createNXB.vue';
+import NXBLists from '../components/admin/NXBLists.vue';
 
 const routes = [
     {
@@ -96,6 +98,16 @@ const routes = [
         path: '/admin/editProduct',
         name: 'editProduct',
         component: editProduct
+    },
+    {
+        path: '/admin/createNXB',
+        name: 'createNXB',
+        component: createNXB
+    },
+    {
+        path: '/admin/NXBLists',
+        name: 'NXBLists',
+        component: NXBLists
     },
 ];
 

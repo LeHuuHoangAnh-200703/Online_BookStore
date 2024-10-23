@@ -7,6 +7,8 @@ const sidebarMenu = [
     { name: "Thêm sản phẩm", icon: "fa-solid fa-cart-plus", path: "createProducts"},
     { name: "Thêm admin", icon: "fa-solid fa-user-plus", path: "addAdmin"},
     { name: "Đơn mượn sách", icon: "fa-solid fa-bag-shopping", path: "ordersBook"},
+    { name: "Thêm nhà xuất bản", icon: "fa-solid fa-plus", path: "createNXB"},
+    { name: "Danh sách nhà xuất bản", icon: "fa-solid fa-user", path: "NXBLists"},
 ];
 
 onMounted(() => {
@@ -32,8 +34,8 @@ onMounted(() => {
                     <i class="fa-solid fa-bars text-[28px] text-[#00697F]"></i>
                 </button>
                 <div class="flex flex-col gap-2">
-                    <p class="text-[16px] lg:text-[20px] font-semibold">Lê Hữu Hoàng Anh</p>
-                    <p class="text-[14px] lg:text-[16px] font-medium text-[#a3a3a3]">hoanganh@gmail.com</p>
+                    <p class="text-[16px] lg:text-[20px] font-bold">Lê Hữu Hoàng Anh</p>
+                    <p class="text-[14px] text-[#00697F] font-semibold">hoanganh@gmail.com</p>
                 </div>
                 <button
                     class="hidden lg:block px-5 py-3 bg-[#00697F] text-white rounded-2xl font-semibold text-[16px] lg:text-[18px] hover:scale-110 transition-all duration-200">Đăng

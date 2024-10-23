@@ -16,6 +16,12 @@
                         </p>
                         <form action="" class="space-y-6">
                             <div>
+                                <label for="idStaff" class="text-sm font-medium text-gray-700 block mb-2">Mã số nhân viên</label>
+                                <input type="idStaff" id="idStaff"
+                                    class="w-full px-4 py-3 rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out"
+                                    placeholder="JeiKei" />
+                            </div>
+                            <div>
                                 <label for="name" class="text-sm font-medium text-gray-700 block mb-2">Tên đăng
                                     nhập</label>
                                 <input type="name" id="name"
@@ -27,6 +33,18 @@
                                 <input type="email" id="email"
                                     class="w-full px-4 py-3 rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out"
                                     placeholder="JeiKei@gmail.com" />
+                            </div>
+                            <div>
+                                <label for="address" class="text-sm font-medium text-gray-700 block mb-2">Địa chỉ</label>
+                                <input type="address" id="address"
+                                    class="w-full px-4 py-3 rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out"
+                                    placeholder="Long Mỹ - Hậu Giang" />
+                            </div>
+                            <div>
+                                <label for="phone" class="text-sm font-medium text-gray-700 block mb-2">Số điện thoại</label>
+                                <input type="phone" id="phone"
+                                    class="w-full px-4 py-3 rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out"
+                                    placeholder="079-xxx-xxxx" />
                             </div>
                             <div>
                                 <label for="password" class="text-sm font-medium text-gray-700 block mb-2">Mật

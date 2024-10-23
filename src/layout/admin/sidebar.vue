@@ -7,6 +7,8 @@ const sidebarMenu = [
             { name: "Thêm sản phẩm", icon: "fa-solid fa-cart-plus", path: "createProducts"},
             { name: "Thêm admin", icon: "fa-solid fa-user-plus", path: "addAdmin"},
             { name: "Đơn mượn sách", icon: "fa-solid fa-bag-shopping", path: "ordersBook"},
+            { name: "Thêm nhà xuất bản", icon: "fa-solid fa-plus", path: "createNXB"},
+            { name: "Danh sách nhà xuất bản", icon: "fa-solid fa-user", path: "NXBLists"},
         ],
     },
 ];

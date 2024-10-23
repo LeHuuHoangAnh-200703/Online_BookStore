@@ -14,24 +14,24 @@ const products = ref([
         <sidebar />
         <div class="flex flex-col w-full overflow-auto">
             <navbar />
-            <div class="w-[95%] mx-auto h-full">
+            <div class="w-[95%] mx-auto h-full overflow-hidden">
                 <div class="text-center py-4">
                     <h2 class="text-[#333] font-bold text-[20px]">DANH SÁCH SẢN PHẨM</h2>
                 </div>
-                <div id="all_products" class="overflow-auto">
+                <div id="all_products" class="overflow-y-auto max-h-[calc(100vh-200px)]">
                     <table
                         class="w-full border-collapse bg-white whitespace-nowrap text-center text-sm text-gray-500">
                         <thead class="bg-gray-200">
                             <tr>
-                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">ID</th>
-                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Tên sản phẩm</th>
-                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Giá mượn</th>
+                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Mã sách</th>
+                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Tên sách</th>
+                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Đơn giá</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Năm xuất bản</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Loại sách</th>
-                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Số lượng</th>
+                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Số quyển</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Ảnh sản phẩm</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Tác giả</th>
-                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Nhà xuất bản</th>
+                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Mã NXB</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Mô tả</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Điều chỉnh</th>
                             </tr>
