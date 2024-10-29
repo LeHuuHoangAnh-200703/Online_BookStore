@@ -1,6 +1,28 @@
 <script setup>
 import { onMounted } from "vue";
+import axios from 'axios';
+import { ref } from "vue";
 
+const userInfo = ref({});
+
+// Hàm để lấy thông tin người dùng
+const getUserInfo = async () => {
+  const token = localStorage.getItem('token'); // Lấy token từ localStorage
+  try {
+    const response = await axios.get('http://localhost:5000/api/docgia/current', {
+      headers: { Authorization: token } // Gửi token trong header
+    });
+    userInfo.value = response.data;
+  } catch (error) {
+    console.error('Lỗi khi lấy thông tin người dùng:', error);
+  }
+};
+
+// Hàm để xử lý đăng xuất
+const logout = () => {
+  localStorage.removeItem('token'); // Xóa token khỏi localStorage
+  // Có thể thêm logic để chuyển hướng đến trang đăng nhập
+};
 onMounted(() => {
   const openMenu = $(".open-menu");
   const closeMenu = $(".closed");
@@ -25,6 +47,8 @@ onMounted(() => {
     }
     isVisible = !isVisible;
   });
+
+  getUserInfo();
 });
 </script>
 
@@ -66,7 +90,7 @@ onMounted(() => {
       </ul>
       <div class="flex items-center lg:space-x-8 space-x-5 px-4">
         <div class="user flex space-x-4 items-center justify-center cursor-pointer">
-          <img src="../../assets/img/avatar-1.jpg"
+          <img :src="userInfo.avatar || '../../assets/img/avatar-1.jpg'"
             class="lg:w-[50px] lg:h-[50px] w-[40px] h-[40px] rounded-full border-2 border-[#C0C0C0]" alt="" />
         </div>
         <div>
@@ -122,26 +146,30 @@ onMounted(() => {
       <div
         class="info absolute top-24 right-[-100%] flex flex-col gap-3 p-6 border-2 border-[#C0C0C0] rounded-2xl bg-[#fff] shadow-md z-10">
         <div class="flex gap-3">
-          <img src="../../assets/img/avatar-1.jpg"
-            class="lg:w-[50px] lg:h-[50px] w-[40px] h-[40px] rounded-full border-2 border-[#C0C0C0]" alt="" />
+          <img :src="userInfo.avatar || '../../assets/img/avatar-1.jpg'"
+            class="lg:w-[50px] lg:h-[50px] w-[40px] h-[40px] rounded-full border-2 border-[#C0C0C0]"
+            alt="User Avatar" />
           <div class="flex flex-col gap-1">
-            <p class="text-[18px] font-semibold">Lê Hữu Hoàng Anh</p>
-            <p class="text-[#00697F] text-[14px]">AnimeEdits@gmail.com</p>
+            <p class="text-[18px] font-semibold">{{ userInfo.name }}</p>
+            <p class="text-[#00697F] text-[14px]">{{ userInfo.email }}</p>
           </div>
         </div>
         <hr class="bg-[#00697F]" />
         <div class="flex flex-col gap-3">
-          <div class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 rounded-md group">
+          <div
+            class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 rounded-md group">
             <i class="fa-solid fa-user text-[#00697F] group-hover:text-white"></i>
             <a href="#" class="text-lg font-semibold text-gray-800 group-hover:text-white">Hồ Sơ</a>
           </div>
-          <div class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 rounded-md group">
+          <div
+            class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 rounded-md group">
             <i class="fa-solid fa-gear text-[#00697F] group-hover:text-white"></i>
             <a href="#" class="text-lg font-semibold text-gray-800 group-hover:text-white">Chỉnh sửa hồ sơ</a>
           </div>
         </div>
         <hr class="bg-[#00697F]" />
-        <div class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 rounded-md group">
+        <div
+          class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 rounded-md group">
           <i class="fa-solid fa-right-to-bracket text-[#00697F] group-hover:text-white"></i>
           <a href="#" class="text-lg font-semibold text-gray-800 group-hover:text-white">Đăng xuất</a>
         </div>

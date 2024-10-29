@@ -2,11 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const docgiaSchema = new mongoose.Schema({
-  MaDocGia: {
-    type: Number,
-    unique: true,
-    required: true,
-  },
+  MaDocGia: { type: String, unique: true },
   Ten: String,
   Email: String,
   Password: String,
@@ -17,6 +13,10 @@ const docgiaSchema = new mongoose.Schema({
   NgayTao: { type: Date, default: Date.now },
 });
 
+function generateMaDocGia() {  
+  return 'DG' + Math.floor(10000 + Math.random() * 90000); 
+}
+
 // Middleware để hash mật khẩu trước khi lưu vào cơ sở dữ liệu
 docgiaSchema.pre("save", async function (next) {
   // Kiểm tra xem mật khẩu đã được thay đổi hay không
@@ -26,9 +26,9 @@ docgiaSchema.pre("save", async function (next) {
     // Hash mật khẩu với độ khó là 10
     const salt = await bcrypt.genSalt(10);
     this.Password = await bcrypt.hash(this.Password, salt);
-
-    const lastDocGia = await this.constructor.findOne().sort({ MaDocGia: -1 });  
-    this.MaDocGia = lastDocGia ? lastDocGia.MaDocGia + 1 : 1; // Nếu không có tài liệu nào, bắt đầu từ 1  
+    if (!this.MaDocGia) {  
+      this.MaDocGia = generateMaDocGia();  
+    } 
     next();
   } catch (error) {
     next(error);

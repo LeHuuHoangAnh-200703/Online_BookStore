@@ -3,13 +3,17 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const session = require('express-session');
 
 // Initializing the Express application
 const app = express();
 const port = 5000;
 
 // Middleware to enable Cross-Origin Resource Sharing (CORS)
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', // Địa chỉ frontend của bạn
+  credentials: true // Cho phép gửi cookie
+}));
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center min-h-screen bg-[#009B9F] p-4">
+  <div class="relative flex justify-center items-center min-h-screen bg-[#009B9F] p-4">
     <div class="w-full max-w-4xl">
       <div class="bg-white rounded-xl shadow-lg overflow-hidden">
         <div class="flex flex-col md:flex-row">
@@ -13,7 +13,7 @@
             </p>
             <form @submit.prevent="register" method="POST" class="space-y-6">
               <div v-for="field in formFields" :key="field.id" class="mb-4">
-                <label :for="field.id" class="block text-gray-700 font-medium mb-1">{{ field.label }}</label>
+                <label :for="field.id" :class="errors[field.id] ? 'text-red-500' : 'text-gray-700'" class="block font-medium mb-1">{{ field.label }}</label>
                 <div v-if="field.type !== 'select'">
                   <input v-model="formData[field.id]" :class="errors[field.id] ? 'border-red-500' : 'border-gray-300'" :type="field.type" :placeholder="field.placeholder" :id="field.id"
                     class="w-full px-4 py-3 rounded-lg outline-none border-2 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out" />
@@ -22,6 +22,7 @@
                 <div v-else>
                   <select v-model="formData[field.id]" :id="field.id" :class="errors[field.id] ? 'border-red-500' : 'border-gray-300'"
                     class="w-full px-4 py-3 rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out">
+                    <option value="">Chọn giới tính</option>
                     <option v-for="option in field.options" :key="option" :value="option">{{ option }}</option>
                   </select>
                   <p v-if="errors[field.id]" class="text-red-500 text-sm">{{ errors[field.id] }}</p>
@@ -34,19 +35,18 @@
             </form>
             <p class="mt-8 text-center text-sm text-gray-600">
               Nếu đã có tài khoản?
-              <a href="#"
+              <router-link to="/login"
                 class="font-medium text-[#00697F] hover:text-[#51A7BF] transition duration-150 ease-in-out">Đăng
-                nhập</a>
+                nhập</router-link>
             </p>
           </div>
         </div>
       </div>
     </div>
-    <div name="slide-fade" mode="out-in">
+    <div name="slide-fade" mode="out-in"> 
       <div v-if="notification.message"
-        :class="`fixed top-4 right-4 p-4 shadow-lg rounded-lg flex items-center space-x-2 ${notification.type === 'success' ? 'bg-green-100 border-l-4 border-green-500 text-green-600' : 'bg-red-100 border-l-4 border-red-500 text-red-600'}`">
-        <p>{{ notification.message }}</p>
-        <button @click="closeNotification" class="text-gray-600 hover:text-gray-800">&times;</button>
+        :class="`fixed top-4 right-4 p-5 bg-white shadow-lg rounded-lg z-10 flex items-center space-x-2 ${notification.type === 'success' ? 'border-l-8 border-green-500 text-green-600' : 'border-l-8 border-red-500 text-red-600'}`">
+        <p class="text-[18px] font-semibold">{{ notification.message }}</p>
       </div>
     </div>
   </div>
@@ -56,7 +56,9 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const errors = ref({});
 // Cấu trúc các trường dữ liệu cho form
 const formFields = ref([
@@ -88,12 +90,17 @@ const notification = ref({
 // Phương thức đăng ký tài khoản
 const register = async () => {
   errors.value = {};
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
 
-  // Kiểm tra dữ liệu nhập vào
   for (const field of formFields.value) {
     const value = formData.value[field.id].trim();
     if (!value) {
       errors.value[field.id] = `${field.label} không được bỏ trống`;
+    } else if (field.id === 'email' && !emailRegex.test(value)) {
+      errors.value.email = 'Email không hợp lệ';
+    } else if (field.id === 'phone' && !phoneRegex.test(value)) {
+      errors.value.phone = 'Số điện thoại không đúng định dạng.';
     }
   }
 
@@ -108,8 +115,7 @@ const register = async () => {
   }
 
   try {
-    const dataToSend = {
-      MaDocGia: formData.value.email,  
+    const dataToSend = {  
       Ten: formData.value.name,
       Email: formData.value.email,
       Password: formData.value.password,
@@ -125,6 +131,10 @@ const register = async () => {
       message: 'Đăng ký thành công!',
       type: 'success'
     };
+    setTimeout(() => {
+      router.push('/login');  
+    }, 3000);
+
   } catch (error) {
     notification.value = {
       message: error.response?.data?.message || 'Có lỗi xảy ra, vui lòng thử lại.',
@@ -132,32 +142,20 @@ const register = async () => {
     };
   }
 
-  // Tự động ẩn thông báo sau 3 giây
   setTimeout(() => {
     notification.value.message = '';
   }, 3000);
 };
-
-// Đóng thông báo
-const closeNotification = () => {
-  notification.value.message = '';
-};
 </script>
 
 <style scoped>
-@import 'https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css';
-
-/* Custom transition for the toast notification */
 .slide-fade-enter-active,
 .slide-fade-leave-active {
   transition: all 0.5s ease;
 }
 
 .slide-fade-enter,
-.slide-fade-leave-to
-
-/* .slide-fade-leave-active in <2.1.8 */
-  {
+.slide-fade-leave-to {
   transform: translateX(100%);
   opacity: 0;
 }
