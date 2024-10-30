@@ -93,15 +93,15 @@ exports.updateSach = async (req, res) => {
 
 // Function to delete an existing Sach (book) by ID
 exports.deleteSach = async (req, res) => {
-  try {
-    // Find the Sach by ID and delete it from the database
-    await Sach.findByIdAndDelete(req.params.id);
-    // Respond with status 200 (OK) and a success message
-    res.status(200).json({ message: "Sách đã được xóa" });
-  } catch (err) {
-    // If an error occurs, respond with status 500 (Internal Server Error) and the error message
-    res.status(500).json({ message: err.message });
-  }
+    try {
+        const sach = await Sach.findOneAndDelete({ MaSach: req.params.maSach });
+        if (!sach) {
+            return res.status(404).json({ message: "Sách không tồn tại." });
+        }
+        res.status(200).json({ message: "Sách đã được xóa" });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 };
 
 exports.upload = upload.single('Image');

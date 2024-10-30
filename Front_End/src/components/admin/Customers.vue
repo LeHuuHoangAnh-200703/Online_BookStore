@@ -1,6 +1,55 @@
 <script setup>
 import sidebar from '../../layout/admin/Sidebar.vue';
 import navbar from '../../layout/admin/Navbar.vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+
+const readers = ref([]);
+const notification = ref({
+    message: "",
+    type: ""
+});
+const fetchUsers = async () => {
+    try {
+        const response = await axios.get('http://localhost:5000/api/docgia');
+        readers.value = response.data.map(reader => {
+            return {
+                ...reader,
+                NgayTao: new Date(reader.NgayTao).toLocaleDateString('vi-VN')
+            };
+        });
+    } catch (error) {
+        console.error('Error fetching readers:', error);
+    }
+};
+
+
+const deleteUser = async (maDocGia) => {
+    const confirmDelete = confirm("Bạn có chắc chắn muốn xóa đọc giả này không?");
+    if (!confirmDelete) return;
+
+    try {
+        await axios.delete(`http://localhost:5000/api/docgia/${maDocGia}`);
+        readers.value = readers.value.filter(reader => reader.MaDocGia !== maDocGia);
+        notification.value = {
+            message: 'Đọc giả đã được xóa thành công!',
+            type: 'success'
+        };
+    } catch (error) {
+        console.error('Error deleting reader:', error);
+        notification.value = {
+            message: 'Có lỗi xảy ra, vui lòng thử lại!',
+            type: 'error'
+        };
+    }
+    setTimeout(() => {
+        notification.value.message = '';
+    }, 3000);
+};
+
+onMounted(() => {
+    fetchUsers();
+});
 </script>
 
 <template>
@@ -8,38 +57,38 @@ import navbar from '../../layout/admin/Navbar.vue';
         <sidebar />
         <div class="flex flex-col w-full">
             <navbar />
-            <div class="w-[95%] mx-auto h-[100%]">
+            <div class="relative w-[95%] mx-auto h-[100%]">
                 <div class="text-center py-4">
-                    <h2 class="text-[#333] font-bold text-[20px]">DANH SÁCH NGƯỜI DÙNG</h2>
+                    <h2 class="text-[#333] font-bold text-[20px]">DANH SÁCH ĐỌC GIẢ</h2>
                 </div>
                 <div id="all_products" class="w-full overflow-x-scroll overflow-y-scroll">
                     <table
                         class="w-full rounded-lg border-2 border-[#cecece] bg-white text-center text-sm text-gray-500">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">ID</th>
-                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Tên</th>
+                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Mã đọc giả</th>
+                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Tên đọc giả</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Email</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Liên lạc</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Địa chỉ</th>
-                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Ngày tạo</th>
+                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Ngày tham gia</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Điều chỉnh</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100 bg-white border-t border-[#cecece]">
-                            <tr>
-                                <th class="px-6 py-4 font-medium text-gray-900">1</th>
-                                <td class="px-6 py-4 whitespace-nowrap">Hoàng Anh</td>
-                                <td class="px-6 py-4 whitespace-nowrap">hoanganh@gmail.com</td>
-                                <td class="px-6 py-4 whitespace-nowrap">079-965-8592</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Tân phú - Long mỹ</td>
-                                <td class="px-6 py-4 whitespace-nowrap">20-03-2024</td>
+                            <tr v-for="reader in readers" :key="reader.id">
+                                <th class="px-6 py-4 font-medium text-gray-900">{{ reader.MaDocGia }}</th>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ reader.Ten }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ reader.Email }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ reader.DienThoai }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ reader.DiaChi }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ reader.NgayTao }}</td>
                                 <td class="flex justify-center gap-4 px-6 py-4 font-medium whitespace-nowrap">
-                                    <form class="form-inline ml-1" action="" method="POST">
+                                    <form @submit.prevent="deleteUser(reader.MaDocGia)" class="form-inline ml-1">
                                         <button type="submit"
                                             class="text-primary-700 bg-[#DC143C] px-[14px] py-2 text-[#fff]"
-                                            name="delete-product">
-                                            <i alt="Delete"></i> Xóa người dùng
+                                            >
+                                            <i alt="Delete"></i> Xóa đọc giả
                                         </button>
                                     </form>
                                 </td>
@@ -47,7 +96,27 @@ import navbar from '../../layout/admin/Navbar.vue';
                         </tbody>
                     </table>
                 </div>
+                <transition name="slide-fade" mode="out-in">
+                    <div v-if="notification.message"
+                        :class="`fixed top-4 right-4 p-5 bg-white shadow-lg rounded-lg z-10 flex items-center space-x-2 
+                        ${notification.type === 'success' ? 'border-l-8 border-green-500 text-green-600' : 'border-l-8 border-red-500 text-red-600'}`">
+                        <p class="text-[18px] font-semibold">{{ notification.message }}</p>
+                    </div>
+                </transition>
             </div>
         </div>
     </div>
 </template>
+
+<style scoped>
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+    transition: all 0.5s ease;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+    transform: translateX(100%);
+    opacity: 0;
+}
+</style>

@@ -14,6 +14,6 @@ router.post("/", docgiaController.createDocgia);
 router.put("/:id", docgiaController.updateDocgia);
 
 // Route to delete an existing DocGia (reader) by ID
-router.delete("/:id", docgiaController.deleteDocgia);
+router.delete("/:maDocGia", docgiaController.deleteDocgia);
 // Exporting the router to be used in other parts of the application
 module.exports = router;

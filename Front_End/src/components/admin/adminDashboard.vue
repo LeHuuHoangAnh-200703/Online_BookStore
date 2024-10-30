@@ -5,6 +5,10 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 const products = ref([]);
+const notification = ref({
+    message: "",
+    type: ""
+});
 
 const fetchProducts = async () => {
     try {
@@ -20,17 +24,32 @@ const fetchProducts = async () => {
     }
 };
 
-const deleteProduct = async (id) => {
+const deleteProduct = async (maSach) => {
+    const confirmDelete = confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?");
+    if (!confirmDelete) return;
+
     try {
-        await axios.delete(`http://localhost:5000/api/sach/${id}`);
-        products.value = products.value.filter(product => product.MaSach !== id);
+        await axios.delete(`http://localhost:5000/api/sach/maSach/${maSach}`);
+        products.value = products.value.filter(product => product.MaSach !== maSach);
+        notification.value = {
+            message: 'Sản phẩm đã được xóa thành công!',
+            type: 'success'
+        };
     } catch (error) {
         console.error('Error deleting product:', error);
+        notification.value = {
+            message: 'Có lỗi xảy ra, vui lòng thử lại!',
+            type: 'error'
+        };
     }
+    setTimeout(() => {
+        notification.value.message = '';
+    }, 3000);
 };
 
 const formatCurrency = (value) => {
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " VNĐ";
+    const formattedValue = value * 1000;
+    return formattedValue.toLocaleString('vi-VN') + ' ' + 'VNĐ';
 };
 
 onMounted(() => {
@@ -43,7 +62,7 @@ onMounted(() => {
         <sidebar />
         <div class="flex flex-col w-full overflow-auto">
             <navbar />
-            <div class="w-[95%] mx-auto h-full overflow-hidden">
+            <div class="relative w-[95%] mx-auto h-full overflow-hidden">
                 <div class="text-center py-4">
                     <h2 class="text-[#333] font-bold text-[20px]">DANH SÁCH SẢN PHẨM</h2>
                 </div>
@@ -101,9 +120,27 @@ onMounted(() => {
                         </tbody>
                     </table>
                 </div>
+                <transition name="slide-fade" mode="out-in">
+                    <div v-if="notification.message"
+                        :class="`fixed top-4 right-4 p-5 bg-white shadow-lg rounded-lg z-10 flex items-center space-x-2 
+                        ${notification.type === 'success' ? 'border-l-8 border-green-500 text-green-600' : 'border-l-8 border-red-500 text-red-600'}`">
+                        <p class="text-[18px] font-semibold">{{ notification.message }}</p>
+                    </div>
+                </transition>
             </div>
         </div>
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+    transition: all 0.5s ease;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+    transform: translateX(100%);
+    opacity: 0;
+}
+</style>
