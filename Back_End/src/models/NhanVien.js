@@ -1,15 +1,32 @@
-// Importing the mongoose module to interact with MongoDB
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
-// Defining the schema for the NhanVien collection
 const nhanvienSchema = new mongoose.Schema({
-  MSNV: String,        // Employee ID
-  HoTenNV: String,     // Employee full name
-  Password: String,    // Employee password
-  ChucVu: String,      // Employee position
-  DiaChi: String,      // Employee address
-  SoDienThoai: String, // Employee phone number
+  MSNV: String,
+  HoTenNV: String,
+  Password: String,
+  ChucVu: String,
+  DiaChi: String,
+  DienThoai: String,
 });
 
-// Exporting the NhanVien model to be used in other parts of the application
+function generateMaNhanVien() {  
+  return 'NV' + Math.floor(10000 + Math.random() * 90000); 
+}
+
+nhanvienSchema.pre("save", async function (next) {
+  if (!this.isModified("Password")) return next();
+
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.Password = await bcrypt.hash(this.Password, salt);
+    if (!this.MSNV) {  
+      this.MSNV = generateMaNhanVien();  
+    } 
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = mongoose.model("Nhan_Vien", nhanvienSchema);

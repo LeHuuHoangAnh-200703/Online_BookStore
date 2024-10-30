@@ -63,7 +63,7 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const errors = ref({});
-// Cấu trúc các trường dữ liệu cho form
+
 const formFields = ref([
   { id: 'name', type: 'text', label: 'Tên đăng nhập', placeholder: 'JeiKei' },
   { id: 'email', type: 'email', label: 'Email', placeholder: 'JeiKei@gmail.com' },
@@ -107,12 +107,10 @@ const register = async () => {
     }
   }
 
-  // Kiểm tra mật khẩu
   if (formData.value.password && formData.value.password.length < 6) {
     errors.value.password = 'Mật khẩu phải từ 6 ký tự trở lên';
   }
 
-  // Nếu có lỗi, không gửi yêu cầu
   if (Object.keys(errors.value).length > 0) {
     return;
   }
