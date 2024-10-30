@@ -90,7 +90,7 @@ onMounted(() => {
       </ul>
       <div class="flex items-center lg:space-x-8 space-x-5 px-4">
         <div class="user flex space-x-4 items-center justify-center cursor-pointer">
-          <img :src="userInfo.avatar || '../../assets/img/avatar-1.jpg'"
+          <img src="../../assets/img/avatar.jpg"
             class="lg:w-[50px] lg:h-[50px] w-[40px] h-[40px] rounded-full border-2 border-[#C0C0C0]" alt="" />
         </div>
         <div>
@@ -146,7 +146,7 @@ onMounted(() => {
       <div
         class="info absolute top-24 right-[-100%] flex flex-col gap-3 p-6 border-2 border-[#C0C0C0] rounded-2xl bg-[#fff] shadow-md z-10">
         <div class="flex gap-3">
-          <img :src="userInfo.avatar || '../../assets/img/avatar-1.jpg'"
+          <img src="../../assets/img/avatar.jpg"
             class="lg:w-[50px] lg:h-[50px] w-[40px] h-[40px] rounded-full border-2 border-[#C0C0C0]"
             alt="User Avatar" />
           <div class="flex flex-col gap-1">

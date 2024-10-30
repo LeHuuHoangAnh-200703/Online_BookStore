@@ -97,7 +97,7 @@ const routes = [
     component: ordersBook,
   },
   {
-    path: "/admin/editProduct",
+    path: "/admin/editProduct/:maSach",
     name: "editProduct",
     component: editProduct,
   },

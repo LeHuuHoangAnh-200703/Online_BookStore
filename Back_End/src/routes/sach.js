@@ -5,14 +5,16 @@ const router = express.Router();
 // Importing the sachController to handle the routes
 const sachController = require("../controllers/sachController");
 
+
 // Route to get all Sach (books)
 router.get("/", sachController.getAllSach);
 
+router.get("/maSach/:maSach", sachController.getSachByMaSach);
 // Route to create a new Sach (book)
-router.post("/", sachController.createSach);
+router.post("/", sachController.upload, sachController.createSach);
 
 // Route to update an existing Sach (book) by ID
-router.put("/:id", sachController.updateSach);
+router.put("/maSach/:maSach", sachController.upload, sachController.updateSach);
 
 // Route to delete an existing Sach (book) by ID
 router.delete("/:id", sachController.deleteSach);

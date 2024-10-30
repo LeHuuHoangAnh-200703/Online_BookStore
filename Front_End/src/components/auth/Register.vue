@@ -13,14 +13,17 @@
             </p>
             <form @submit.prevent="register" method="POST" class="space-y-6">
               <div v-for="field in formFields" :key="field.id" class="mb-4">
-                <label :for="field.id" :class="errors[field.id] ? 'text-red-500' : 'text-gray-700'" class="block font-medium mb-1">{{ field.label }}</label>
+                <label :for="field.id" :class="errors[field.id] ? 'text-red-500' : 'text-gray-700'"
+                  class="block font-medium mb-1">{{ field.label }}</label>
                 <div v-if="field.type !== 'select'">
-                  <input v-model="formData[field.id]" :class="errors[field.id] ? 'border-red-500' : 'border-gray-300'" :type="field.type" :placeholder="field.placeholder" :id="field.id"
+                  <input v-model="formData[field.id]" :class="errors[field.id] ? 'border-red-500' : 'border-gray-300'"
+                    :type="field.type" :placeholder="field.placeholder" :id="field.id"
                     class="w-full px-4 py-3 rounded-lg outline-none border-2 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out" />
                   <p v-if="errors[field.id]" class="text-red-500 text-sm">{{ errors[field.id] }}</p>
                 </div>
                 <div v-else>
-                  <select v-model="formData[field.id]" :id="field.id" :class="errors[field.id] ? 'border-red-500' : 'border-gray-300'"
+                  <select v-model="formData[field.id]" :id="field.id"
+                    :class="errors[field.id] ? 'border-red-500' : 'border-gray-300'"
                     class="w-full px-4 py-3 rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out">
                     <option value="">Chọn giới tính</option>
                     <option v-for="option in field.options" :key="option" :value="option">{{ option }}</option>
@@ -43,14 +46,14 @@
         </div>
       </div>
     </div>
-    <div name="slide-fade" mode="out-in"> 
+    <transition name="slide-fade" mode="out-in">
       <div v-if="notification.message"
-        :class="`fixed top-4 right-4 p-5 bg-white shadow-lg rounded-lg z-10 flex items-center space-x-2 ${notification.type === 'success' ? 'border-l-8 border-green-500 text-green-600' : 'border-l-8 border-red-500 text-red-600'}`">
+        :class="`fixed top-4 right-4 p-5 bg-white shadow-lg rounded-lg z-10 flex items-center space-x-2 
+                        ${notification.type === 'success' ? 'border-l-8 border-green-500 text-green-600' : 'border-l-8 border-red-500 text-red-600'}`">
         <p class="text-[18px] font-semibold">{{ notification.message }}</p>
       </div>
-    </div>
+    </transition>
   </div>
-  <!-- Toast notification -->
 </template>
 
 <script setup>
@@ -115,7 +118,7 @@ const register = async () => {
   }
 
   try {
-    const dataToSend = {  
+    const dataToSend = {
       Ten: formData.value.name,
       Email: formData.value.email,
       Password: formData.value.password,
@@ -132,7 +135,7 @@ const register = async () => {
       type: 'success'
     };
     setTimeout(() => {
-      router.push('/login');  
+      router.push('/login');
     }, 3000);
 
   } catch (error) {

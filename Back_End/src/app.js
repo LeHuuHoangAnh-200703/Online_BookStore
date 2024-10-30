@@ -3,7 +3,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const session = require('express-session');
 
 // Initializing the Express application
 const app = express();
@@ -35,7 +34,6 @@ const sachRoutes = require("./routes/sach");
 const nhanvienRoutes = require("./routes/nhanvien");
 const nhaXuatBanRoutes = require("./routes/nhaXuatBan");
 const theoDoiMuonSachRoutes = require("./routes/theoDoiMuonSach");
-
 // Defining routes
 app.use("/api/docgia", docgiaRoutes); // Cách API của độc giả sẽ được định nghĩa trong file docgia.js
 app.use("/api/sach", sachRoutes); // Cách API của sách sẽ được định nghĩa trong file sach.js

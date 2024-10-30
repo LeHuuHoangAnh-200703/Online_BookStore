@@ -40,12 +40,13 @@
         </div>
       </div>
     </div>
-    <div name="slide-fade" mode="out-in">
+    <transition name="slide-fade" mode="out-in">
       <div v-if="notification.message"
-        :class="`fixed top-4 right-4 p-5 bg-white shadow-lg rounded-lg z-10 flex items-center space-x-2 ${notification.type === 'success' ? 'border-l-8 border-green-500 text-green-600' : 'border-l-8 border-red-500 text-red-600'}`">
+        :class="`fixed top-4 right-4 p-5 bg-white shadow-lg rounded-lg z-10 flex items-center space-x-2 
+                        ${notification.type === 'success' ? 'border-l-8 border-green-500 text-green-600' : 'border-l-8 border-red-500 text-red-600'}`">
         <p class="text-[18px] font-semibold">{{ notification.message }}</p>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -137,4 +138,15 @@ const login = async () => {
 };
 </script>
 
-<style></style>
+<style scoped>
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.5s ease;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
+</style>
