@@ -33,10 +33,8 @@
                                     :class="{ 'border-red-500': errors.position }"
                                     class="w-full px-4 py-3 cursor-pointer rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out">
                                     <option value="">Chọn chức vụ</option>
-                                    <option value="Quản lý sách">Quản lý sách</option>
-                                    <option value="Quản lý đọc giả">Quản lý đọc giả</option>
-                                    <option value="Quản lý nhà xuất bản">Quản lý nhà xuất bản</option>
-                                    <option value="Quản lý đơn mượn sách">Quản lý đơn mượn sách</option>
+                                    <option value="Quản lý sách và nhà xuất bản">Quản lý sách và nhà xuất bản</option>
+                                    <option value="Quản lý đọc giả và đơn mượn sách">Quản lý đọc giả và đơn mượn sách</option>
                                 </select>
                                 <p v-if="errors.position" class="text-red-500 text-sm">{{ errors.position }}</p>
                             </div>
@@ -154,7 +152,7 @@ const registerAdmin = async () => {
 
         const response = await axios.post('http://localhost:5000/api/nhanvien', dataToSend);
         notification.value = {
-            message: 'Đăng ký thành công!',
+            message: 'Thêm nhân viên thành công!',
             type: 'success'
         };
         setTimeout(() => {

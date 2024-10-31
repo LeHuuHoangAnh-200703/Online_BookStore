@@ -16,7 +16,7 @@ const fetchProducts = async () => {
         products.value = response.data.map(product => {
             return {
                 ...product,
-                Image: product.Image ? `/src${product.Image}` : 'default-image-url.png' // Thêm /src vào đường dẫn hình ảnh
+                Image: product.Image ? `/src${product.Image}` : 'default-image-url.png'
             };
         });
     } catch (error) {

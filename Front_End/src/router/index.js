@@ -116,7 +116,7 @@ const routes = [
     component: createNXB,
   },
   {
-    path: "/admin/EditNXB",
+    path: "/admin/EditNXB/:maNXB",
     name: "EditNXB",
     component: EditNXB,
   },

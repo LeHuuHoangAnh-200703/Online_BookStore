@@ -102,26 +102,26 @@ const submitForm = async () => {
         hasError = true;
     }
     if (hasError) {
-        return; // Dừng hàm nếu có lỗi
+        return;
     }
 
     try {
         const formDataToSend = new FormData();
-           formDataToSend.append('Image', formData.value.selectedImage); // Thêm hình ảnh vào FormData
-           formDataToSend.append('MaSach', formData.value.idBook);
-           formDataToSend.append('MaNXB', formData.value.idNXB);
-           formDataToSend.append('TenSach', formData.value.name);
-           formDataToSend.append('DonGia', parseFloat(formData.value.price));
-           formDataToSend.append('SoQuyen', formData.value.quantity);
-           formDataToSend.append('NamXuatBan', formData.value.year);
-           formDataToSend.append('TacGia', formData.value.author);
-           formDataToSend.append('Type', formData.value.type);
-           formDataToSend.append('MoTa', formData.value.description);
+        formDataToSend.append('Image', formData.value.selectedImage);
+        formDataToSend.append('MaSach', formData.value.idBook);
+        formDataToSend.append('MaNXB', formData.value.idNXB);
+        formDataToSend.append('TenSach', formData.value.name);
+        formDataToSend.append('DonGia', parseFloat(formData.value.price));
+        formDataToSend.append('SoQuyen', formData.value.quantity);
+        formDataToSend.append('NamXuatBan', formData.value.year);
+        formDataToSend.append('TacGia', formData.value.author);
+        formDataToSend.append('Type', formData.value.type);
+        formDataToSend.append('MoTa', formData.value.description);
         const response = await axios.put(`http://localhost:5000/api/sach/maSach/${formData.value.idBook}`, formDataToSend, {
-               headers: {
-                   'Content-Type': 'multipart/form-data'
-               }
-           });
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
 
         notification.value = {
             message: 'Sản phẩm đã được chỉnh sửa thành công!',
@@ -240,7 +240,7 @@ onMounted(() => {
                             ảnh chính sản phẩm :</label>
                         <input type="file" name="Image" @change="event => {
                             formData.images = Array.from(event.target.files);
-                            formData.selectedImage = event.target.files[0]; // Lưu trữ hình ảnh đã chọn
+                            formData.selectedImage = event.target.files[0];
                         }" />
                         <p class="text-red-500 text-sm">{{ formData.errors.images }}</p>
                         <div class="text-center">
