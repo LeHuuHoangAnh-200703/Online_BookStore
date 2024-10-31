@@ -10,8 +10,13 @@ exports.getAllNhanVien = async (req, res) => {
 };
 
 exports.createNhanVien = async (req, res) => {
+  const { DienThoai } = req.body;
   const nhanvien = new NhanVien(req.body);
   try {
+    const existingNhanVien = await NhanVien.findOne({ DienThoai });
+    if (existingNhanVien) {
+      return res.status(400).json({ message: "Số điện thoại đã được đăng ký." });
+    }
     await nhanvien.save();
     res.status(201).json(nhanvien);
   } catch (err) {
@@ -44,7 +49,7 @@ exports.deleteNhanVien = async (req, res) => {
 exports.login = async (req, res) => {
   const { phone, password } = req.body;
   try {
-    const admin = await NhanVien.findOne({ DienThoai: phone});
+    const admin = await NhanVien.findOne({ DienThoai: phone });
     if (!admin) {
       return res.status(400).json({ message: "Số điện thoại không tồn tại." });
     }

@@ -3,12 +3,14 @@ import { onMounted } from 'vue';
 
 const sidebarMenu = [
     { name: "Tất cả sản phẩm", icon: "fa-solid fa-igloo", path: "adminDashboard"},
-    { name: "Danh sách người dùng", icon: "fa-solid fa-users", path: "customers"},
     { name: "Thêm sản phẩm", icon: "fa-solid fa-cart-plus", path: "createProducts"},
-    { name: "Thêm admin", icon: "fa-solid fa-user-plus", path: "addAdmin"},
+    { name: "Thêm nhân viên", icon: "fa-solid fa-user-plus", path: "addAdmin"},
+    { name: "Danh sách nhân viên", icon: "fa-solid fa-users", path: "staffList"},
     { name: "Đơn mượn sách", icon: "fa-solid fa-bag-shopping", path: "ordersBook"},
     { name: "Thêm nhà xuất bản", icon: "fa-solid fa-plus", path: "createNXB"},
     { name: "Danh sách nhà xuất bản", icon: "fa-solid fa-user", path: "NXBLists"},
+    { name: "Thêm đọc giả", icon: "fa-solid fa-circle-plus", path: "createCustomer"},
+    { name: "Danh sách đọc giả", icon: "fa-solid fa-users", path: "customers"},
 ];
 
 onMounted(() => {

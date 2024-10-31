@@ -3,8 +3,8 @@ const bcrypt = require("bcrypt");
 
 const docgiaSchema = new mongoose.Schema({
   MaDocGia: { type: String, unique: true },
+  HoLot: String,
   Ten: String,
-  Email: String,
   Password: String,
   NgaySinh: Date,
   Phai: String,

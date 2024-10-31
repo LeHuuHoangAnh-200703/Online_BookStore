@@ -84,6 +84,9 @@ onMounted(() => {
                                 <td class="px-6 py-4 whitespace-nowrap">{{ reader.DiaChi }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ reader.NgayTao }}</td>
                                 <td class="flex justify-center gap-4 px-6 py-4 font-medium whitespace-nowrap">
+                                    <a :href="`/admin/editProduct/${reader.MaDocGia}`"
+                                        class="inline-block bg-[#00697F] text-white font-medium py-2 px-4 transition-all duration-300 hover:bg-[#055565] whitespace-nowrap">Sửa
+                                        đọc giả</a>
                                     <form @submit.prevent="deleteUser(reader.MaDocGia)" class="form-inline ml-1">
                                         <button type="submit"
                                             class="text-primary-700 bg-[#DC143C] px-[14px] py-2 text-[#fff]"

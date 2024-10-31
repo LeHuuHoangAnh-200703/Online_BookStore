@@ -19,6 +19,10 @@ import editProduct from "../components/admin/editProduct.vue";
 import createNXB from "../components/admin/createNXB.vue";
 import NXBLists from "../components/admin/NXBLists.vue";
 import Errors from "../components/errors/404.vue";
+import CreateCustomer from "../components/admin/createCustomer.vue";
+import EditCustomer from "../components/admin/editCustomer.vue";
+import EditNXB from "../components/admin/editNXB.vue";
+import StaffList from "../components/admin/staffList.vue";
 
 const routes = [
   {
@@ -77,6 +81,11 @@ const routes = [
     component: addAdmin,
   },
   {
+    path: "/admin/staffList",
+    name: "StaffList",
+    component: StaffList,
+  },
+  {
     path: "/admin/adminDashboard",
     name: "adminDashboard",
     component: adminDashboard,
@@ -107,9 +116,24 @@ const routes = [
     component: createNXB,
   },
   {
+    path: "/admin/EditNXB",
+    name: "EditNXB",
+    component: EditNXB,
+  },
+  {
     path: "/admin/NXBLists",
     name: "NXBLists",
     component: NXBLists,
+  },
+  {
+    path: "/admin/createCustomer",
+    name: "CreateCustomer",
+    component: CreateCustomer,
+  },
+  {
+    path: "/admin/editCustomer",
+    name: "EditCustomer",
+    component: EditCustomer,
   },
   {
     path: "/notFound",

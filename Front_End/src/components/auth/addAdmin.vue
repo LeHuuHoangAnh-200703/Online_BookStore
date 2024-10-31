@@ -28,12 +28,16 @@
                             </div>
                             <div>
                                 <label :class="{ 'text-red-500': errors.position }" for="position"
-                                    class="text-sm font-medium text-gray-700 block mb-2">Chức
-                                    vụ</label>
-                                <input v-model="formData.position" type="position" id="position"
+                                    class="text-sm font-medium text-gray-700 block mb-2">Chức vụ</label>
+                                <select v-model="formData.position" id="position"
                                     :class="{ 'border-red-500': errors.position }"
-                                    class="w-full px-4 py-3 rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out"
-                                    placeholder="Nhập chức vụ ..." />
+                                    class="w-full px-4 py-3 cursor-pointer rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out">
+                                    <option value="">Chọn chức vụ</option>
+                                    <option value="Quản lý sách">Quản lý sách</option>
+                                    <option value="Quản lý đọc giả">Quản lý đọc giả</option>
+                                    <option value="Quản lý nhà xuất bản">Quản lý nhà xuất bản</option>
+                                    <option value="Quản lý đơn mượn sách">Quản lý đơn mượn sách</option>
+                                </select>
                                 <p v-if="errors.position" class="text-red-500 text-sm">{{ errors.position }}</p>
                             </div>
                             <div>
