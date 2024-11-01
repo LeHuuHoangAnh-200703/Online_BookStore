@@ -9,6 +9,18 @@ exports.getAllNhanVien = async (req, res) => {
   }
 };
 
+exports.getNhanVien = async (req, res) => {
+  try {
+    const nhanvien = await NhanVien.findOne({ MSNV : req.params.maNhanVien });
+    if (!nhanvien) {
+      return res.status(400).json({ message: "Nhân viên này không tồn tại." });
+    }
+    res.status(200).json(nhanvien);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 exports.createNhanVien = async (req, res) => {
   const { DienThoai } = req.body;
   const nhanvien = new NhanVien(req.body);

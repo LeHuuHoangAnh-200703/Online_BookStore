@@ -81,7 +81,7 @@ onMounted(() => {
                                 <td class="px-6 py-4 whitespace-nowrap">{{ staff.DienThoai }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ staff.DiaChi }}</td>
                                 <td class="flex justify-center gap-4 px-6 py-4 font-medium whitespace-nowrap">
-                                    <a href=""
+                                    <a :href="`/admin/editStaffInfo/${ staff.MSNV}`"
                                         class="inline-block bg-[#00697F] text-white font-medium py-2 px-4 transition-all duration-300 hover:bg-[#055565] whitespace-nowrap">Sửa
                                         nhân viên</a>
                                     <form @submit.prevent="" class="form-inline ml-1">

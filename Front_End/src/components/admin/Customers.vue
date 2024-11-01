@@ -15,7 +15,7 @@ const fetchUsers = async () => {
         readers.value = response.data.map(reader => {
             return {
                 ...reader,
-                NgayTao: new Date(reader.NgayTao).toLocaleDateString('vi-VN')
+                NgaySinh: new Date(reader.NgaySinh).toLocaleDateString('vi-VN')
             };
         });
     } catch (error) {
@@ -25,6 +25,29 @@ const fetchUsers = async () => {
 
 
 const deleteUser = async (maDocGia) => {
+    const confirmDelete = confirm("Bạn có chắc chắn muốn xóa đọc giả này không?");
+    if (!confirmDelete) return;
+
+    try {
+        await axios.delete(`http://localhost:5000/api/docgia/${maDocGia}`);
+        readers.value = readers.value.filter(reader => reader.MaDocGia !== maDocGia);
+        notification.value = {
+            message: 'Đọc giả đã được xóa thành công!',
+            type: 'success'
+        };
+    } catch (error) {
+        console.error('Error deleting reader:', error);
+        notification.value = {
+            message: 'Có lỗi xảy ra, vui lòng thử lại!',
+            type: 'error'
+        };
+    }
+    setTimeout(() => {
+        notification.value.message = '';
+    }, 3000);
+};
+
+const deleteReaderHouse = async (maDocGia) => {
     const confirmDelete = confirm("Bạn có chắc chắn muốn xóa đọc giả này không?");
     if (!confirmDelete) return;
 
@@ -67,27 +90,27 @@ onMounted(() => {
                         <thead class="bg-gray-50">
                             <tr>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Mã đọc giả</th>
-                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Tên đọc giả</th>
-                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Email</th>
-                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Liên lạc</th>
+                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Họ và tên</th>
+                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Ngày sinh</th>
+                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Phái</th>
+                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Số điện thoại</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Địa chỉ</th>
-                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Ngày tham gia</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Điều chỉnh</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100 bg-white border-t border-[#cecece]">
                             <tr v-for="reader in readers" :key="reader.id">
                                 <th class="px-6 py-4 font-medium text-gray-900">{{ reader.MaDocGia }}</th>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ reader.Ten }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ reader.Email }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ reader.HoLot }} {{ reader.Ten }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ reader.NgaySinh }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ reader.Phai }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ reader.DienThoai }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ reader.DiaChi }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ reader.NgayTao }}</td>
                                 <td class="flex justify-center gap-4 px-6 py-4 font-medium whitespace-nowrap">
-                                    <a :href="`/admin/editProduct/${reader.MaDocGia}`"
+                                    <a :href="`/admin/editCustomer/${reader.MaDocGia}`"
                                         class="inline-block bg-[#00697F] text-white font-medium py-2 px-4 transition-all duration-300 hover:bg-[#055565] whitespace-nowrap">Sửa
                                         đọc giả</a>
-                                    <form @submit.prevent="deleteUser(reader.MaDocGia)" class="form-inline ml-1">
+                                    <form @submit.prevent="deleteReaderHouse(reader.MaDocGia)" class="form-inline ml-1">
                                         <button type="submit"
                                             class="text-primary-700 bg-[#DC143C] px-[14px] py-2 text-[#fff]"
                                             >

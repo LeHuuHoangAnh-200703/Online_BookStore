@@ -135,8 +135,8 @@ const submitForm = async () => {
                 <div class="text-center py-4">
                     <h2 class="text-[#333] font-bold text-[20px]">THÊM SẢN PHẨM</h2>
                 </div>
-                <form @submit.prevent="submitForm" action="/admin/addproduct" method="POST"
-                    enctype="multipart/form-data" id="all_products"
+                <form @submit.prevent="submitForm" action="" method="POST"
+                    enctype="multipart/form-data"
                     class="w-full max-h-[calc(100vh-200px)] overflow-y-scroll">
                     <div
                         class="flex flex-col bg-white w-full md:w-[70%] mx-auto gap-5 border-2 rounded-xl shadow-md p-5 m-2">

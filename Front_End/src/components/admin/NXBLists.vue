@@ -31,11 +31,11 @@ const deletePublishingHouse = async (maNXB) => {
         await axios.delete(`http://localhost:5000/api/nhaxuatban/${maNXB}`);
         publishingHouses.value = publishingHouses.value.filter(publishingHouse => publishingHouse.MaNXB !== maNXB);
         notification.value = {
-            message: 'Đọc giả đã được xóa thành công!',
+            message: 'Nhà xuất bản đã được xóa thành công!',
             type: 'success'
         };
     } catch (error) {
-        console.error('Error deleting reader:', error);
+        console.error('Error deleting publishingHouse:', error);
         notification.value = {
             message: 'Có lỗi xảy ra, vui lòng thử lại!',
             type: 'error'

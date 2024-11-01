@@ -23,6 +23,7 @@ import CreateCustomer from "../components/admin/createCustomer.vue";
 import EditCustomer from "../components/admin/editCustomer.vue";
 import EditNXB from "../components/admin/editNXB.vue";
 import StaffList from "../components/admin/staffList.vue";
+import EditStaffInfo from "../components/admin/editStaffInfo.vue";
 
 const routes = [
   {
@@ -86,6 +87,11 @@ const routes = [
     component: StaffList,
   },
   {
+    path: "/admin/editStaffInfo/:maNhanVien",
+    name: "EditStaffInfo",
+    component: EditStaffInfo,
+  },
+  {
     path: "/admin/adminDashboard",
     name: "adminDashboard",
     component: adminDashboard,
@@ -131,7 +137,7 @@ const routes = [
     component: CreateCustomer,
   },
   {
-    path: "/admin/editCustomer",
+    path: "/admin/editCustomer/:maDocGia",
     name: "EditCustomer",
     component: EditCustomer,
   },

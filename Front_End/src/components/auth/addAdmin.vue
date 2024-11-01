@@ -17,56 +17,56 @@
                         </p>
                         <form @submit.prevent="registerAdmin" method="POST" action="" class="space-y-6">
                             <div>
-                                <label :class="{ 'text-red-500': errors.name }" for="name"
+                                <label :class="{ 'text-red-500': errors.HoTenNV }" for="HoTenNV"
                                     class="text-sm font-medium text-gray-700 block mb-2">Tên đăng
                                     nhập</label>
-                                <input v-model="formData.name" type="name" id="name"
-                                    :class="{ 'border-red-500': errors.name }"
+                                <input v-model="formData.HoTenNV" type="text" id="HoTenNV"
+                                    :class="{ 'border-red-500': errors.HoTenNV }"
                                     class="w-full px-4 py-3 rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out"
                                     placeholder="JeiKei" />
-                                <p v-if="errors.name" class="text-red-500 text-sm">{{ errors.name }}</p>
+                                <p v-if="errors.HoTenNV" class="text-red-500 text-sm">{{ errors.HoTenNV }}</p>
                             </div>
                             <div>
-                                <label :class="{ 'text-red-500': errors.position }" for="position"
+                                <label :class="{ 'text-red-500': errors.ChucVu }" for="ChucVu"
                                     class="text-sm font-medium text-gray-700 block mb-2">Chức vụ</label>
-                                <select v-model="formData.position" id="position"
-                                    :class="{ 'border-red-500': errors.position }"
+                                <select v-model="formData.ChucVu" id="ChucVu"
+                                    :class="{ 'border-red-500': errors.ChucVu }"
                                     class="w-full px-4 py-3 cursor-pointer rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out">
                                     <option value="">Chọn chức vụ</option>
                                     <option value="Quản lý sách và nhà xuất bản">Quản lý sách và nhà xuất bản</option>
                                     <option value="Quản lý đọc giả và đơn mượn sách">Quản lý đọc giả và đơn mượn sách</option>
                                 </select>
-                                <p v-if="errors.position" class="text-red-500 text-sm">{{ errors.position }}</p>
+                                <p v-if="errors.ChucVu" class="text-red-500 text-sm">{{ errors.ChucVu }}</p>
                             </div>
                             <div>
-                                <label :class="{ 'text-red-500': errors.address }" for="address"
+                                <label :class="{ 'text-red-500': errors.DiaChi }" for="DiaChi"
                                     class="text-sm font-medium text-gray-700 block mb-2">Địa
                                     chỉ</label>
-                                <input v-model="formData.address" type="address" id="address"
-                                    :class="{ 'border-red-500': errors.address }"
+                                <input v-model="formData.DiaChi" type="text" id="DiaChi"
+                                    :class="{ 'border-red-500': errors.DiaChi }"
                                     class="w-full px-4 py-3 rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out"
                                     placeholder="Long Mỹ - Hậu Giang" />
-                                <p v-if="errors.address" class="text-red-500 text-sm">{{ errors.address }}</p>
+                                <p v-if="errors.DiaChi" class="text-red-500 text-sm">{{ errors.DiaChi }}</p>
                             </div>
                             <div>
-                                <label :class="{ 'text-red-500': errors.phone }" for="phone"
+                                <label :class="{ 'text-red-500': errors.DienThoai }" for="DienThoai"
                                     class="text-sm font-medium text-gray-700 block mb-2">Số điện
                                     thoại</label>
-                                <input v-model="formData.phone" type="phone" id="phone"
-                                    :class="{ 'border-red-500': errors.phone }"
+                                <input v-model="formData.DienThoai" type="text" id="DienThoai"
+                                    :class="{ 'border-red-500': errors.DienThoai }"
                                     class="w-full px-4 py-3 rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out"
                                     placeholder="079-xxx-xxxx" />
-                                <p v-if="errors.phone" class="text-red-500 text-sm">{{ errors.phone }}</p>
+                                <p v-if="errors.DienThoai" class="text-red-500 text-sm">{{ errors.DienThoai }}</p>
                             </div>
                             <div>
-                                <label :class="{ 'text-red-500': errors.password }" for="password"
+                                <label :class="{ 'text-red-500': errors.Password }" for="Password"
                                     class="text-sm font-medium text-gray-700 block mb-2">Mật
                                     Khẩu</label>
-                                <input v-model="formData.password" type="password" id="password"
-                                    :class="{ 'border-red-500': errors.password }"
+                                <input v-model="formData.Password" type="password" id="Password"
+                                    :class="{ 'border-red-500': errors.Password }"
                                     class="w-full px-4 py-3 outline-none rounded-lg border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out"
                                     placeholder="••••••••" />
-                                <p v-if="errors.password" class="text-red-500 text-sm">{{ errors.password }}</p>
+                                <p v-if="errors.Password" class="text-red-500 text-sm">{{ errors.Password }}</p>
                             </div>
                             <button type="submit"
                                 class="w-full bg-[#51A7BF] text-white rounded-lg py-3 px-4 font-semibold hover:bg-[#00697F] transition duration-300 ease-in-out transform hover:scale-105">
@@ -101,11 +101,11 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 const errors = ref({});
 const formData = ref({
-    name: '',
-    password: '',
-    position: '',
-    phone: '',
-    address: ''
+    HoTenNV: '',
+    Password: '',
+    ChucVu: '',
+    DienThoai: '',
+    DiaChi: ''
 });
 
 const notification = ref({
@@ -117,24 +117,24 @@ const registerAdmin = async () => {
     errors.value = {};
     const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
 
-    if (!formData.value.name) {
-        errors.value.name = 'Tên đăng nhập không được bỏ trống';
+    if (!formData.value.HoTenNV) {
+        errors.value.HoTenNV = 'Tên đăng nhập không được bỏ trống!';
     }
-    if (!formData.value.position) {
-        errors.value.position = 'Chức vụ không được bỏ trống';
+    if (!formData.value.ChucVu) {
+        errors.value.ChucVu = 'Chức vụ không được bỏ trống!';
     }
-    if (!formData.value.address) {
-        errors.value.address = 'Địa chỉ không được bỏ trống';
+    if (!formData.value.DiaChi) {
+        errors.value.DiaChi = 'Địa chỉ không được bỏ trống!';
     }
-    if (!formData.value.phone) {
-        errors.value.phone = 'Số điện thoại không được bỏ trống';
-    } else if (!phoneRegex.test(formData.value.phone)) {
-        errors.value.phone = 'Số điện thoại không đúng định dạng.';
+    if (!formData.value.DienThoai) {
+        errors.value.DienThoai = 'Số điện thoại không được bỏ trống!';
+    } else if (!phoneRegex.test(formData.value.DienThoai)) {
+        errors.value.DienThoai = 'Số điện thoại không đúng định dạng!';
     }
-    if (!formData.value.password) {
-        errors.value.password = 'Mật khẩu không được bỏ trống';
-    } else if (formData.value.password.length < 6) {
-        errors.value.password = 'Mật khẩu phải từ 6 ký tự trở lên';
+    if (!formData.value.Password) {
+        errors.value.Password = 'Mật khẩu không được bỏ trống!';
+    } else if (formData.value.Password.length < 6) {
+        errors.value.Password = 'Mật khẩu phải từ 6 ký tự trở lên!';
     }
 
     if (Object.keys(errors.value).length > 0) {
@@ -143,11 +143,11 @@ const registerAdmin = async () => {
 
     try {
         const dataToSend = {
-            HoTenNV: formData.value.name,
-            Password: formData.value.password,
-            ChucVu: formData.value.position,
-            DiaChi: formData.value.address,
-            DienThoai: formData.value.phone,
+            HoTenNV: formData.value.HoTenNV,
+            Password: formData.value.Password,
+            ChucVu: formData.value.ChucVu,
+            DiaChi: formData.value.DiaChi,
+            DienThoai: formData.value.DienThoai,
         };
 
         const response = await axios.post('http://localhost:5000/api/nhanvien', dataToSend);
@@ -161,7 +161,7 @@ const registerAdmin = async () => {
 
     } catch (error) {
         notification.value = {
-            message: error.response?.data?.message || 'Có lỗi xảy ra, vui lòng thử lại.',
+            message: error.response?.data?.message || 'Có lỗi xảy ra, vui lòng thử lại!',
             type: 'error'
         };
     }
