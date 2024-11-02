@@ -1,14 +1,11 @@
 const mongoose = require("mongoose");
 
-const theoDoiMuonSachSchema = new mongoose.Schema({
-  MaDocGia: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Docgia",
-    required: true,
-  },
-  MaSach: { type: mongoose.Schema.Types.ObjectId, ref: "Sach", required: true },
-  NgayMuon: { type: Date, required: true, default: Date.now },
-  NgayTra: { type: Date }, // Ngày trả có thể null khi chưa trả sách
+const TheoDoiMuonSachSchema = new mongoose.Schema({
+  MaDocGia: { type: String, required: true },
+  MaSach: { type: String, required: true },
+  NgayMuon: { type: Date, required: true },
+  NgayTra: { type: Date, required: false },
+  TrangThai: { type: String, enum: ['Chưa trả', 'Quá hạn', 'Đã trả'], default: 'Chưa trả' }
 });
 
-module.exports = mongoose.model("Theo_Doi_Muon_Sach", theoDoiMuonSachSchema);
+module.exports = mongoose.model("TheoDoiMuonSach", TheoDoiMuonSachSchema);

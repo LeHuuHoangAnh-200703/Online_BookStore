@@ -10,7 +10,7 @@
                     </div>
                     <div class="w-full md:w-1/2 p-8 md:p-12">
                         <h1 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-2">
-                            Thêm Admin
+                            Thêm nhân viên
                         </h1>
                         <p class="text-md md:text-lg font-medium text-center text-gray-600 mb-8">
                             Vui lòng điền thông tin để thêm!
@@ -32,9 +32,9 @@
                                 <select v-model="formData.ChucVu" id="ChucVu"
                                     :class="{ 'border-red-500': errors.ChucVu }"
                                     class="w-full px-4 py-3 cursor-pointer rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out">
-                                    <option value="">Chọn chức vụ</option>
-                                    <option value="Quản lý sách và nhà xuất bản">Quản lý sách và nhà xuất bản</option>
-                                    <option value="Quản lý đọc giả và đơn mượn sách">Quản lý đọc giả và đơn mượn sách</option>
+                                    <option value="">Chọn chức vụ phù hợp</option>
+                                    <option value="Quản lý">Quản lý</option>
+                                    <option value="Nhân viên">Nhân viên</option>
                                 </select>
                                 <p v-if="errors.ChucVu" class="text-red-500 text-sm">{{ errors.ChucVu }}</p>
                             </div>

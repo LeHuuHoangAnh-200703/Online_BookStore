@@ -78,13 +78,13 @@ onMounted(() => {
 <template>
     <div class="flex font-sans">
         <sidebar />
-        <div class="flex flex-col w-full">
+        <div class="flex flex-col w-full overflow-auto">
             <navbar />
-            <div class="relative w-[95%] mx-auto h-[100%]">
+            <div class="relative w-[95%] mx-auto h-[100%] overflow-hidden">
                 <div class="text-center py-4">
                     <h2 class="text-[#333] font-bold text-[20px]">DANH SÁCH ĐỌC GIẢ</h2>
                 </div>
-                <div id="all_products" class="w-full overflow-x-scroll overflow-y-scroll">
+                <div id="" class="overflow-y-auto max-h-[calc(100vh-200px)]">
                     <table
                         class="w-full rounded-lg border-2 border-[#cecece] bg-white text-center text-sm text-gray-500">
                         <thead class="bg-gray-50">
@@ -99,7 +99,7 @@ onMounted(() => {
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100 bg-white border-t border-[#cecece]">
-                            <tr v-for="reader in readers" :key="reader.id">
+                            <tr v-for="reader in readers" :key="reader._id">
                                 <th class="px-6 py-4 font-medium text-gray-900">{{ reader.MaDocGia }}</th>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ reader.HoLot }} {{ reader.Ten }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ reader.NgaySinh }}</td>

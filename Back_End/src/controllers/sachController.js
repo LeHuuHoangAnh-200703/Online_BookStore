@@ -2,24 +2,20 @@ const Sach = require("../models/Sach");
 const path = require('path');
 const multer = require('multer');
 
-// Đường dẫn thư mục assets/img của frontend
 const storagePath = path.join(__dirname, '../../../Front_End/src/assets/img');
 
-// Cấu hình multer để lưu trữ ảnh
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, storagePath); // Lưu file vào thư mục assets/img
+    cb(null, storagePath);
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // Đổi tên file để tránh trùng
+    cb(null, Date.now() + path.extname(file.originalname));
   }
 });
 
 const upload = multer({ storage: storage });
-// Lấy tất cả sách
 exports.getAllSach = async (req, res) => {
   try {
-    // Fetch all Sach documents from the database
     const sachs = await Sach.find();
     res.status(200).json(sachs);
   } catch (err) {
@@ -27,7 +23,6 @@ exports.getAllSach = async (req, res) => {
   }
 };
 
-// Function to get a single Sach (book) by ID  
 exports.getSachByMaSach = async (req, res) => {  
   try {  
     const sach = await Sach.findOne({ MaSach: req.params.maSach });
@@ -63,7 +58,6 @@ exports.createSach = async (req, res) => {
   }
 };
 
-// Function to update an existing Sach (book) by ID
 exports.updateSach = async (req, res) => {
   try {
     const sach = await Sach.findOne({ MaSach: req.params.maSach });
@@ -91,7 +85,6 @@ exports.updateSach = async (req, res) => {
   }
 };
 
-// Function to delete an existing Sach (book) by ID
 exports.deleteSach = async (req, res) => {
     try {
         const sach = await Sach.findOneAndDelete({ MaSach: req.params.maSach });

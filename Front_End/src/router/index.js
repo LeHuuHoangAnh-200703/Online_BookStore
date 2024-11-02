@@ -9,14 +9,14 @@ import Cart from "../components/home/Cart.vue";
 import Profile from "../components/home/Profile.vue";
 import EditProfile from "../components/home/Edit_profile.vue";
 import Order from "../components/home/Orders.vue";
-import adminLogin from "../components/auth/adminLogin.vue";
-import addAdmin from "../components/auth/addAdmin.vue";
-import adminDashboard from "../components/admin/adminDashboard.vue";
-import customers from "../components/admin/Customers.vue";
-import createProducts from "../components/admin/createProducts.vue";
-import ordersBook from "../components/admin/ordersBook.vue";
-import editProduct from "../components/admin/editProduct.vue";
-import createNXB from "../components/admin/createNXB.vue";
+import AdminLogin from "../components/auth/adminLogin.vue";
+import AddAdmin from "../components/auth/addAdmin.vue";
+import AdminDashboard from "../components/admin/adminDashboard.vue";
+import Customers from "../components/admin/Customers.vue";
+import CreateProducts from "../components/admin/createProducts.vue";
+import OrdersBook from "../components/admin/ordersBook.vue";
+import EditProduct from "../components/admin/editProduct.vue";
+import CreateNXB from "../components/admin/createNXB.vue";
 import NXBLists from "../components/admin/NXBLists.vue";
 import Errors from "../components/errors/404.vue";
 import CreateCustomer from "../components/admin/createCustomer.vue";
@@ -24,6 +24,8 @@ import EditCustomer from "../components/admin/editCustomer.vue";
 import EditNXB from "../components/admin/editNXB.vue";
 import StaffList from "../components/admin/staffList.vue";
 import EditStaffInfo from "../components/admin/editStaffInfo.vue";
+import CreateOrdersBook from "../components/admin/createOrdersBook.vue";
+import EditOrderBook from "../components/admin/editOrderBook.vue";
 
 const routes = [
   {
@@ -73,13 +75,13 @@ const routes = [
   },
   {
     path: "/admin/login",
-    name: "adminLogin",
-    component: adminLogin,
+    name: "AdminLogin",
+    component: AdminLogin,
   },
   {
     path: "/admin/addAdmin",
-    name: "addAdmin",
-    component: addAdmin,
+    name: "AddAdmin",
+    component: AddAdmin,
   },
   {
     path: "/admin/staffList",
@@ -93,33 +95,43 @@ const routes = [
   },
   {
     path: "/admin/adminDashboard",
-    name: "adminDashboard",
-    component: adminDashboard,
+    name: "AdminDashboard",
+    component: AdminDashboard,
   },
   {
     path: "/admin/customers",
-    name: "customers",
-    component: customers,
+    name: "Customers",
+    component: Customers,
   },
   {
     path: "/admin/createProducts",
-    name: "createProducts",
-    component: createProducts,
+    name: "CreateProducts",
+    component: CreateProducts,
+  },
+  {
+    path: "/admin/createOrderBook",
+    name: "CreateOrdersBook",
+    component: CreateOrdersBook,
+  },
+  {
+    path: "/admin/editOrderBook/:id",
+    name: "EditOrderBook",
+    component: EditOrderBook,
   },
   {
     path: "/admin/ordersBook",
-    name: "ordersBook",
-    component: ordersBook,
+    name: "OrdersBook",
+    component: OrdersBook,
   },
   {
     path: "/admin/editProduct/:maSach",
-    name: "editProduct",
-    component: editProduct,
+    name: "EditProduct",
+    component: EditProduct,
   },
   {
     path: "/admin/createNXB",
-    name: "createNXB",
-    component: createNXB,
+    name: "CreateNXB",
+    component: CreateNXB,
   },
   {
     path: "/admin/EditNXB/:maNXB",

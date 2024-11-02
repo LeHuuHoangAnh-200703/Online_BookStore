@@ -5,12 +5,12 @@ const sidebarMenu = [
     { name: "Tất cả sản phẩm", icon: "fa-solid fa-igloo", path: "adminDashboard"},
     { name: "Thêm sản phẩm", icon: "fa-solid fa-cart-plus", path: "createProducts"},
     { name: "Thêm nhân viên", icon: "fa-solid fa-user-plus", path: "addAdmin"},
-    { name: "Danh sách nhân viên", icon: "fa-solid fa-users", path: "staffList"},
     { name: "Thêm đơn mượn sách", icon: "fa-solid fa-square-plus", path: "createOrderBook"},
-    { name: "Đơn mượn sách", icon: "fa-solid fa-bag-shopping", path: "ordersBook"},
     { name: "Thêm nhà xuất bản", icon: "fa-solid fa-plus", path: "createNXB"},
-    { name: "Danh sách nhà xuất bản", icon: "fa-solid fa-user", path: "NXBLists"},
     { name: "Thêm đọc giả", icon: "fa-solid fa-circle-plus", path: "createCustomer"},
+    { name: "Danh sách nhân viên", icon: "fa-solid fa-users", path: "staffList"},
+    { name: "Đơn mượn sách", icon: "fa-solid fa-bag-shopping", path: "ordersBook"},
+    { name: "Danh sách nhà xuất bản", icon: "fa-solid fa-user", path: "NXBLists"},
     { name: "Danh sách đọc giả", icon: "fa-solid fa-users", path: "customers"},
 ];
 
@@ -54,13 +54,13 @@ onMounted(() => {
                             class="fa-solid fa-x text-2xl text-[#00697F] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
                     </button>
                 </div>
-                <ul class="flex flex-col my-10">
+                <ul class="flex flex-col my-2">
                     <li class="py-[15px] flex gap-3 text-[#333f48] group cursor-pointer" v-for="(item, index) in sidebarMenu" :key="index">
-                        <i :class="item.icon" class="text-lg font-semibold group-hover:text-[#00697F]"></i>
+                        <i :class="item.icon" class="text-[14px] font-semibold group-hover:text-[#00697F]"></i>
                         <router-link :to="item.path"
-                            class="border-b-2 border-transparent hover:border-b-2 group-hover:border-[#00697F] font-semibold text-[20px] group-hover:text-[#00697F] transition-colors duration-300">{{ item.name }}</router-link>
+                            class="border-b-2 border-transparent hover:border-b-2 group-hover:border-[#00697F] font-semibold text-[14px] group-hover:text-[#00697F] transition-colors duration-300">{{ item.name }}</router-link>
                     </li>
-                    <a href="" class="text-[20px] text-[#333f48] mt-2 font-semibold group-hover:text-[#00697F]"><i class="fa-solid fa-right-from-bracket pr-1"></i> Đăng xuất</a>
+                    <a href="" class="text-[14px] text-[#333f48] mt-2 font-semibold group-hover:text-[#00697F]"><i class="fa-solid fa-right-from-bracket pr-1"></i> Đăng xuất</a>
                 </ul>
             </div>
         </div>
