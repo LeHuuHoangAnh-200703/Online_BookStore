@@ -23,28 +23,28 @@ const fetchStaffs = async () => {
 };
 
 
-// const deleteUser = async (maDocGia) => {
-//     const confirmDelete = confirm("Bạn có chắc chắn muốn xóa đọc giả này không?");
-//     if (!confirmDelete) return;
+const deleteStaff = async (maNhanVien) => {
+    const confirmDelete = confirm("Bạn có chắc chắn muốn xóa nhân viên này không?");
+    if (!confirmDelete) return;
 
-//     try {
-//         await axios.delete(`http://localhost:5000/api/docgia/${maDocGia}`);
-//         readers.value = readers.value.filter(reader => reader.MaDocGia !== maDocGia);
-//         notification.value = {
-//             message: 'Đọc giả đã được xóa thành công!',
-//             type: 'success'
-//         };
-//     } catch (error) {
-//         console.error('Error deleting reader:', error);
-//         notification.value = {
-//             message: 'Có lỗi xảy ra, vui lòng thử lại!',
-//             type: 'error'
-//         };
-//     }
-//     setTimeout(() => {
-//         notification.value.message = '';
-//     }, 3000);
-// };
+    try {
+        await axios.delete(`http://localhost:5000/api/nhanvien/${maNhanVien}`);
+        staffs.value = staffs.value.filter(staff => staff.MSNV !== maNhanVien);
+        notification.value = {
+            message: 'Nhân viên đã được xóa thành công!',
+            type: 'success'
+        };
+    } catch (error) {
+        console.error('Error deleting reader:', error);
+        notification.value = {
+            message: 'Có lỗi xảy ra, vui lòng thử lại!',
+            type: 'error'
+        };
+    }
+    setTimeout(() => {
+        notification.value.message = '';
+    }, 3000);
+};
 
 onMounted(() => {
     fetchStaffs();
@@ -81,10 +81,10 @@ onMounted(() => {
                                 <td class="px-6 py-4 whitespace-nowrap">{{ staff.DienThoai }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ staff.DiaChi }}</td>
                                 <td class="flex justify-center gap-4 px-6 py-4 font-medium whitespace-nowrap">
-                                    <a :href="`/admin/editStaffInfo/${ staff.MSNV}`"
+                                    <a :href="`/admin/editStaffInfo/${ staff.MSNV }`"
                                         class="inline-block bg-[#00697F] text-white font-medium py-2 px-4 transition-all duration-300 hover:bg-[#055565] whitespace-nowrap">Sửa
                                         nhân viên</a>
-                                    <form @submit.prevent="" class="form-inline ml-1">
+                                    <form @submit.prevent="deleteStaff(staff.MSNV)" class="form-inline ml-1">
                                         <button type="submit"
                                             class="text-primary-700 bg-[#DC143C] px-[14px] py-2 text-[#fff]"
                                             >

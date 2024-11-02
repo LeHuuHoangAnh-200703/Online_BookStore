@@ -38,11 +38,16 @@ exports.createNhanVien = async (req, res) => {
 
 exports.updateNhanVien = async (req, res) => {
   try {
-    const updatedNhanVien = await NhanVien.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
+    const nhanVien = await NhanVien.findOne({ MSNV : req.params.maNhanVien });
+    nhanVien.HoTenNV = req.body.HoTenNV || nhanVien.HoTenNV;
+    nhanVien.ChucVu = req.body.ChucVu || nhanVien.ChucVu;
+    nhanVien.DiaChi = req.body.DiaChi || nhanVien.DiaChi;
+    nhanVien.DienThoai = req.body.DienThoai || nhanVien.DienThoai;
+
+    if (req.body.Password) {
+      nhanVien.Password = req.body.Password;
+    }
+    const updatedNhanVien = await nhanVien.save();
     res.status(200).json(updatedNhanVien);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -51,7 +56,7 @@ exports.updateNhanVien = async (req, res) => {
 
 exports.deleteNhanVien = async (req, res) => {
   try {
-    await NhanVien.findByIdAndDelete(req.params.id);
+    await NhanVien.findOneAndDelete({ MSNV : req.params.maNhanVien});
     res.status(200).json({ message: "Nhân viên đã được xóa" });
   } catch (err) {
     res.status(500).json({ message: err.message });
