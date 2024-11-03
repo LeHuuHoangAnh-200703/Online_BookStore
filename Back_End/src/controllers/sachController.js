@@ -1,4 +1,5 @@
 const Sach = require("../models/Sach");
+const NhaXuatBan = require("../models/NhaXuatBan");
 const path = require('path');
 const multer = require('multer');
 
@@ -37,6 +38,7 @@ exports.getSachByMaSach = async (req, res) => {
 };  
 
 exports.createSach = async (req, res) => {
+  const { MaNXB } = req.body;
   const sach = new Sach({
     MaSach: req.body.MaSach,
     MaNXB: req.body.MaNXB,
@@ -51,6 +53,10 @@ exports.createSach = async (req, res) => {
   });
 
   try {
+    const nhaxuatban = await NhaXuatBan.findOne({ MaNXB: MaNXB });
+    if (!nhaxuatban) {
+      return res.status(400).json({ message: "Mã nhà xuất bản không tồn tại!" });
+    }
     await sach.save();
     res.status(201).json(sach);
   } catch (err) {
@@ -59,8 +65,14 @@ exports.createSach = async (req, res) => {
 };
 
 exports.updateSach = async (req, res) => {
+  const { MaNXB } = req.body;
   try {
     const sach = await Sach.findOne({ MaSach: req.params.maSach });
+    const nhaxuatban = await NhaXuatBan.findOne({ MaNXB: MaNXB });
+
+    if (!nhaxuatban) {
+      return res.status(400).json({ message: "Mã nhà xuất bản không tồn tại!" });
+    }
     if (!sach) {
       return res.status(404).json({ message: "Sách không tồn tại." });
     }

@@ -1,20 +1,31 @@
 <script setup>
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const chucVu = ref(localStorage.getItem('chucVu'));
+
 const sidebarMenu = [
-    {
-        children: [
-            { name: "Tất cả sản phẩm", icon: "fa-solid fa-igloo", path: "adminDashboard"},
-            { name: "Thêm sản phẩm", icon: "fa-solid fa-cart-plus", path: "createProducts"},
-            { name: "Thêm nhân viên", icon: "fa-solid fa-user-plus", path: "addAdmin"},
-            { name: "Thêm đơn mượn sách", icon: "fa-solid fa-square-plus", path: "createOrderBook"},
-            { name: "Thêm nhà xuất bản", icon: "fa-solid fa-plus", path: "createNXB"},
-            { name: "Thêm đọc giả", icon: "fa-solid fa-circle-plus", path: "createCustomer"},
-            { name: "Danh sách nhân viên", icon: "fa-solid fa-users", path: "staffList"},
-            { name: "Đơn mượn sách", icon: "fa-solid fa-bag-shopping", path: "ordersBook"},
-            { name: "Danh sách nhà xuất bản", icon: "fa-solid fa-user", path: "NXBLists"},
-            { name: "Danh sách đọc giả", icon: "fa-solid fa-users", path: "customers"},
-        ],
-    },
+    { name: "Tất cả sản phẩm", icon: "fa-solid fa-igloo", path: "adminDashboard" },
+    { name: "Thêm sản phẩm", icon: "fa-solid fa-cart-plus", path: "createProducts" },
+    { name: "Thêm nhân viên", icon: "fa-solid fa-user-plus", path: "addAdmin" },
+    { name: "Thêm đơn mượn sách", icon: "fa-solid fa-square-plus", path: "createOrderBook" },
+    { name: "Thêm nhà xuất bản", icon: "fa-solid fa-plus", path: "createNXB" },
+    { name: "Thêm đọc giả", icon: "fa-solid fa-circle-plus", path: "createCustomer" },
+    { name: "Danh sách nhân viên", icon: "fa-solid fa-users", path: "staffList" },
+    { name: "Đơn mượn sách", icon: "fa-solid fa-bag-shopping", path: "ordersBook" },
+    { name: "Danh sách nhà xuất bản", icon: "fa-solid fa-user", path: "NXBLists" },
+    { name: "Danh sách đọc giả", icon: "fa-solid fa-users", path: "customers" },
 ];
+
+const filteredSidebarListItem = computed(() => {
+    if (chucVu.value === 'Quản lý') {
+        return sidebarMenu;
+    } else {
+        return sidebarMenu.filter((item, index) => index !== 2 && index !== 6);
+    }
+});
 </script>
 
 <template>
@@ -25,13 +36,13 @@ const sidebarMenu = [
         </div>
         <div class="flex flex-col space-y-1">
             <div class="pl-6">
-                <div class="text-white" v-for="(menu, index) in sidebarMenu" :key="index">
+                <div class="text-white">
                     <ul class="flex flex-col space-y-5">
-                        <router-link :to="item.path" class="flex items-center space-x-3 hover:bg-white p-4 cursor-pointer rounded-l-full group transition-all duration-300"
-                            v-for="(item, index) in menu.children" :key="index">
-                            <i :class="item.icon" class="text-[14px] font-semibold group-hover:text-[#00697F]"></i>
+                        <router-link :to="menu.path" class="flex items-center space-x-3 hover:bg-white p-4 cursor-pointer rounded-l-full group transition-all duration-300"
+                            v-for="(menu, index) in filteredSidebarListItem" :key="index">
+                            <i :class="menu.icon" class="text-[14px] font-semibold group-hover:text-[#00697F]"></i>
                             <a href="#" class="text-[14px] font-semibold group-hover:text-[#00697F]">
-                                {{ item.name }}
+                                {{ menu.name }}
                             </a>
                         </router-link>
                     </ul>

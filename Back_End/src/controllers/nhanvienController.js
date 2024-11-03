@@ -75,7 +75,14 @@ exports.login = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: "Mật khẩu không đúng." });
     }
-    return res.status(200).json({ message: "Đăng nhập thành công!" });
+    return res.status(200).json({ message: "Đăng nhập thành công!",
+       nhanvien: {
+        MSNV: admin.MSNV,
+        HoTenNV: admin.HoTenNV,
+        ChucVu: admin.ChucVu,
+        DiaChi: admin.DiaChi,
+        DienThoai: admin.DienThoai,
+      }, });
   } catch (error) {
     res.status(500).json({ message: "Có lỗi xảy ra, vui lòng thử lại." });
   }

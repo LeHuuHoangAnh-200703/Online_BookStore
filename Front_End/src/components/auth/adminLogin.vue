@@ -93,7 +93,8 @@ const loginAdmin = async () => {
         password: formData.value.password,
       }
     );
-
+    localStorage.setItem('chucVu', response.data.nhanvien.ChucVu);
+    localStorage.setItem('tenNhanVien', response.data.nhanvien.HoTenNV);
     notification.value = {
       message: "Đăng nhập thành công!",
       type: "success",
