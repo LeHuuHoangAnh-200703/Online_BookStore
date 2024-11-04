@@ -33,7 +33,7 @@
                                     :class="{ 'border-red-500': errors.ChucVu }"
                                     class="w-full px-4 py-3 cursor-pointer rounded-lg outline-none border-2 border-gray-300 focus:border-[#51A7BF] focus:ring-[#51A7BF] transition duration-150 ease-in-out">
                                     <option value="">Chọn chức vụ phù hợp</option>
-                                    <option value="Quản lý">Quản lý</option>
+                                    <option value="Quản trị viên">Quản trị viên</option>
                                     <option value="Nhân viên">Nhân viên</option>
                                 </select>
                                 <p v-if="errors.ChucVu" class="text-red-500 text-sm">{{ errors.ChucVu }}</p>

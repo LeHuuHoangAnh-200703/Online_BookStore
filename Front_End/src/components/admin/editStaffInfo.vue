@@ -178,11 +178,9 @@ onMounted(() => {
                                                 <select v-model="formData.ChucVu" id="ChucVu"
                                                     :class="{ 'border-red-500': formData.errors.ChucVu }"
                                                     class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
-                                                    <option value="">Chọn chức vụ</option>
-                                                    <option value="Quản lý sách và nhà xuất bản">Quản lý sách và nhà
-                                                        xuất bản</option>
-                                                    <option value="Quản lý đọc giả và đơn mượn sách">Quản lý đọc giả và
-                                                        đơn mượn sách</option>
+                                                    <option value="">Chọn chức vụ phù hợp</option>
+                                                    <option value="Quản trị viên">Quản trị viên</option>
+                                                    <option value="Nhân viên">Nhân viên</option>
                                                 </select>
                                                 <p v-if="formData.errors.ChucVu" class="text-red-500 mt-1">{{ formData.errors.ChucVu }}</p>
                                             </div>

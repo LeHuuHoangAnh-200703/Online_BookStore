@@ -21,7 +21,7 @@ const sidebarMenu = [
 ];
 
 const filteredSidebarListItem = computed(() => {
-    if (chucVu.value === 'Quản lý') {
+    if (chucVu.value === 'Quản trị viên') {
         return sidebarMenu;
     } else {
         return sidebarMenu.filter((item, index) => index !== 2 && index !== 6);
