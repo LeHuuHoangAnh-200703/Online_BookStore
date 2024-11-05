@@ -1,10 +1,11 @@
 <script setup>
 import sidebar from '../../layout/admin/Sidebar.vue';
 import navbar from '../../layout/admin/Navbar.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 
 const products = ref([]);
+const searchQuery = ref("");
 const notification = ref({
     message: "",
     type: ""
@@ -47,6 +48,15 @@ const deleteProduct = async (maSach) => {
     }, 3000);
 };
 
+const filteredProducts = computed(() => {
+    if (!searchQuery.value) {
+        return products.value;
+    }
+    return products.value.filter(product =>
+        product.TenSach.toLowerCase().includes(searchQuery.value.toLowerCase())
+    );
+});
+
 const formatCurrency = (value) => {
     const formattedValue = value * 1000;
     return formattedValue.toLocaleString('vi-VN') + ' ' + 'VNĐ';
@@ -66,6 +76,10 @@ onMounted(() => {
                 <div class="text-center py-4">
                     <h2 class="text-[#333] font-bold text-[20px]">DANH SÁCH SẢN PHẨM</h2>
                 </div>
+                <div class="text-center mb-4">
+                    <input type="text" v-model="searchQuery" placeholder="Tìm kiếm sản phẩm theo tên ..."
+                        class="border-2 rounded-md border-[#00697F] outline-none px-4 py-3 text-base w-1/3" />
+                </div>
                 <div id="all_products" class="overflow-y-auto max-h-[calc(100vh-200px)]">
                     <table class="w-full border-collapse bg-white whitespace-nowrap text-center text-sm text-gray-500">
                         <thead class="bg-gray-200">
@@ -84,7 +98,8 @@ onMounted(() => {
                             </tr>
                         </thead>
                         <tbody class="w-full">
-                            <tr class="border-t border-slate-500" v-for="product in products" :key="product.id">
+                            <tr class="border-t border-slate-500" v-for="product in filteredProducts"
+                                :key="product._id">
                                 <td class="px-6 py-4 font-medium text-gray-900">{{ product.MaSach }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap overflow-hidden text-ellipsis">{{ product.MaNXB
                                     }}</td>

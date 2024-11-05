@@ -1,10 +1,11 @@
 <script setup>
 import sidebar from '../../layout/admin/Sidebar.vue';
 import navbar from '../../layout/admin/Navbar.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 
 const publishingHouses = ref([]);
+const searchQuery = ref("");
 const notification = ref({
     message: "",
     type: ""
@@ -46,6 +47,15 @@ const deletePublishingHouse = async (maNXB) => {
     }, 3000);
 };
 
+const filteredPublishingHouses = computed(() => {
+    if (!searchQuery.value) {
+        return publishingHouses.value;
+    }
+    return publishingHouses.value.filter(publishingHouse =>
+        publishingHouse.TenNXB.toLowerCase().includes(searchQuery.value.toLowerCase())
+    );
+});
+
 onMounted(() => {
     fetchPublishingHouses();
 });
@@ -60,6 +70,10 @@ onMounted(() => {
                 <div class="text-center py-4">
                     <h2 class="text-[#333] font-bold text-[20px]">DANH SÁCH NHÀ XUẤT BẢN</h2>
                 </div>
+                <div class="text-center mb-4">
+                    <input type="text" v-model="searchQuery" placeholder="Tìm kiếm nhà xuất bản theo tên ..."
+                        class="border-2 rounded-md border-[#00697F] outline-none px-4 py-3 text-base w-1/3" />
+                </div>
                 <div id="" class="overflow-y-auto max-h-[calc(100vh-200px)]">
                     <table
                         class="w-full rounded-lg border-2 border-[#cecece] bg-white text-center text-sm text-gray-500">
@@ -72,7 +86,7 @@ onMounted(() => {
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100 bg-white border-t border-[#cecece]">
-                            <tr v-for="publishingHouse in publishingHouses" :key="publishingHouse._id">
+                            <tr v-for="publishingHouse in filteredPublishingHouses" :key="publishingHouse._id">
                                 <th class="px-6 py-4 font-medium text-gray-900">{{ publishingHouse.MaNXB }}</th>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ publishingHouse.TenNXB }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ publishingHouse.DiaChi }}</td>
