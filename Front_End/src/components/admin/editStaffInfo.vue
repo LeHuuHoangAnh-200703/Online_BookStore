@@ -102,7 +102,9 @@ const submitForm = async () => {
             type: 'success'
         };
 
-        router.push('/admin/staffList');
+        setTimeout(() => {
+            router.push('/admin/staffList');
+        }, 2000);
     } catch (error) {
         notification.value = {
             message: error.response ? error.response.data.message : error.message,

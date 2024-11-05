@@ -80,7 +80,10 @@ const submitForm = async () => {
             message: 'Thông tin mượn sách đã được chỉnh sửa thành công!',
             type: 'success'
         };
-        router.push('/admin/ordersBook');
+        
+        setTimeout(() => {
+            router.push('/admin/ordersBook');
+        }, 2000);
     } catch (error) {
         notification.value = {
             message: error.response ? error.response.data.message : error.message,

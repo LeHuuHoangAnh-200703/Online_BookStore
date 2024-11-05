@@ -10,7 +10,7 @@ const port = 5000;
 
 // Middleware to enable Cross-Origin Resource Sharing (CORS)
 app.use(cors({
-  origin: 'http://localhost:5173', // Địa chỉ frontend của bạn
+  origin: 'http://localhost:5173',
   credentials: true // Cho phép gửi cookie
 }));
 
@@ -28,7 +28,6 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-// Importing route handlers
 const docgiaRoutes = require("./routes/docgia");
 const sachRoutes = require("./routes/sach");
 const nhanvienRoutes = require("./routes/nhanvien");
@@ -41,7 +40,6 @@ app.use("/api/nhanvien", nhanvienRoutes); // Cách API của nhân viên sẽ đ
 app.use("/api/nhaxuatban", nhaXuatBanRoutes); // Cách API của nhà xuất bản sẽ được định nghĩa trong file nhaXuatBan.js
 app.use("/api/theodoimuonsach", theoDoiMuonSachRoutes); // Cách API của theo dõi mượn sách sẽ được định nghĩa trong file theoDoiMuonSach.js
 
-// Starting the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

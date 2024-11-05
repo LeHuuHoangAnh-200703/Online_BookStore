@@ -67,7 +67,9 @@ const submitForm = async () => {
             type: 'success'
         };
 
-        router.push('/admin/NXBLists');
+        setTimeout(() => {
+            router.push('/admin/NXBLists');
+        }, 2000);
     } catch (error) {
         notification.value = {
             message: error.response ? error.response.data.message : error.message,

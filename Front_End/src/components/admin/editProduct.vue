@@ -128,7 +128,9 @@ const submitForm = async () => {
             type: 'success'
         };
 
-        router.push('/admin/admindashboard');
+        setTimeout(() => {
+            router.push('/admin/admindashboard');
+        }, 2000);
     } catch (error) {
         notification.value = {
             message: error.response ? error.response.data.message : error.message,

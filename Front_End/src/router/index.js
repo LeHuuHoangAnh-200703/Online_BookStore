@@ -187,7 +187,7 @@ router.beforeEach((to, from, next) => {
   // Kiểm tra xem route có yêu cầu xác thực không
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // Kiểm tra trạng thái đăng nhập
-    if (!localStorage.getItem('chucVu')) { // Thay đổi theo cách bạn lưu token
+    if (!localStorage.getItem('chucVu')) {
       next({ path: '/admin/login' }); // Chuyển hướng đến trang đăng nhập
     } else {
       next(); // Nếu đã đăng nhập, cho phép truy cập
