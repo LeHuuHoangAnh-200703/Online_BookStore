@@ -174,6 +174,17 @@ const routes = [
     component: Errors,
     meta: { requiresAuth: true },
   },
+  {
+    path: "/notFound",
+    name: "Errors",
+    component: Errors,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: Errors,
+  },
 ];
 
 const router = createRouter({
