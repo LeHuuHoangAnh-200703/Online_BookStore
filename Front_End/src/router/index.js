@@ -82,81 +82,97 @@ const routes = [
     path: "/admin/addAdmin",
     name: "AddAdmin",
     component: AddAdmin,
+    meta: { requiresAuth: true },
   },
   {
     path: "/admin/staffList",
     name: "StaffList",
     component: StaffList,
+    meta: { requiresAuth: true },
   },
   {
     path: "/admin/editStaffInfo/:maNhanVien",
     name: "EditStaffInfo",
     component: EditStaffInfo,
+    meta: { requiresAuth: true },
   },
   {
     path: "/admin/adminDashboard",
     name: "AdminDashboard",
     component: AdminDashboard,
+    meta: { requiresAuth: true },
   },
   {
     path: "/admin/customers",
     name: "Customers",
     component: Customers,
+    meta: { requiresAuth: true },
   },
   {
     path: "/admin/createProducts",
     name: "CreateProducts",
     component: CreateProducts,
+    meta: { requiresAuth: true },
   },
   {
     path: "/admin/createOrderBook",
     name: "CreateOrdersBook",
     component: CreateOrdersBook,
+    meta: { requiresAuth: true },
   },
   {
     path: "/admin/editOrderBook/:id",
     name: "EditOrderBook",
     component: EditOrderBook,
+    meta: { requiresAuth: true },
   },
   {
     path: "/admin/ordersBook",
     name: "OrdersBook",
     component: OrdersBook,
+    meta: { requiresAuth: true },
   },
   {
     path: "/admin/editProduct/:maSach",
     name: "EditProduct",
     component: EditProduct,
+    meta: { requiresAuth: true },
   },
   {
     path: "/admin/createNXB",
     name: "CreateNXB",
     component: CreateNXB,
+    meta: { requiresAuth: true },
   },
   {
     path: "/admin/EditNXB/:maNXB",
     name: "EditNXB",
     component: EditNXB,
+    meta: { requiresAuth: true },
   },
   {
     path: "/admin/NXBLists",
     name: "NXBLists",
     component: NXBLists,
+    meta: { requiresAuth: true },
   },
   {
     path: "/admin/createCustomer",
     name: "CreateCustomer",
     component: CreateCustomer,
+    meta: { requiresAuth: true },
   },
   {
     path: "/admin/editCustomer/:maDocGia",
     name: "EditCustomer",
     component: EditCustomer,
+    meta: { requiresAuth: true },
   },
   {
     path: "/notFound",
     name: "Errors",
     component: Errors,
+    meta: { requiresAuth: true },
   },
 ];
 
@@ -167,9 +183,21 @@ const router = createRouter({
 const isLoading = ref(false);
 router.beforeEach((to, from, next) => {
   isLoading.value = true;
+  
+  // Kiểm tra xem route có yêu cầu xác thực không
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // Kiểm tra trạng thái đăng nhập
+    if (!localStorage.getItem('chucVu')) { // Thay đổi theo cách bạn lưu token
+      next({ path: '/admin/login' }); // Chuyển hướng đến trang đăng nhập
+    } else {
+      next(); // Nếu đã đăng nhập, cho phép truy cập
+    }
+  } else {
+    next(); // Nếu không cần xác thực, cho phép truy cập
+  }
+
   setTimeout(() => {
     isLoading.value = false;
-    next();
   }, 1000);
 });
 

@@ -30,6 +30,7 @@ const filteredSidebarListItem = computed(() => {
 
 const dangXuat = () => {
     localStorage.removeItem('chucVu');
+    localStorage.removeItem('tenNhanVien');
     router.push('/admin/login');
 };
 
