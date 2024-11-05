@@ -23,30 +23,6 @@ const fetchUsers = async () => {
     }
 };
 
-
-const deleteUser = async (maDocGia) => {
-    const confirmDelete = confirm("Bạn có chắc chắn muốn xóa đọc giả này không?");
-    if (!confirmDelete) return;
-
-    try {
-        await axios.delete(`http://localhost:5000/api/docgia/${maDocGia}`);
-        readers.value = readers.value.filter(reader => reader.MaDocGia !== maDocGia);
-        notification.value = {
-            message: 'Đọc giả đã được xóa thành công!',
-            type: 'success'
-        };
-    } catch (error) {
-        console.error('Error deleting reader:', error);
-        notification.value = {
-            message: 'Có lỗi xảy ra, vui lòng thử lại!',
-            type: 'error'
-        };
-    }
-    setTimeout(() => {
-        notification.value.message = '';
-    }, 3000);
-};
-
 const deleteReaderHouse = async (maDocGia) => {
     const confirmDelete = confirm("Bạn có chắc chắn muốn xóa đọc giả này không?");
     if (!confirmDelete) return;

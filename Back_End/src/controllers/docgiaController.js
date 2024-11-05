@@ -34,13 +34,18 @@ exports.getDocGia = async (req, res) => {
 
 exports.updateDocgia = async (req, res) => {
   try {
-    const docGia = await Docgia.findOneAndUpdate({MaDocGia : req.params.maDocGia});
+    const docGia = await Docgia.findOne({ MaDocGia: req.params.maDocGia });
+    if (!docGia) {
+      return res.status(404).json({ message: "Đọc giả không tồn tại" });
+    }
+
     docGia.HoLot = req.body.HoLot || docGia.HoLot;
     docGia.Ten = req.body.Ten || docGia.Ten;
     docGia.NgaySinh = req.body.NgaySinh || docGia.NgaySinh;
     docGia.Phai = req.body.Phai || docGia.Phai;
     docGia.DiaChi = req.body.DiaChi || docGia.DiaChi;
     docGia.DienThoai = req.body.DienThoai || docGia.DienThoai;
+
     const updatedDocGia = await docGia.save();
     res.status(200).json(updatedDocGia);
   } catch (err) {

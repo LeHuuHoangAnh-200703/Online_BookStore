@@ -88,7 +88,7 @@ const submitForm = async () => {
 
     try {
         const dataSend = {
-            MaDocGia: formData.value.MaDG,
+            MaDocGia : formData.value.MaDG,
             HoLot: formData.value.HoLotDG,
             Ten: formData.value.TenDG,
             NgaySinh: formData.value.NgaySinhDG,
