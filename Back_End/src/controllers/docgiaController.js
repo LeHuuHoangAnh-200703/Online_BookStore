@@ -11,8 +11,13 @@ exports.getAllDocgia = async (req, res) => {
 };
 
 exports.createDocgia = async (req, res) => {
+  const { DienThoai } = req.body;
   const docgia = new Docgia(req.body);
   try {
+    const existingDocGia = await Docgia.findOne({ DienThoai });
+    if (existingDocGia) {
+      return res.status(400).json({ message: "Số điện thoại đã được đăng ký." });
+    }
     await docgia.save();
     res.status(201).json(docgia);
   } catch (err) {
@@ -62,5 +67,32 @@ exports.deleteDocgia = async (req, res) => {
     res.status(200).json({ message: "Độc giả đã được xóa" });
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+};
+
+exports.login = async (req, res) => {
+  const { phone, password } = req.body;
+  try {
+    const docgia = await Docgia.findOne({ DienThoai: phone });
+    if (!docgia) {
+      return res.status(400).json({ message: "Số điện thoại không tồn tại." });
+    }
+
+    const isMatch = await bcrypt.compare(password, docgia.Password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Mật khẩu không đúng." });
+    }
+    return res.status(200).json({ message: "Đăng nhập thành công!",
+      docgia: {
+        MaDocGia: docgia.MaDocGia,
+        HoLot: docgia.HoLot,
+        Ten: docgia.Ten,
+        NgaySinh: docgia.NgaySinh,
+        Phai: docgia.Phai,
+        DiaChi: docgia.DiaChi,
+        DienThoai: docgia.DienThoai,
+      }, });
+  } catch (error) {
+    res.status(500).json({ message: "Có lỗi xảy ra, vui lòng thử lại." });
   }
 };

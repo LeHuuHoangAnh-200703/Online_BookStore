@@ -7,5 +7,6 @@ router.get("/:maDocGia", docgiaController.getDocGia);
 router.post("/", docgiaController.createDocgia);
 router.put("/:maDocGia", docgiaController.updateDocgia);
 router.delete("/:maDocGia", docgiaController.deleteDocgia);
+router.post("/login", docgiaController.login);
 
 module.exports = router;

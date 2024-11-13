@@ -65,23 +65,23 @@ const router = useRouter();
 const errors = ref({});
 
 const formFields = ref([
-  { id: 'name', type: 'text', label: 'Tên đăng nhập', placeholder: 'JeiKei' },
-  { id: 'email', type: 'email', label: 'Email', placeholder: 'JeiKei@gmail.com' },
-  { id: 'password', type: 'password', label: 'Mật Khẩu', placeholder: '••••••••' },
-  { id: 'dob', type: 'date', label: 'Ngày sinh' },
-  { id: 'gender', type: 'select', label: 'Phái', options: ['Nam', 'Nữ', 'Khác'] },
-  { id: 'phone', type: 'text', label: 'Số điện thoại', placeholder: '079-xxx-xxxx' },
-  { id: 'address', type: 'text', label: 'Địa chỉ', placeholder: 'Long My - Hau Giang' }
+  { id: 'HoLot', type: 'text', label: 'Họ lót', placeholder: 'Nhập họ lót ...' },
+  { id: 'Ten', type: 'text', label: 'Tên đăng nhập', placeholder: 'Nhập tên ...' },
+  { id: 'MatKhau', type: 'password', label: 'Mật Khẩu', placeholder: '••••••••' },
+  { id: 'NgaySinh', type: 'date', label: 'Ngày sinh' },
+  { id: 'Phai', type: 'select', label: 'Phái', options: ['Nam', 'Nữ', 'Khác'] },
+  { id: 'DienThoai', type: 'text', label: 'Số điện thoại', placeholder: '079-xxx-xxxx' },
+  { id: 'DiaChi', type: 'text', label: 'Địa chỉ', placeholder: 'Long My - Hau Giang' }
 ]);
 
 const formData = ref({
-  name: '',
-  email: '',
-  password: '',
-  dob: '',
-  gender: '',
-  phone: '',
-  address: ''
+  HoLot: '',
+  Ten: '',
+  MatKhau: '',
+  NgaySinh: '',
+  Phai: '',
+  DienThoai: '',
+  DiaChi: ''
 });
 
 // Trạng thái thông báo
@@ -93,22 +93,19 @@ const notification = ref({
 // Phương thức đăng ký tài khoản
 const register = async () => {
   errors.value = {};
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
 
   for (const field of formFields.value) {
     const value = formData.value[field.id].trim();
     if (!value) {
       errors.value[field.id] = `${field.label} không được bỏ trống`;
-    } else if (field.id === 'email' && !emailRegex.test(value)) {
-      errors.value.email = 'Email không hợp lệ';
     } else if (field.id === 'phone' && !phoneRegex.test(value)) {
       errors.value.phone = 'Số điện thoại không đúng định dạng.';
     }
   }
 
-  if (formData.value.password && formData.value.password.length < 6) {
-    errors.value.password = 'Mật khẩu phải từ 6 ký tự trở lên';
+  if (formData.value.MatKhau && formData.value.MatKhau.length < 6) {
+    errors.value.MatKhau = 'Mật khẩu phải từ 6 ký tự trở lên';
   }
 
   if (Object.keys(errors.value).length > 0) {
@@ -117,13 +114,13 @@ const register = async () => {
 
   try {
     const dataToSend = {
-      Ten: formData.value.name,
-      Email: formData.value.email,
-      Password: formData.value.password,
-      NgaySinh: formData.value.dob,
-      Phai: formData.value.gender,
-      DiaChi: formData.value.address,
-      DienThoai: formData.value.phone,
+      HoLot: formData.value.HoLot,
+      Ten: formData.value.Ten,
+      Password: formData.value.MatKhau,
+      NgaySinh: formData.value.NgaySinh,
+      Phai: formData.value.Phai,
+      DiaChi: formData.value.DiaChi,
+      DienThoai: formData.value.DienThoai,
     };
 
     // Gửi yêu cầu đăng ký tới API backend  

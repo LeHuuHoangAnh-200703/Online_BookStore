@@ -1,9 +1,10 @@
 <script setup>
 import sidebar from '../../layout/admin/Sidebar.vue';
 import navbar from '../../layout/admin/Navbar.vue';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import axios from 'axios';
 
+const nhaxuatbanList = ref([]);
 const generateMaSach = () => {
     return 'S' + Math.floor(10000 + Math.random() * 90000);
 };
@@ -123,6 +124,19 @@ const submitForm = async () => {
         notification.value.message = '';
     }, 3000);
 };
+
+const fetchNhaXuatBan = async () => {
+    try {
+        const response = await axios.get("http://localhost:5000/api/nhaxuatban");
+        nhaxuatbanList.value = response.data;
+    } catch (error) {
+        console.error('Error fetching nhaxuatban data:', error);
+    }
+}
+
+onMounted(() => {
+    fetchNhaXuatBan();
+});
 </script>
 
 
@@ -135,8 +149,7 @@ const submitForm = async () => {
                 <div class="text-center py-4">
                     <h2 class="text-[#333] font-bold text-[20px]">THÊM SẢN PHẨM</h2>
                 </div>
-                <form @submit.prevent="submitForm" action="" method="POST"
-                    enctype="multipart/form-data"
+                <form @submit.prevent="submitForm" action="" method="POST" enctype="multipart/form-data"
                     class="w-full max-h-[calc(100vh-200px)] overflow-y-scroll">
                     <div
                         class="flex flex-col bg-white w-full md:w-[70%] mx-auto gap-5 border-2 rounded-xl shadow-md p-5 m-2">
@@ -145,9 +158,13 @@ const submitForm = async () => {
                                 <label for="idNXB"
                                     class="font-bold mb-1 block text-base text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Mã
                                     nhà xuất bản</label>
-                                <input v-model="formData.idNXB" name="idNXB" autofocus type="text" id="idNXB"
-                                    :class="['outline-0 p-3 block w-full rounded-md border shadow-md focus:border-[#00697F] focus:ring focus:ring-[#00697F] focus:ring-opacity-50 disabled:cursor-not-allowed', formData.errors.idNXB ? 'input-error' : '']"
-                                    placeholder="Nhập mã nhà xuất bản ..." />
+                                <select v-model="formData.idNXB" name="idNXB" id="idNXB"
+                                    class="outline-0 p-3 block w-full rounded-md border shadow-md focus:border-blue-secondary focus:ring focus:ring-blue-secondary focus:ring-opacity-50 disabled:cursor-not-allowed">
+                                    <option value="" disabled selected>Chọn mã nhà xuất bản</option>
+                                    <option v-for="nxb in nhaxuatbanList" :key="nxb.MaNXB" :value="nxb.MaNXB">
+                                        {{ nxb.MaNXB + " - " + nxb.TenNXB }}
+                                    </option>
+                                </select>
                                 <p class="text-red-500 text-sm">{{ formData.errors.idNXB }}</p>
                             </div>
                         </div>
@@ -190,7 +207,7 @@ const submitForm = async () => {
                                     class="font-bold mb-1 block text-base text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Tác
                                     giả</label>
                                 <input v-model="formData.author" name="author" autofocus type="text" id="author"
-                                   :class="['outline-0 p-3 block w-full rounded-md border shadow-md focus:border-[#00697F] focus:ring focus:ring-[#00697F] focus:ring-opacity-50 disabled:cursor-not-allowed', formData.errors.author ? 'input-error' : '']"
+                                    :class="['outline-0 p-3 block w-full rounded-md border shadow-md focus:border-[#00697F] focus:ring focus:ring-[#00697F] focus:ring-opacity-50 disabled:cursor-not-allowed', formData.errors.author ? 'input-error' : '']"
                                     placeholder="Nhập tên tác giả ..." />
                                 <p class="text-red-500 text-sm">{{ formData.errors.author }}</p>
                             </div>
@@ -200,7 +217,7 @@ const submitForm = async () => {
                                 class="font-bold mb-1 block text-base text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">
                                 Chọn loại sản phẩm</h2>
                             <select v-model="formData.type" name="type"
-                                 :class="['outline-0 p-3 block w-[80%] rounded-md border shadow-md focus:border-[#00697F] focus:ring focus:ring-[#00697F] focus:ring-opacity-50 disabled:cursor-not-allowed cursor-pointer', formData.errors.type ? 'input-error' : '']">
+                                :class="['outline-0 p-3 block w-[80%] rounded-md border shadow-md focus:border-[#00697F] focus:ring focus:ring-[#00697F] focus:ring-opacity-50 disabled:cursor-not-allowed cursor-pointer', formData.errors.type ? 'input-error' : '']">
                                 <option checked value="Truyện Tranh">Truyện tranh</option>
                                 <option value="Từ Điển">Từ điển</option>
                                 <option value="Tiểu Thuyết">Tiểu thuyết</option>

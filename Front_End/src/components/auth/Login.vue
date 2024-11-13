@@ -57,7 +57,7 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const errors = ref({});
-const email = ref("");
+const phone = ref("");
 const password = ref("");
 const notification = ref({
   message: "",
@@ -66,10 +66,10 @@ const notification = ref({
 
 const formFields = ref([
   {
-    id: "email",
-    type: "email",
-    label: "Email",
-    placeholder: "JeiKei@gmail.com",
+    id: "phone",
+    type: "phone",
+    label: "phone",
+    placeholder: "079-xxx-xxxx",
   },
   {
     id: "password",
@@ -87,13 +87,14 @@ const formData = ref({
 // Phương thức đăng nhập
 const login = async () => {
   errors.value = {};
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
+
   for (const field of formFields.value) {
     const value = formData.value[field.id].trim();
     if (!value) {
       errors.value[field.id] = `${field.label} không được bỏ trống`;
-    } else if (field.id === "email" && !emailRegex.test(value)) {
-      errors.value.email = "Email không hợp lệ";
+    } else if (field.id === 'phone' && !phoneRegex.test(value)) {
+      errors.value.phone = 'Số điện thoại không đúng định dạng.';
     }
   }
 
@@ -109,26 +110,27 @@ const login = async () => {
     const response = await axios.post(
       "http://localhost:5000/api/docgia/login",
       {
-        email: formData.value.email,
+        phone: formData.value.phone,
         password: formData.value.password,
       }
     );
     console.log(response.data);
-    // Nếu đăng nhập thành công
+    localStorage.setItem('DienThoai', response.data.docgia.DienThoai);
+    localStorage.setItem('TenDocGia', response.data.docgia.Ten);
+    localStorage.setItem('HoLot', response.data.docgia.HoLot);
+    localStorage.setItem('MaDocGia', response.data.docgia.MaDocGia);
     notification.value = {
       message: "Đăng nhập thành công!",
       type: "success",
     };
 
-    // Chuyển hướng đến trang chính
     setTimeout(() => {
       router.push("/");
     }, 1000);
   } catch (error) {
-    console.log(error.response);
     notification.value = {
       message:
-        error.response?.data?.message || "Email hoặc mật khẩu không đúng.",
+        error.response?.data?.message || "Số điện thoại hoặc mật khẩu không đúng.",
       type: "error",
     };
   }

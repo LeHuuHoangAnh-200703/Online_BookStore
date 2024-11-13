@@ -4,87 +4,9 @@ import { onMounted } from "vue";
 import { computed } from "vue";
 import Header from "../../layout/client/Header.vue";
 import Footer from "../../layout/client/Footer.vue";
+import axios from 'axios';
 
-const images = ref([
-  "/src/assets/img/home-book-1.png",
-  "/src/assets/img/home-book-2.png",
-  "/src/assets/img/home-book-3.png",
-]);
-
-const listBooks = ref([
-  {
-    name: "Muốn - Một Tiểu Thuyết",
-    image: "/src/assets/img/TieuThuyet-1.jpg",
-    author: "Emma Cline",
-    type: "TieuThuyet",
-  },
-  {
-    name: "Tiểu Thuyết Việt Nam 1945 -1975",
-    image: "/src/assets/img/TieuThuyet-2.jpg",
-    author: "Phạm Ngọc Hiền",
-    type: "TieuThuyet",
-  },
-  {
-    name: "Toán Học, Một Thiên Tiểu Thuyết",
-    image: "/src/assets/img/TieuThuyet-3.jpg",
-    author: "Mickaël Launay",
-    type: "TieuThuyet",
-  },
-  {
-    name: "Tiểu Thuyết Lịch Sử - Hồ Xuân Hương",
-    image: "/src/assets/img/TieuThuyet-4.jpg",
-    author: "Nguyễn Thế Quang",
-    type: "TieuThuyet",
-  },
-  {
-    name: "Pokémon Đặc Biệt - Tập 59",
-    image: "/src/assets/img/TruyenTranh-4.jpg",
-    author: "Hidenori Kusaka, Satoshi Yamamoto",
-    type: "TruyenTranh",
-  },
-  {
-    name: "Shin - Cậu Bé Bút Chì - Truyện Dài - Tập 17 - Công Phá Xứ Sở Mộng Mơ",
-    image: "/src/assets/img/TruyenTranh-1.jpg",
-    author: "Yoshito Usui, Mirei Takata",
-    type: "TruyenTranh",
-  },
-  {
-    name: "Pokémon Đặc Biệt - Tập 60",
-    image: "/src/assets/img/TruyenTranh-2.jpg",
-    author: "Hidenori Kusaka, Satoshi Yamamoto",
-    type: "TruyenTranh",
-  },
-  {
-    name: "Shin - Cậu Bé Bút Chì - Phiên Bản Hoạt Hình Màu - Tập 6 - Vua Côn Trùng Kasukabe (Tái Bản 2024)",
-    image: "/src/assets/img/TruyenTranh-3.jpg",
-    author: "Yoshito Usui",
-    type: "TruyenTranh",
-  },
-  {
-    name: "Từ Điển Tâm Lý",
-    image: "/src/assets/img/TuDien-1.jpg",
-    author: "Shozo Shibuya",
-    type: "TuDien",
-  },
-  {
-    name: "Từ Điển Mỹ Học",
-    image: "/src/assets/img/TuDien-2.jpg",
-    author: "Nguyễn Văn Dân",
-    type: "TuDien",
-  },
-  {
-    name: "Từ Điển Triết Học Tây Phương - Từ Điển Triết Học Gadamer - The Gadamer Dictionary",
-    image: "/src/assets/img/TuDien-3.jpg",
-    author: "Chris Lawn, Niall Keane",
-    type: "TuDien",
-  },
-  {
-    name: "Từ Điển Cuộc Đời",
-    image: "/src/assets/img/TuDien-4.jpg",
-    author: "Hàn Mai",
-    type: "TuDien",
-  },
-]);
+const listBooks = ref([]);
 
 const chooseListBook = ref([
   {
@@ -92,18 +14,38 @@ const chooseListBook = ref([
     type: "All"
   },
   {
-    name: "Truyện tranh",
-    type: "TruyenTranh"
+    name: "Truyện Tranh",
+    type: "Truyện Tranh"
   },
   {
-    name: "Tiểu thuyết",
-    type: "TieuThuyet",
+    name: "Tiểu Thuyết",
+    type: "Tiểu Thuyết",
   },
   {
-    name: "Từ điểm",
-    type: "TuDien"
+    name: "Từ Điển",
+    type: "Từ Điển"
   }
 ])
+
+const images = ref([
+  '/src/assets/img/home-book-1.png',
+  '/src/assets/img/home-book-2.png',
+  '/src/assets/img/home-book-3.png'
+]);
+
+const fetchProducts = async () => {
+  try {
+    const response = await axios.get('http://localhost:5000/api/sach');
+    listBooks.value = response.data.map(book => {
+      return {
+        ...book,
+        Image: book.Image ? `/src${book.Image}` : 'default-image-url.png'
+      };
+    });
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
+};
 
 const isOpen = ref(false);
 const toggleDropDownOpen = () => {
@@ -115,16 +57,18 @@ const selectTypeBook = (type) => {
   selectedType.value = type;
 };
 
+
 const filteredBooks = computed(() => {
   if (selectedType.value === "All") {
     return listBooks.value;
   } else {
-    return listBooks.value.filter((book) => book.type === selectedType.value);
+    return listBooks.value.filter((book) => book.Type === selectedType.value);
   }
 });
 
 onMounted(() => {
   selectedType.value = "All";
+  fetchProducts();
 });
 </script>
 <template>
@@ -196,19 +140,20 @@ onMounted(() => {
           class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-4 text-[#333f48]">
           <div v-for="(book, index) in filteredBooks" :key="index"
             class="flex flex-col items-center border border-gray-300 rounded-lg cursor-pointer shadow-lg p-4 transition-transform duration-300 hover:shadow-xl hover:scale-105">
-            <img :src="book.image" class="w-48 h-72 object-cover rounded-md mb-2" alt="Book Cover" />
+            <img :src="book.Image" class="w-48 h-72 object-cover rounded-md mb-2" alt="Book Cover" />
             <div class="text-center">
               <div class="w-60 whitespace-nowrap text-ellipsis overflow-hidden text-center">
-                <a href="" class="text-lg font-semibold hover:text-[#00697F] transition-all duration-300">{{ book.name
+                <a href="" class="text-lg font-semibold hover:text-[#00697F] transition-all duration-300">{{
+                  book.TenSach
                   }}</a>
               </div>
               <div class="w-60 whitespace-nowrap text-ellipsis overflow-hidden text-center my-2">
-                <a href="" class="text-lg font-medium">{{ book.author }}</a>
+                <a href="" class="text-lg font-medium">{{ book.TacGia }}</a>
               </div>
             </div>
             <a href="#"
               class="bg-[#00697F] text-white text-lg font-semibold py-2 px-4 rounded-md transition-all duration-300 hover:bg-[#055565]">
-              Thêm Giỏ Hàng <i class="fa-solid fa-cart-shopping"></i>
+              Xem chi tiết  <i class="fa-brands fa-slack"></i>
             </a>
           </div>
         </div>

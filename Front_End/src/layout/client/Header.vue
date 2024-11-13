@@ -2,27 +2,31 @@
 import { onMounted } from "vue";
 import axios from 'axios';
 import { ref } from "vue";
+import { useRouter } from 'vue-router';
 
-const userInfo = ref({});
+const router = useRouter();
+const userInfo = ref({
+  Ten: localStorage.getItem('TenDocGia') || '',
+  DienThoai: localStorage.getItem('DienThoai') || '',
+  HoLot: localStorage.getItem('HoLot') || '',
+  MaDocGia: localStorage.getItem('MaDocGia') || '',
+});
+const isLoggedIn = ref(!userInfo.value.MaDocGia);
 
-// Hàm để lấy thông tin người dùng
-const getUserInfo = async () => {
-  const token = localStorage.getItem('token'); // Lấy token từ localStorage
-  try {
-    const response = await axios.get('http://localhost:5000/api/docgia/current', {
-      headers: { Authorization: token } // Gửi token trong header
-    });
-    userInfo.value = response.data;
-  } catch (error) {
-    console.error('Lỗi khi lấy thông tin người dùng:', error);
-  }
-};
-
-// Hàm để xử lý đăng xuất
 const logout = () => {
-  localStorage.removeItem('token'); // Xóa token khỏi localStorage
-  // Có thể thêm logic để chuyển hướng đến trang đăng nhập
+  localStorage.removeItem('TenDocGia');
+  localStorage.removeItem('DienThoai');
+  localStorage.removeItem('HoLot');
+  localStorage.removeItem('MaDocGia');
+  userInfo.value.Ten = '';
+  userInfo.value.DienThoai = '';
+  userInfo.value.HoLot = '';
+  userInfo.value.MaDocGia = '';
+  isLoggedIn.value = false;
+
+  router.push('/login');
 };
+
 onMounted(() => {
   const openMenu = $(".open-menu");
   const closeMenu = $(".closed");
@@ -47,8 +51,6 @@ onMounted(() => {
     }
     isVisible = !isVisible;
   });
-
-  getUserInfo();
 });
 </script>
 
@@ -69,7 +71,7 @@ onMounted(() => {
         </button>
       </div>
       <ul class="lg:flex hidden">
-        <li class="px-[15px] text-[20px] group">
+        <li class="px-[15px] text-[20px] group" v-if="isLoggedIn">
           <router-link to="/login" class="font-bold">Đăng nhập</router-link>
           <div
             class="h-[2px] bg-[#00697F] scale-x-0 group-hover:scale-100 rounded-full transition-all ease-out origin-left duration-500">
@@ -90,19 +92,12 @@ onMounted(() => {
       </ul>
       <div class="flex items-center lg:space-x-8 space-x-5 px-4">
         <div class="user flex space-x-4 items-center justify-center cursor-pointer">
+          <div class="flex flex-col gap-1 items-end">
+            <p class="font-semibold">{{ userInfo.HoLot }} {{ userInfo.Ten }}</p>
+            <p class="font-semibold text-[12px] text-[#00697F]">{{ userInfo.DienThoai }}</p>
+          </div>
           <img src="../../assets/img/avatar.jpg"
             class="lg:w-[50px] lg:h-[50px] w-[40px] h-[40px] rounded-full border-2 border-[#C0C0C0]" alt="" />
-        </div>
-        <div>
-          <div class="relative">
-            <div
-              class="absolute top-[-12px] right-[-10px] flex justify-center items-center w-6 h-6 bg-[#00697F] rounded-full">
-              <span class="text-white font-bold text-base">1</span>
-            </div>
-            <button>
-              <i class="fa-solid fa-cart-shopping text-[26px]"></i>
-            </button>
-          </div>
         </div>
         <button class="open-menu lg:hidden block">
           <i class="fa-solid fa-bars text-[26px] text-[#00697F]"></i>
@@ -150,8 +145,8 @@ onMounted(() => {
             class="lg:w-[50px] lg:h-[50px] w-[40px] h-[40px] rounded-full border-2 border-[#C0C0C0]"
             alt="User Avatar" />
           <div class="flex flex-col gap-1">
-            <p class="text-[18px] font-semibold">{{ userInfo.name }}</p>
-            <p class="text-[#00697F] text-[14px]">{{ userInfo.email }}</p>
+            <p class="text-[18px] font-semibold">{{ userInfo.HoLot }} {{ userInfo.Ten }}</p>
+            <p class="text-[#00697F] font-semibold text-[14px]">{{ userInfo.DienThoai }}</p>
           </div>
         </div>
         <hr class="bg-[#00697F]" />
@@ -171,7 +166,8 @@ onMounted(() => {
         <div
           class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 rounded-md group">
           <i class="fa-solid fa-right-to-bracket text-[#00697F] group-hover:text-white"></i>
-          <a href="#" class="text-lg font-semibold text-gray-800 group-hover:text-white">Đăng xuất</a>
+          <button @click.prevent="logout" class="text-lg font-semibold text-gray-800 group-hover:text-white">Đăng
+            xuất</button>
         </div>
       </div>
     </div>
