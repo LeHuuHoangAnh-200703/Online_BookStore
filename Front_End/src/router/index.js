@@ -34,7 +34,7 @@ const routes = [
     component: Home,
   },
   {
-    path: "/details",
+    path: "/details/:maSach",
     name: "details",
     component: Details,
   },
@@ -59,7 +59,7 @@ const routes = [
     component: EditProfile,
   },
   {
-    path: "/order",
+    path: "/order/:maSach",
     name: "order",
     component: Order,
   },

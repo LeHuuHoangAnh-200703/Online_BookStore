@@ -143,7 +143,7 @@ onMounted(() => {
             <img :src="book.Image" class="w-48 h-72 object-cover rounded-md mb-2" alt="Book Cover" />
             <div class="text-center">
               <div class="w-60 whitespace-nowrap text-ellipsis overflow-hidden text-center">
-                <a href="" class="text-lg font-semibold hover:text-[#00697F] transition-all duration-300">{{
+                <a :href="`/details/${book.MaSach}`" class="text-lg font-semibold hover:text-[#00697F] transition-all duration-300">{{
                   book.TenSach
                   }}</a>
               </div>
@@ -151,7 +151,7 @@ onMounted(() => {
                 <a href="" class="text-lg font-medium">{{ book.TacGia }}</a>
               </div>
             </div>
-            <a href="#"
+            <a :href="`/details/${book.MaSach}`"
               class="bg-[#00697F] text-white text-lg font-semibold py-2 px-4 rounded-md transition-all duration-300 hover:bg-[#055565]">
               Xem chi tiết  <i class="fa-brands fa-slack"></i>
             </a>

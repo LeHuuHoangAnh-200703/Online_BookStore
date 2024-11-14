@@ -5,6 +5,7 @@ const TheoDoiMuonSachSchema = new mongoose.Schema({
   MaSach: { type: String, required: true },
   NgayMuon: { type: Date, required: true },
   NgayTra: { type: Date, required: false },
+  SoLuong: { type: Number, required: true },
   TrangThai: { type: String, enum: ['Chưa trả', 'Quá hạn', 'Đã trả'], default: 'Chưa trả' }
 });
 

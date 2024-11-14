@@ -3,7 +3,7 @@ const Docgia = require("../models/DocGia");
 const Sach = require("../models/Sach");
 
 exports.createTheoDoiMuonSach = async (req, res) => {
-  const { MaDocGia, MaSach, NgayMuon, NgayTra } = req.body;
+  const { MaDocGia, MaSach, NgayTra, SoLuong } = req.body;
 
   try {
     const docGia = await Docgia.findOne({ MaDocGia: MaDocGia });
@@ -16,11 +16,16 @@ exports.createTheoDoiMuonSach = async (req, res) => {
       return res.status(400).json({ message: "Mã sách không tồn tại!" });
     }
 
+    if (sach.SoQuyen < SoLuong) {
+      return res.status(400).json({ message: "Số lượng sách không đủ!" });
+    }
+
     const theoDoiMuonSach = new TheoDoiMuonSach({
       MaDocGia,
       MaSach,
-      NgayMuon,
+      NgayMuon: new Date(),
       NgayTra,
+      SoLuong
     });
 
     const savedTheoDoiMuonSach = await theoDoiMuonSach.save();
