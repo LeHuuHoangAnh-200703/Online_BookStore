@@ -49,12 +49,12 @@ const routes = [
     component: Cart,
   },
   {
-    path: "/profile",
+    path: "/profile/:maDocGia",
     name: "profile",
     component: Profile,
   },
   {
-    path: "/editprofile",
+    path: "/editprofile/:maDocGia",
     name: "edit_profile",
     component: EditProfile,
   },

@@ -43,7 +43,7 @@ const addOrderBook = async () => {
         };
     } catch (error) {
         notification.value = {
-            message: error.response?.data?.error || 'Có lỗi xảy ra, vui lòng thử lại!',
+            message: error.response?.data?.message || 'Có lỗi xảy ra, vui lòng thử lại!',
             type: 'error'
         };
     }
@@ -93,7 +93,7 @@ onMounted(() => {
                                     class="grid gap-5 gap-y-5 text-sm grid-cols-1 md:grid-cols-5"
                                     enctype="multipart/form-data">
                                     <div class="md:col-span-5">
-                                        <h1 class="text-[20px] lg:text-[28px] font-semibold">{{ bookInfo.TenSach }}
+                                        <h1 class="text-[20px] leading-snug lg:text-[24px] font-semibold">{{ bookInfo.TenSach }}
                                         </h1>
                                     </div>
                                     <div class="md:col-span-5 flex lg:flex-row flex-col gap-4">

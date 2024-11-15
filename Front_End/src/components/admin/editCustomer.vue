@@ -37,7 +37,6 @@ const fetchCustomerData = async (maDocGia) => {
         formData.value.MaDG = response.data.MaDocGia;
         formData.value.HoLotDG = response.data.HoLot;
         formData.value.TenDG = response.data.Ten;
-        // Chuyển đổi ngày sinh về dạng yyyy-MM-dd
         formData.value.NgaySinhDG = new Date(response.data.NgaySinh).toISOString().slice(0, 10);
         formData.value.GioiTinhDG = response.data.Phai;
         formData.value.DiaChiDG = response.data.DiaChi;

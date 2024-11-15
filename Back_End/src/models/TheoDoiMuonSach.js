@@ -6,7 +6,8 @@ const TheoDoiMuonSachSchema = new mongoose.Schema({
   NgayMuon: { type: Date, required: true },
   NgayTra: { type: Date, required: false },
   SoLuong: { type: Number, required: true },
-  TrangThai: { type: String, enum: ['Chưa trả', 'Quá hạn', 'Đã trả'], default: 'Chưa trả' }
+  TrangThai: { type: String, enum: ['Chưa trả', 'Quá hạn', 'Đã trả'], default: 'Chưa trả' },
+  TrangThaiDuyet: { type: String, enum: ['Đang chờ duyệt', 'Đã duyệt', 'Không được duyệt'], default: 'Đang chờ duyệt' }
 });
 
 module.exports = mongoose.model("TheoDoiMuonSach", TheoDoiMuonSachSchema);

@@ -1,13 +1,10 @@
 <script setup>
-import { ref } from "vue";
-import { onMounted } from "vue";
-import { computed } from "vue";
+import { ref, onMounted, computed } from "vue";
 import Header from "../../layout/client/Header.vue";
 import Footer from "../../layout/client/Footer.vue";
 import axios from 'axios';
 
 const listBooks = ref([]);
-
 const chooseListBook = ref([
   {
     name: "Tất cả",
@@ -52,22 +49,29 @@ const toggleDropDownOpen = () => {
   isOpen.value = !isOpen.value;
 };
 
-const selectedType = ref(null);
+const selectedType = ref("All");
 const selectTypeBook = (type) => {
   selectedType.value = type;
 };
 
-
 const filteredBooks = computed(() => {
-  if (selectedType.value === "All") {
-    return listBooks.value;
-  } else {
-    return listBooks.value.filter((book) => book.Type === selectedType.value);
-  }
+  console.log("Search Query:", searchQuery.value);
+  return listBooks.value.filter(book => {
+    const matchesType = selectedType.value === "All" || book.Type === selectedType.value;
+    const matchesSearch = book.TenSach.toLowerCase().includes(searchQuery.value.toLowerCase());
+    return matchesType && matchesSearch;
+  });
 });
 
+// const filteredBooks = computed(() => {
+//   if (selectedType.value === "All") {
+//     return listBooks.value;
+//   } else {
+//     return listBooks.value.filter((book) => book.Type === selectedType.value);
+//   }
+// });
+
 onMounted(() => {
-  selectedType.value = "All";
   fetchProducts();
 });
 </script>

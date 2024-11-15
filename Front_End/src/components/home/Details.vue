@@ -22,6 +22,15 @@ const formatCurrency = (value) => {
     return formattedValue.toLocaleString('vi-VN') + ' ' + 'VNĐ';
 };
 
+const borrowBook = () => {
+    const maDocGia = localStorage.getItem('MaDocGia');
+    if (!maDocGia) {
+        router.push('/login');
+    } else {
+        router.push(`/order/${bookInfo.value.MaSach}`);
+    }
+};
+
 onMounted(() => {
     const maSach = router.currentRoute.value.params.maSach;
     console.log(maSach);
@@ -91,10 +100,10 @@ onMounted(() => {
             <p class="text-[18px] lg:text-[20px]">
               Năm xuất bản: <span>{{ bookInfo.NamXuatBan }}</span>
             </p>
-            <a :href="`/order/${bookInfo.MaSach}`"
+            <button @click.prevent="borrowBook"
               class="w-full bg-[#51A7BF] flex flex-col gap-2 justify-center items-center p-4 text-[14px] lg:text-[20px] font-semibold text-white hover:bg-[#00697F] transition-all duration-200">MƯỢN
               SÁCH NGAY
-              <span class="text-[12px] lg:text-[16px]">JEIKEI LIBRARY 100% sách chính hãng</span></a>
+              <span class="text-[12px] lg:text-[16px]">JEIKEI LIBRARY 100% sách chính hãng</span></button>
           </div>
           <div class="flex flex-col gap-3 bg-white rounded-2xl p-8">
             <h1 class="text-[20px] lg:text-[26px] font-semibold">

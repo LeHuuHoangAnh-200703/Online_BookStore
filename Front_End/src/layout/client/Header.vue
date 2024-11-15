@@ -1,7 +1,5 @@
 <script setup>
-import { onMounted } from "vue";
-import axios from 'axios';
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -63,7 +61,7 @@ onMounted(() => {
         </h1>
       </div>
       <div class="lg:flex hidden flex-1 gap-4 max-w-xl">
-        <input type="text"
+        <input type="text" v-model="searchQuery"
           class="items-center w-full p-4 border border-gray-400 text-base font-semibold tracking-wider text-black bg-white/10 rounded-lg focus:outline-none"
           placeholder="Tìm kiếm tên sách ..." />
         <button class="font-bold text-lg bg-[#00697F] text-white px-4 py-2 rounded-lg whitespace-nowrap">
@@ -93,8 +91,18 @@ onMounted(() => {
       <div class="flex items-center lg:space-x-8 space-x-5 px-4">
         <div class="user flex space-x-4 items-center justify-center cursor-pointer">
           <div class="flex flex-col gap-1 items-end">
-            <p class="font-semibold">{{ userInfo.HoLot }} {{ userInfo.Ten }}</p>
-            <p class="font-semibold text-[12px] text-[#00697F]">{{ userInfo.DienThoai }}</p>
+            <p class="font-semibold" v-if="!isLoggedIn">
+              {{ userInfo.HoLot }} {{ userInfo.Ten }}
+            </p>
+            <p class="font-semibold" v-else>
+              Tên của bạn
+            </p>
+            <p class="font-semibold text-[12px] text-[#00697F]" v-if="!isLoggedIn">
+              {{ userInfo.DienThoai }}
+            </p>
+            <p class="font-semibold text-[12px] text-[#00697F]" v-else>
+              Số điện thoại
+            </p>
           </div>
           <img src="../../assets/img/avatar.jpg"
             class="lg:w-[50px] lg:h-[50px] w-[40px] h-[40px] rounded-full border-2 border-[#C0C0C0]" alt="" />
@@ -114,7 +122,7 @@ onMounted(() => {
         </div>
         <ul class="flex flex-col my-10">
           <form action="" method="post" class="relative mb-4 flex space-x-4">
-            <input type="text"
+            <input type="text" v-model="searchQuery"
               class="items-center w-full p-4 border border-gray-400 text-base font-semibold tracking-wider text-black bg-white/10 rounded-lg focus:outline-none"
               placeholder="Tìm kiếm tên sách ..." />
             <button class="font-bold text-lg bg-[#00697F] text-white px-4 py-2 rounded-lg whitespace-nowrap">
@@ -145,8 +153,18 @@ onMounted(() => {
             class="lg:w-[50px] lg:h-[50px] w-[40px] h-[40px] rounded-full border-2 border-[#C0C0C0]"
             alt="User Avatar" />
           <div class="flex flex-col gap-1">
-            <p class="text-[18px] font-semibold">{{ userInfo.HoLot }} {{ userInfo.Ten }}</p>
-            <p class="text-[#00697F] font-semibold text-[14px]">{{ userInfo.DienThoai }}</p>
+            <p class="font-semibold" v-if="!isLoggedIn">
+              {{ userInfo.HoLot }} {{ userInfo.Ten }}
+            </p>
+            <p class="font-semibold" v-else>
+              Tên của bạn
+            </p>
+            <p class="font-semibold text-[12px] text-[#00697F]" v-if="!isLoggedIn">
+              {{ userInfo.DienThoai }}
+            </p>
+            <p class="font-semibold text-[12px] text-[#00697F]" v-else>
+              Số điện thoại
+            </p>
           </div>
         </div>
         <hr class="bg-[#00697F]" />
@@ -154,12 +172,12 @@ onMounted(() => {
           <div
             class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 rounded-md group">
             <i class="fa-solid fa-user text-[#00697F] group-hover:text-white"></i>
-            <a href="#" class="text-lg font-semibold text-gray-800 group-hover:text-white">Hồ Sơ</a>
+            <a :href="`/profile/${userInfo.MaDocGia}`" class="text-lg font-semibold text-gray-800 group-hover:text-white">Hồ Sơ</a>
           </div>
           <div
             class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 rounded-md group">
             <i class="fa-solid fa-gear text-[#00697F] group-hover:text-white"></i>
-            <a href="#" class="text-lg font-semibold text-gray-800 group-hover:text-white">Chỉnh sửa hồ sơ</a>
+            <a :href="`/editProfile/${userInfo.MaDocGia}`" class="text-lg font-semibold text-gray-800 group-hover:text-white">Chỉnh sửa hồ sơ</a>
           </div>
         </div>
         <hr class="bg-[#00697F]" />
