@@ -25,6 +25,33 @@ const logout = () => {
   router.push('/login');
 };
 
+const profileLogin = () => {
+    const maDocGia = localStorage.getItem('MaDocGia');
+    if (!maDocGia) {
+        router.push('/login');
+    } else {
+        router.push(`/profile/${userInfo.MaDocGia}`);
+    }
+};
+
+const editProfileLogin = () => {
+    const maDocGia = localStorage.getItem('MaDocGia');
+    if (!maDocGia) {
+        router.push('/login');
+    } else {
+        router.push(`editProfile/${userInfo.MaDocGia}`);
+    }
+};
+
+const bookHistoryLogin = () => {
+    const maDocGia = localStorage.getItem('MaDocGia');
+    if (!maDocGia) {
+        router.push('/login');
+    } else {
+        router.push(`/book_history`);
+    }
+};
+
 onMounted(() => {
   const openMenu = $(".open-menu");
   const closeMenu = $(".closed");
@@ -82,7 +109,7 @@ onMounted(() => {
           </div>
         </li>
         <li class="px-[15px] text-[20px] group">
-          <router-link to="/book_history" class="font-bold">Lịch sử mượn sách</router-link>
+          <button @click.prevent="bookHistoryLogin" class="font-bold">Lịch sử mượn sách</button>
           <div
             class="h-[2px] bg-[#00697F] scale-x-0 group-hover:scale-100 rounded-full transition-all ease-out origin-left duration-500">
           </div>
@@ -140,9 +167,9 @@ onMounted(() => {
               chủ</router-link>
           </li>
           <li class="py-[15px]">
-            <router-link to="/book_history"
+            <button @click.prevent="bookHistoryLogin"
               class="border-b-2 border-transparent hover:border-b-2 hover:border-[#00697F] font-semibold text-[20px] hover:text-[#00697F] transition-colors duration-300">Lịch
-              sử mượn sách</router-link>
+              sử mượn sách</button>
           </li>
         </ul>
       </div>
@@ -172,12 +199,12 @@ onMounted(() => {
           <div
             class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 rounded-md group">
             <i class="fa-solid fa-user text-[#00697F] group-hover:text-white"></i>
-            <a :href="`/profile/${userInfo.MaDocGia}`" class="text-lg font-semibold text-gray-800 group-hover:text-white">Hồ Sơ</a>
+            <button @click.prevent="profileLogin" class="text-lg font-semibold text-gray-800 group-hover:text-white">Hồ Sơ</button>
           </div>
           <div
             class="flex gap-3 items-center hover:bg-[#00697F] cursor-pointer p-2 transition-all duration-300 rounded-md group">
             <i class="fa-solid fa-gear text-[#00697F] group-hover:text-white"></i>
-            <a :href="`/editProfile/${userInfo.MaDocGia}`" class="text-lg font-semibold text-gray-800 group-hover:text-white">Chỉnh sửa hồ sơ</a>
+            <button @click.prevent="editProfileLogin"  class="text-lg font-semibold text-gray-800 group-hover:text-white">Chỉnh sửa hồ sơ</button>
           </div>
         </div>
         <hr class="bg-[#00697F]" />

@@ -3,7 +3,9 @@ import { ref, onMounted } from "vue";
 import Header from "../../layout/client/Header.vue";
 import Footer from "../../layout/client/Footer.vue";
 import axios from 'axios';
+
 const listOrderBooks = ref([]);
+const today = new Date();
 const maDocGia = localStorage.getItem('MaDocGia');
 const notification = ref({
   message: '',
@@ -12,8 +14,19 @@ const notification = ref({
 const getDonMuonSach = async (maDocGia) => {
   try {
     const response = await axios.get(`http://localhost:5000/api/theodoimuonsach/docgia/${maDocGia}`);
-    listOrderBooks.value = response.data;
-    console.log(listOrderBooks.value);
+    listOrderBooks.value = response.data.map(order => {
+      let status = order.TrangThai;
+      if (status !== 'Đã trả') {
+        const ngayTra = new Date(order.NgayTra);
+        status = ngayTra < today ? 'Quá hạn' : 'Chưa trả';
+      }
+      return {
+        ...order,
+        NgayMuon: new Date(order.NgayMuon).toLocaleDateString('vi-VN'),
+        NgayTra: new Date(order.NgayTra).toLocaleDateString('vi-VN'),
+        TrangThai: status
+      };
+    });
   } catch (error) {
     console.error('Error fetching borrowed books:', error);
   }
@@ -37,7 +50,7 @@ const huyDon = async (orderId) => {
   } else {
     notification.value = {
       message: 'Không thể hủy vì đơn mượn sách đã được duyệt!',
-      type: 'success'
+      type: 'error'
     };
   }
   setTimeout(() => {
@@ -46,8 +59,8 @@ const huyDon = async (orderId) => {
 };
 
 const formatCurrency = (value) => {
-    const formattedValue = value * 1000;
-    return formattedValue.toLocaleString('vi-VN') + ' ' + 'VNĐ';
+  const formattedValue = value * 1000;
+  return formattedValue.toLocaleString('vi-VN') + ' ' + 'VNĐ';
 };
 
 onMounted(() => {
@@ -78,16 +91,17 @@ onMounted(() => {
           <div class="flex lg:flex-row flex-col lg:gap-2 gap-4  p-3 items-center justify-center">
             <div class="flex flex-col gap-2 w-full">
               <p class="text-[18px] font-semibold">Mã sách: <span class="text-[#00697F]">{{ order.MaSach }}</span></p>
-              <p class="text-[18px] font-semibold">Tổng tiền: <span class="text-[#00697F]">{{ formatCurrency(order.TongTien) }}</span></p>
+              <p class="text-[18px] font-semibold">Tổng tiền: <span class="text-[#00697F]">{{
+                formatCurrency(order.TongTien) }}</span></p>
               <p class="text-[18px] font-semibold">
                 Ngày mượn:
-                <span class="text-[#00697F] font-semibold">{{ new Date(order.NgayMuon).toLocaleDateString('vi-VN')
+                <span class="text-[#00697F] font-semibold">{{ order.NgayMuon
                   }}</span>
               </p>
               <div class="flex lg:flex-row flex-col gap-2 lg:justify-between">
                 <p class="text-[18px] font-semibold">
                   Ngày trả:
-                  <span class="font-semibold text-[#00697F]">{{ new Date(order.NgayTra).toLocaleDateString('vi-VN')
+                  <span class="font-semibold text-[#00697F]">{{ order.NgayTra
                     }}</span>
                 </p>
                 <p class="text-[18px] font-semibold">Số lượng: <span class="text-[#00697F]">{{ order.SoLuong }}</span>

@@ -1,5 +1,5 @@
 const NhaXuatBan = require("../models/NhaXuatBan");
-
+const Sach = require("../models/Sach");
 exports.getAllNhaXuatBan = async (req, res) => {
   try {
     const nhaXuatBans = await NhaXuatBan.find();
@@ -44,8 +44,17 @@ exports.updateNhaXuatBan = async (req, res) => {
 };
 
 exports.deleteNhaXuatBan = async (req, res) => {
+  const { maNXB } = req.params;
   try {
-    await NhaXuatBan.findOneAndDelete({ MaNXB : req.params.maNXB});
+    const existingBooks = await Sach.findOne({ MaNXB: maNXB });
+    if (existingBooks) {
+      return res.status(400).json({ message: "Không thể xóa nhà xuất bản vì nó đang được sử dụng trong sách." });
+    }
+
+    const nhaXuatBan = await NhaXuatBan.findOneAndDelete({ MaNXB: maNXB });
+    if (!nhaXuatBan) {
+      return res.status(404).json({ message: "Nhà xuất bản không tồn tại." });
+    }
     res.status(200).json({ message: "Nhà xuất bản đã được xóa" });
   } catch (err) {
     res.status(500).json({ message: err.message });

@@ -2,6 +2,7 @@ const Sach = require("../models/Sach");
 const NhaXuatBan = require("../models/NhaXuatBan");
 const path = require('path');
 const multer = require('multer');
+const TheoDoiMuonSach = require('../models/TheoDoiMuonSach');
 
 const storagePath = path.join(__dirname, '../../../Front_End/src/assets/img');
 
@@ -98,8 +99,14 @@ exports.updateSach = async (req, res) => {
 };
 
 exports.deleteSach = async (req, res) => {
+    const { maSach } = req.params;
     try {
-        const sach = await Sach.findOneAndDelete({ MaSach: req.params.maSach });
+        const existingOrder = await TheoDoiMuonSach.findOne({ MaSach: maSach });
+        if (existingOrder) {
+            return res.status(400).json({ message: "Không thể xóa sách vì nó đang nằm trong đơn mượn sách." });
+        }
+
+        const sach = await Sach.findOneAndDelete({ MaSach: maSach });
         if (!sach) {
             return res.status(404).json({ message: "Sách không tồn tại." });
         }

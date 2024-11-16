@@ -99,17 +99,9 @@ exports.deleteTheoDoiMuonSach = async (req, res) => {
 exports.updateStatus = async (req, res) => {
   const { TrangThai } = req.body;
   try {
-    const updatedOrder = await TheoDoiMuonSach.findByIdAndUpdate(req.params.id, { TrangThai: req.body.TrangThai }, { new: true });
+    const updatedOrder = await TheoDoiMuonSach.findByIdAndUpdate(req.params.id, { TrangThai: TrangThai }, { new: true });
     if (!updatedOrder) {
       return res.status(404).json({ message: "Thông tin mượn sách không tồn tại!" });
-    }
-
-    if (TrangThai === 'Đã duyệt') {
-      const sach = await Sach.findOne({ MaSach: updatedOrder.MaSach });
-      if (sach) {
-        sach.SoQuyen -= updatedOrder.SoLuong;
-        await sach.save();
-      }
     }
 
     if (TrangThai === 'Đã trả') {
@@ -133,6 +125,31 @@ exports.getTheoDoiMuonSachByDocGia = async (req, res) => {
       return res.status(404).json({ message: "Không tìm thấy đơn mượn sách nào cho mã đọc giả này!" });
     }
     res.json(theodoimuonsach);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.approveOrder = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const updatedOrder = await TheoDoiMuonSach.findByIdAndUpdate(
+      id,
+      { TrangThaiDuyet: 'Đã duyệt' },
+      { new: true }
+    );
+
+    if (!updatedOrder) {
+      return res.status(404).json({ message: "Yêu cầu không tồn tại!" });
+    }
+
+    const sach = await Sach.findOne({ MaSach: updatedOrder.MaSach });
+    if (sach) {
+      sach.SoQuyen -= updatedOrder.SoLuong;
+      await sach.save();
+    }
+
+    res.json(updatedOrder);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

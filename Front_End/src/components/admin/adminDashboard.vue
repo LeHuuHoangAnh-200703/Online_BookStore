@@ -37,9 +37,8 @@ const deleteProduct = async (maSach) => {
             type: 'success'
         };
     } catch (error) {
-        console.error('Error deleting product:', error);
         notification.value = {
-            message: 'Có lỗi xảy ra, vui lòng thử lại!',
+            message: error.response?.data?.message || 'Có lỗi xảy ra, vui lòng thử lại!',
             type: 'error'
         };
     }

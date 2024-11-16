@@ -8,7 +8,7 @@ const TheoDoiMuonSachSchema = new mongoose.Schema({
   SoLuong: { type: Number, required: true },
   TongTien: { type: Number, required: true },
   TrangThai: { type: String, enum: ['Chưa trả', 'Quá hạn', 'Đã trả'], default: 'Chưa trả' },
-  TrangThaiDuyet: { type: String, enum: ['Đang chờ duyệt', 'Đã duyệt', 'Không được duyệt'], default: 'Đang chờ duyệt' }
+  TrangThaiDuyet: { type: String, enum: ['Đang chờ duyệt', 'Đã duyệt'], default: 'Đang chờ duyệt' }
 });
 
 module.exports = mongoose.model("TheoDoiMuonSach", TheoDoiMuonSachSchema);

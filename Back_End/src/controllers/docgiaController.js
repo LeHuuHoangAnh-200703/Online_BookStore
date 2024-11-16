@@ -1,6 +1,6 @@
 const Docgia = require("../models/DocGia");
 const bcrypt = require("bcrypt");
-
+const TheoDoiMuonSach = require("../models/TheoDoiMuonSach");
 exports.getAllDocgia = async (req, res) => {
   try {
     const docgias = await Docgia.find();
@@ -59,12 +59,18 @@ exports.updateDocgia = async (req, res) => {
 };
 
 exports.deleteDocgia = async (req, res) => {
+  const { maDocGia } = req.params;
   try {
-    const docgia = await Docgia.findOneAndDelete({ MaDocGia: req.params.maDocGia });
-    if (docgia.deletedCount === 0) {
+    const existingOrder = await TheoDoiMuonSach.findOne({ MaDocGia: maDocGia });
+    if (existingOrder) {
+      return res.status(400).json({ message: "Không thể xóa đọc giả vì họ đang có đơn mượn sách." });
+    }
+
+    const docgia = await Docgia.findOneAndDelete({ MaDocGia: maDocGia });
+    if (!docgia) {
       return res.status(404).json({ message: "Đọc giả không tồn tại." });
     }
-    res.status(200).json({ message: "Độc giả đã được xóa" });
+    res.status(200).json({ message: "Đọc giả đã được xóa" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

@@ -34,7 +34,8 @@ onMounted(() => {
                     <img src="../../assets/img/avatar.jpg"
                         class="w-[100px] h-[100px] bg-[#fff] rounded-full shadow-lg absolute left-1/2 translate-x-[-50%] -top-[50px] bg-center bg-cover"
                         alt="">
-                    <div class="flex justify-end items-center flex-col lg:flex-row gap-4 px-2 lg:px-24">
+                    <div class="flex justify-between items-center flex-col lg:flex-row gap-4 px-2 lg:px-24">
+                        <p class="font-semibold text-[18px]">Mã đọc giả: <span class="text-[#00697F]">{{ userInfo.MaDocGia }}</span></p>
                         <a :href="`/editprofile/${userInfo.MaDocGia}`"
                             class="px-3 py-2 sm:px-5 sm:py-2 bg-[#00697F] text-sm sm:text-md rounded-md font-medium sm:font-bold text-white shadow-md">Chỉnh
                             sửa hồ sơ</a>

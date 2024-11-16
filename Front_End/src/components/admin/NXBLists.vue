@@ -36,9 +36,8 @@ const deletePublishingHouse = async (maNXB) => {
             type: 'success'
         };
     } catch (error) {
-        console.error('Error deleting publishingHouse:', error);
         notification.value = {
-            message: 'Có lỗi xảy ra, vui lòng thử lại!',
+            message: error.response?.data?.message || 'Có lỗi xảy ra, vui lòng thử lại!',
             type: 'error'
         };
     }
@@ -79,7 +78,7 @@ onMounted(() => {
                         class="w-full rounded-lg border-2 border-[#cecece] bg-white text-center text-sm text-gray-500">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Mã nhà xuât bản</th>
+                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Mã nhà xuất bản</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Tên nhà xuất bản</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Địa chỉ</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Điều chỉnh</th>

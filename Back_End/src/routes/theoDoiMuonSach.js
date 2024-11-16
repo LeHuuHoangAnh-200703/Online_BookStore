@@ -9,5 +9,6 @@ router.put("/:id", theoDoiMuonSachController.updateTheoDoiMuonSach);
 router.delete("/:id", theoDoiMuonSachController.deleteTheoDoiMuonSach);
 router.patch("/:id", theoDoiMuonSachController.updateStatus);
 router.get('/docgia/:MaDocGia', theoDoiMuonSachController.getTheoDoiMuonSachByDocGia);
+router.patch('/approve/:id', theoDoiMuonSachController.approveOrder);
 
 module.exports = router;

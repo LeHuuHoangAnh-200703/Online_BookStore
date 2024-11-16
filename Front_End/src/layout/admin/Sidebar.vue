@@ -10,9 +10,7 @@ const sidebarMenu = [
     { name: "Tất cả sản phẩm", icon: "fa-solid fa-igloo", path: "adminDashboard" },
     { name: "Thêm sản phẩm", icon: "fa-solid fa-cart-plus", path: "createProducts" },
     { name: "Thêm nhân viên", icon: "fa-solid fa-user-plus", path: "addAdmin" },
-    { name: "Thêm đơn mượn sách", icon: "fa-solid fa-square-plus", path: "createOrderBook" },
     { name: "Thêm nhà xuất bản", icon: "fa-solid fa-plus", path: "createNXB" },
-    { name: "Thêm đọc giả", icon: "fa-solid fa-circle-plus", path: "createCustomer" },
     { name: "Danh sách nhân viên", icon: "fa-solid fa-users", path: "staffList" },
     { name: "Đơn mượn sách", icon: "fa-solid fa-bag-shopping", path: "ordersBook" },
     { name: "Danh sách nhà xuất bản", icon: "fa-solid fa-user", path: "NXBLists" },
@@ -23,7 +21,7 @@ const filteredSidebarListItem = computed(() => {
     if (chucVu.value === 'Quản trị viên') {
         return sidebarMenu;
     } else {
-        return sidebarMenu.filter((item, index) => index !== 2 && index !== 6);
+        return sidebarMenu.filter((item, index) => index !== 2 && index !== 4);
     }
 });
 </script>

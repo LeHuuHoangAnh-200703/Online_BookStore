@@ -36,9 +36,8 @@ const deleteReaderHouse = async (maDocGia) => {
             type: 'success'
         };
     } catch (error) {
-        console.error('Error deleting reader:', error);
         notification.value = {
-            message: 'Có lỗi xảy ra, vui lòng thử lại!',
+            message: error.response?.data?.message || 'Có lỗi xảy ra, vui lòng thử lại!',
             type: 'error'
         };
     }
@@ -52,7 +51,7 @@ const filteredReaders = computed(() => {
         return readers.value;
     }
     return readers.value.filter(reader =>
-        reader.Ten.toLowerCase().includes(searchQuery.value.toLowerCase())
+        reader.MaDocGia.toLowerCase().includes(searchQuery.value.toLowerCase())
     );
 });
 
@@ -97,9 +96,6 @@ onMounted(() => {
                                 <td class="px-6 py-4 whitespace-nowrap">{{ reader.DienThoai }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ reader.DiaChi }}</td>
                                 <td class="flex justify-center gap-4 px-6 py-4 font-medium whitespace-nowrap">
-                                    <a :href="`/admin/editCustomer/${reader.MaDocGia}`"
-                                        class="inline-block bg-[#00697F] text-white font-medium py-2 px-4 transition-all duration-300 hover:bg-[#055565] whitespace-nowrap">Sửa
-                                        đọc giả</a>
                                     <form @submit.prevent="deleteReaderHouse(reader.MaDocGia)" class="form-inline ml-1">
                                         <button type="submit"
                                             class="text-primary-700 bg-[#DC143C] px-[14px] py-2 text-[#fff]"
