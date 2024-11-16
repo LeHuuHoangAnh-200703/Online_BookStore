@@ -45,6 +45,11 @@ const huyDon = async (orderId) => {
   }, 3000);
 };
 
+const formatCurrency = (value) => {
+    const formattedValue = value * 1000;
+    return formattedValue.toLocaleString('vi-VN') + ' ' + 'VNĐ';
+};
+
 onMounted(() => {
   console.log(maDocGia)
   if (maDocGia) {
@@ -56,11 +61,11 @@ onMounted(() => {
   <div class="flex flex-col min-h-screen overflow-hidden">
     <Header />
     <div class="relative flex-grow lg:py-10 lg:px-24 p-4 bg-[#e8e8e8]">
-      <div class="flex gap-8 flex-col" v-for="order in listOrderBooks" :key="order._id">
+      <div class="flex gap-8 flex-col">
         <h1 class="text-lg lg:text-[30px] font-bold text-center uppercase">
           Lịch sử mượn sách của bạn
         </h1>
-        <div class="p-5 bg-white shadow-md rounded-xl">
+        <div class="p-5 bg-white shadow-md rounded-xl" v-for="order in listOrderBooks" :key="order._id">
           <div class="flex flex-col lg:flex-row items-center justify-center lg:justify-between py-2">
             <p class="font-bold lg:text-xl text-[14px] uppercase text-[#00697F]">
               <i class="fa-solid fa-book"></i> - JEIKEI LIBRARY
@@ -72,7 +77,8 @@ onMounted(() => {
           <hr class="bg-[#00697F] my-2" />
           <div class="flex lg:flex-row flex-col lg:gap-2 gap-4  p-3 items-center justify-center">
             <div class="flex flex-col gap-2 w-full">
-              <p class="text-[20px] font-semibold">Mã sách: <span class="text-[#00697F]">{{ order.MaSach }}</span></p>
+              <p class="text-[18px] font-semibold">Mã sách: <span class="text-[#00697F]">{{ order.MaSach }}</span></p>
+              <p class="text-[18px] font-semibold">Tổng tiền: <span class="text-[#00697F]">{{ formatCurrency(order.TongTien) }}</span></p>
               <p class="text-[18px] font-semibold">
                 Ngày mượn:
                 <span class="text-[#00697F] font-semibold">{{ new Date(order.NgayMuon).toLocaleDateString('vi-VN')

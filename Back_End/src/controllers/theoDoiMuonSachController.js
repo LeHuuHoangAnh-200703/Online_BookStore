@@ -27,12 +27,15 @@ exports.createTheoDoiMuonSach = async (req, res) => {
       return res.status(400).json({ message: "Ngày trả không được trước ngày mượn!" });
     }
 
+    const tongTien = sach.DonGia * SoLuong;
+
     const theoDoiMuonSach = new TheoDoiMuonSach({
       MaDocGia,
       MaSach,
       NgayMuon: new Date(),
       NgayTra,
       SoLuong,
+      TongTien: tongTien,
       TrangThaiDuyet: 'Đang chờ duyệt'
     });
     const savedTheoDoiMuonSach = await theoDoiMuonSach.save();

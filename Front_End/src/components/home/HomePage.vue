@@ -55,21 +55,12 @@ const selectTypeBook = (type) => {
 };
 
 const filteredBooks = computed(() => {
-  console.log("Search Query:", searchQuery.value);
-  return listBooks.value.filter(book => {
-    const matchesType = selectedType.value === "All" || book.Type === selectedType.value;
-    const matchesSearch = book.TenSach.toLowerCase().includes(searchQuery.value.toLowerCase());
-    return matchesType && matchesSearch;
-  });
+  if (selectedType.value === "All") {
+    return listBooks.value;
+  } else {
+    return listBooks.value.filter((book) => book.Type === selectedType.value);
+  }
 });
-
-// const filteredBooks = computed(() => {
-//   if (selectedType.value === "All") {
-//     return listBooks.value;
-//   } else {
-//     return listBooks.value.filter((book) => book.Type === selectedType.value);
-//   }
-// });
 
 onMounted(() => {
   fetchProducts();
