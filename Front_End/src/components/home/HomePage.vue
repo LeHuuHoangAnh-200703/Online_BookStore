@@ -5,6 +5,7 @@ import Footer from "../../layout/client/Footer.vue";
 import axios from 'axios';
 
 const listBooks = ref([]);
+const searchQuery = ref("");
 const chooseListBook = ref([
   {
     name: "Tất cả",
@@ -55,12 +56,17 @@ const selectTypeBook = (type) => {
 };
 
 const filteredBooks = computed(() => {
-  if (selectedType.value === "All") {
-    return listBooks.value;
-  } else {
-    return listBooks.value.filter((book) => book.Type === selectedType.value);
-  }
+  return listBooks.value.filter(book => {
+    const matchesType = selectedType.value === "All" || book.Type === selectedType.value;
+    const matchesSearch = book.TenSach.toLowerCase().includes(searchQuery.value.toLowerCase());
+    return matchesType && matchesSearch; // Kết hợp cả hai điều kiện
+  });
 });
+
+// Hàm để nhận giá trị tìm kiếm từ Header
+const handleSearch = (query) => {
+  searchQuery.value = query; // Cập nhật giá trị tìm kiếm
+};
 
 onMounted(() => {
   fetchProducts();
@@ -68,7 +74,7 @@ onMounted(() => {
 </script>
 <template>
   <div class="relative font-sans overflow-hidden min-h-screen">
-    <Header />
+    <Header @search="handleSearch"/>
     <div class="relative pb-28">
       <div class="lg:pt-24 lg:px-10 p-4">
         <div class="flex flex-col gap-7 xl:flex-row bg-[#00697F] text-white p-10 rounded-2xl shadow-md overflow-hidden">

@@ -1,8 +1,14 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, defineEmits } from "vue";
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+const emit = defineEmits();
+const searchQuery = ref("");
+const handleSearch = () => {
+  emit('search', searchQuery.value);
+};
+
 const userInfo = ref({
   Ten: localStorage.getItem('TenDocGia') || '',
   DienThoai: localStorage.getItem('DienThoai') || '',
@@ -24,7 +30,6 @@ const logout = () => {
 
   router.push('/login');
 };
-
 const profileLogin = () => {
     const maDocGia = localStorage.getItem('MaDocGia');
     if (!maDocGia) {
@@ -88,10 +93,10 @@ onMounted(() => {
         </h1>
       </div>
       <div class="lg:flex hidden flex-1 gap-4 max-w-xl">
-        <input type="text"
+        <input type="text" v-model="searchQuery"
           class="items-center w-full p-4 border border-gray-400 text-base font-semibold tracking-wider text-black bg-white/10 rounded-lg focus:outline-none"
           placeholder="Tìm kiếm tên sách ..." />
-        <button class="font-bold text-lg bg-[#00697F] text-white px-4 py-2 rounded-lg whitespace-nowrap">
+        <button @click.prevent="handleSearch" class="font-bold text-lg bg-[#00697F] text-white px-4 py-2 rounded-lg whitespace-nowrap">
           Tìm kiếm
         </button>
       </div>
@@ -149,10 +154,10 @@ onMounted(() => {
         </div>
         <ul class="flex flex-col my-10">
           <form action="" method="post" class="relative mb-4 flex space-x-4">
-            <input type="text"
+            <input type="text" v-model="searchQuery"
               class="items-center w-full p-4 border border-gray-400 text-base font-semibold tracking-wider text-black bg-white/10 rounded-lg focus:outline-none"
               placeholder="Tìm kiếm tên sách ..." />
-            <button class="font-bold text-lg bg-[#00697F] text-white px-4 py-2 rounded-lg whitespace-nowrap">
+            <button @click.prevent="handleSearch" class="font-bold text-lg bg-[#00697F] text-white px-4 py-2 rounded-lg whitespace-nowrap">
               Tìm kiếm
             </button>
           </form>
