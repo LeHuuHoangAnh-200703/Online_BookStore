@@ -57,8 +57,6 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const errors = ref({});
-const phone = ref("");
-const password = ref("");
 const notification = ref({
   message: "",
   type: "",
@@ -80,7 +78,7 @@ const formFields = ref([
 ]);
 
 const formData = ref({
-  email: "",
+  phone: "",
   password: "",
 });
 

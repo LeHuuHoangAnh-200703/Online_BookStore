@@ -35,7 +35,7 @@ const profileLogin = () => {
     if (!maDocGia) {
         router.push('/login');
     } else {
-        router.push(`/profile/${userInfo.MaDocGia}`);
+        router.push(`/profile/${maDocGia}`);
     }
 };
 
@@ -44,7 +44,7 @@ const editProfileLogin = () => {
     if (!maDocGia) {
         router.push('/login');
     } else {
-        router.push(`editProfile/${userInfo.MaDocGia}`);
+        router.push(`editProfile/${maDocGia}`);
     }
 };
 
