@@ -7,6 +7,18 @@ exports.createTheoDoiMuonSach = async (req, res) => {
 
   try {
     const docGia = await Docgia.findOne({ MaDocGia: MaDocGia });
+
+    const danhSachMuon = await TheoDoiMuonSach.find({
+      MaDocGia: MaDocGia,
+      TrangThai: { $ne: "Đã trả" },
+    });
+
+    const tongSoLuongDangMuon = danhSachMuon.reduce((sum, item) => sum + item.SoLuong, 0);
+
+    if (tongSoLuongDangMuon + SoLuong > 4) {
+      return res.status(400).json({ message: "Bạn chỉ có thể mượn tối đa 4 quyển sách!" });
+    }
+
     if (!docGia) {
       return res.status(400).json({ message: "Mã đọc giả không tồn tại!" });
     }
@@ -14,6 +26,16 @@ exports.createTheoDoiMuonSach = async (req, res) => {
     const sach = await Sach.findOne({ MaSach: MaSach });
     if (!sach) {
       return res.status(400).json({ message: "Mã sách không tồn tại!" });
+    }
+
+    const checkBook = await TheoDoiMuonSach.findOne({
+      MaSach: MaSach,
+      MaDocGia: MaDocGia,
+      TrangThai: { $ne: "Đã trả" },
+    });
+
+    if (checkBook) {
+      return res.status(400).json({message: "Không thể mượn thêm vì sách này chưa được trả!"});
     }
 
     if (sach.SoQuyen < SoLuong) {
