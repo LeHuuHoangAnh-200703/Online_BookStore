@@ -7,8 +7,8 @@ const router = useRouter();
 const chucVu = ref(localStorage.getItem('chucVu'));
 
 const sidebarMenu = [
-    { name: "Tất cả sản phẩm", icon: "fa-solid fa-igloo", path: "adminDashboard" },
-    { name: "Thêm sản phẩm", icon: "fa-solid fa-cart-plus", path: "createProducts" },
+    { name: "Tất cả sách", icon: "fa-solid fa-igloo", path: "adminDashboard" },
+    { name: "Thêm sách", icon: "fa-solid fa-cart-plus", path: "createProducts" },
     { name: "Thêm nhân viên", icon: "fa-solid fa-user-plus", path: "addAdmin" },
     { name: "Thêm nhà xuất bản", icon: "fa-solid fa-plus", path: "createNXB" },
     { name: "Danh sách nhân viên", icon: "fa-solid fa-users", path: "staffList" },

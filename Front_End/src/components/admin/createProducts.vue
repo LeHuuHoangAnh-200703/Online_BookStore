@@ -110,7 +110,7 @@ const submitForm = async () => {
         });
 
         notification.value = {
-            message: 'Sản phẩm đã được thêm thành công!',
+            message: 'Sách đã được thêm thành công!',
             type: 'success'
         };
     } catch (error) {
@@ -147,7 +147,7 @@ onMounted(() => {
             <navbar />
             <div class="relative w-[95%] mx-auto h-[100%] my-5 overflow-hidden">
                 <div class="text-center py-4">
-                    <h2 class="text-[#333] font-bold text-[20px]">THÊM SẢN PHẨM</h2>
+                    <h2 class="text-[#333] font-bold text-[20px]">THÊM SÁCH</h2>
                 </div>
                 <form @submit.prevent="submitForm" action="" method="POST" enctype="multipart/form-data"
                     class="w-full max-h-[calc(100vh-200px)] overflow-y-scroll">
@@ -215,7 +215,7 @@ onMounted(() => {
                         <div class="flex flex-col justify-center w-full">
                             <h2
                                 class="font-bold mb-1 block text-base text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">
-                                Chọn loại sản phẩm</h2>
+                                Chọn loại sách</h2>
                             <select v-model="formData.type" name="type"
                                 :class="['outline-0 p-3 block w-[80%] rounded-md border shadow-md focus:border-[#00697F] focus:ring focus:ring-[#00697F] focus:ring-opacity-50 disabled:cursor-not-allowed cursor-pointer', formData.errors.type ? 'input-error' : '']">
                                 <option checked value="Truyện Tranh">Truyện tranh</option>
@@ -248,7 +248,7 @@ onMounted(() => {
                         </div>
                         <label
                             class="font-bold mb-1 block text-base text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Chọn
-                            ảnh chính sản phẩm :</label>
+                            ảnh chính của sách :</label>
                         <input type="file" @change="event => {
                             formData.images = Array.from(event.target.files);
                         }" name="images[]" class="font-bold">
@@ -256,7 +256,7 @@ onMounted(() => {
                         <div class="text-center">
                             <button type="submit"
                                 class="inline-block rounded-lg bg-[#00697F] px-5 py-2.5 text-sm font-bold text-[#fff] shadow-md hover:scale-110 transition-all duration-200">Thêm
-                                sản phẩm</button>
+                                sách</button>
                         </div>
                     </div>
                 </form>

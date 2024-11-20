@@ -106,7 +106,7 @@ onMounted(() => {
                                         </p>
                                     </div>
                                     <div class="md:col-span-5 flex gap-4 flex-col">
-                                        <p class="font-semibold text-[18px]">Chọn số lượng sản phẩm :</p>
+                                        <p class="font-semibold text-[18px]">Chọn số lượng sách :</p>
                                         <div class="flex gap-3">
                                             <button @click.prevent="minus"
                                                 class="w-[40px] h-[40px] bg-[#333] rounded-full text-white font-bold hover:bg-[#00697F]">-</button>
@@ -128,7 +128,7 @@ onMounted(() => {
                                         <div class="inline-flex items-start">
                                             <button type="submit"
                                                 class="bg-[#333f48] hover:bg-[#00697F] text-white font-bold py-3 px-4 rounded">Mượn
-                                                sản phẩm</button>
+                                                sách</button>
                                         </div>
                                     </div>
                                 </form>

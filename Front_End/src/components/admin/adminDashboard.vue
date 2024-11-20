@@ -26,14 +26,14 @@ const fetchProducts = async () => {
 };
 
 const deleteProduct = async (maSach) => {
-    const confirmDelete = confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?");
+    const confirmDelete = confirm("Bạn có chắc chắn muốn xóa sách này không?");
     if (!confirmDelete) return;
 
     try {
         await axios.delete(`http://localhost:5000/api/sach/maSach/${maSach}`);
         products.value = products.value.filter(product => product.MaSach !== maSach);
         notification.value = {
-            message: 'Sản phẩm đã được xóa thành công!',
+            message: 'Sách đã được xóa thành công!',
             type: 'success'
         };
     } catch (error) {
@@ -73,7 +73,7 @@ onMounted(() => {
             <navbar />
             <div class="relative w-[95%] mx-auto h-full overflow-hidden">
                 <div class="text-center py-4">
-                    <h2 class="text-[#333] font-bold text-[20px]">DANH SÁCH SẢN PHẨM</h2>
+                    <h2 class="text-[#333] font-bold text-[20px]">DANH SÁCH SÁCH TRONG THƯ VIỆN</h2>
                 </div>
                 <div class="text-center mb-4">
                     <input type="text" v-model="searchQuery" placeholder="Tìm kiếm sản phẩm theo tên ..."
@@ -90,7 +90,7 @@ onMounted(() => {
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Năm xuất bản</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Loại sách</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Số quyển</th>
-                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Ảnh sản phẩm</th>
+                                <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Ảnh sách</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Tác giả</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Mô tả</th>
                                 <th scope="col" class="px-6 py-4 font-semibold text-gray-900">Điều chỉnh</th>
@@ -123,11 +123,11 @@ onMounted(() => {
                                 <td class="flex justify-center items-center gap-2 px-7 py-7 flex-col">
                                     <a :href="`/admin/editProduct/${product.MaSach}`"
                                         class="inline-block bg-[#00697F] text-white font-medium py-2 px-4 rounded-md transition-all duration-300 hover:bg-[#055565] whitespace-nowrap">Sửa
-                                        sản phẩm</a>
+                                        sách</a>
                                     <form @submit.prevent="deleteProduct(product.MaSach)">
                                         <button type="submit"
                                             class="inline-block text-white font-medium bg-[#DC143C] py-2 px-4 mb-4 rounded-md transition-all duration-300 hover:bg-[#B22222] whitespace-nowrap">Xóa
-                                            sản phẩm</button>
+                                            sách</button>
                                     </form>
                                 </td>
                             </tr>

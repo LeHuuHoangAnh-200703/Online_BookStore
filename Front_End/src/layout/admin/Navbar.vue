@@ -8,8 +8,8 @@ const TenNV = ref('');
 const ChucVuNV = ref('');
 
 const sidebarMenu = [
-    { name: "Tất cả sản phẩm", icon: "fa-solid fa-igloo", path: "adminDashboard"},
-    { name: "Thêm sản phẩm", icon: "fa-solid fa-cart-plus", path: "createProducts"},
+    { name: "Tất cả sách", icon: "fa-solid fa-igloo", path: "adminDashboard"},
+    { name: "Thêm sách", icon: "fa-solid fa-cart-plus", path: "createProducts"},
     { name: "Thêm nhân viên", icon: "fa-solid fa-user-plus", path: "addAdmin"},
     { name: "Thêm đơn mượn sách", icon: "fa-solid fa-square-plus", path: "createOrderBook"},
     { name: "Thêm nhà xuất bản", icon: "fa-solid fa-plus", path: "createNXB"},
