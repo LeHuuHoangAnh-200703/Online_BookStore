@@ -35,11 +35,10 @@ const notification = ref({
     type: ""
 });
 
-// Hàm để lấy thông tin sản phẩm từ server
 const fetchProductData = async (maSach) => {
     try {
         const response = await axios.get(`http://localhost:5000/api/sach/maSach/${maSach}`);
-        // Gán dữ liệu sản phẩm vào formData
+
         formData.value.idBook = response.data.MaSach;
         formData.value.idNXB = response.data.MaNXB;
         formData.value.name = response.data.TenSach;
